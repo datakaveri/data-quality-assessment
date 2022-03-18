@@ -1,5 +1,7 @@
 {
-    "fileName": "surattest.csv",
+    "fileName": "surat_live_bus_eta_data.csv",
+    "dataFileNameJSON": "surat_live_bus_eta_data.json",
+    "schemaFileName": "data_schema_surat_live_bus_eta.json",
     "duplicateDetection": {
         "inputFields": [
             "license_plate",
