@@ -15,10 +15,6 @@ import json
 with open("config.json") as file:
     data_dict = json.load(file)
 
-print(data_dict['duplicateDetection']["inputFields"][0])
-
-
-
 #parsing Dataset (use nrows attribute to take first n rows)
 df = pd.read_csv(data_dict['fileName'], parse_dates = ['observationDateTime'])
 
