@@ -10,13 +10,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import re
 import json
+import sys
+
+#Get the data file
+configFile = sys.argv[1]
+#dataFile = sys.argv[2]
 
 #reading from json config file
-with open("config.json") as file:
+with open(configFile, "r") as file:
     data_dict = json.load(file)
 
+dataFile = "../data/"+data_dict['fileName']
 #parsing Dataset (use nrows attribute to take first n rows)
-df = pd.read_csv(data_dict['fileName'], parse_dates = ['observationDateTime'])
+df = pd.read_csv(dataFile, parse_dates = ['observationDateTime'])
 
 
 # In[148]:
@@ -45,15 +51,15 @@ print('The number of duplicate rows in the dataset is: ' + str(dupeCount))
 
 
 #drop duplicate timestamps
-bool = input("Would you like to drop the duplicates from the dataset? [y/n] ")
-if bool == 'y':
-    df1 = df.drop_duplicates(subset = [data_dict['duplicateDetection']['inputFields'][0], data_dict['duplicateDetection']['inputFields'][1]], inplace = False, ignore_index=True)
-    print('The length of the dataset after removing the duplicate rows from the columns ' + data_dict['duplicateDetection']["inputFields"][0] + ' & ' + data_dict['duplicateDetection']["inputFields"][1] + ' is: ' + str(df1.shape))
-else:
-    df1 = df
-    print('The length of the dataset without removing the duplicate rows from the columns ' + data_dict['duplicateDetection']["inputFields"][0] + ' & ' + data_dict['duplicateDetection']["inputFields"][1] + ' is: ' + str(df1.shape))
-
-
+#bool = input("Would you like to drop the duplicates from the dataset? [y/n] ")
+#if bool == 'y':
+#    df1 = df.drop_duplicates(subset = [data_dict['duplicateDetection']['inputFields'][0], data_dict['duplicateDetection']['inputFields'][1]], inplace = False, ignore_index=True)
+#    print('The length of the dataset after removing the duplicate rows from the columns ' + data_dict['duplicateDetection']["inputFields"][0] + ' & ' + data_dict['duplicateDetection']["inputFields"][1] + ' is: ' + str(df1.shape))
+#else:
+#    df1 = df
+#    print('The length of the dataset without removing the duplicate rows from the columns ' + data_dict['duplicateDetection']["inputFields"][0] + ' & ' + data_dict['duplicateDetection']["inputFields"][1] + ' is: ' + str(df1.shape))
+#
+#
 # In[155]:
 
 
@@ -72,7 +78,7 @@ outputParam = {
     "fileName": data_dict["fileName"],
     "duplicateDetection":{
     "value": (round(dupeMetric,3)),
-    "type": "number",    
+    "type": "number",
     "metricLabel": "Duplicate Count Metric",
     "metricMessage": "For this dataset, " + str(dupePercent) + "% of the data packets are duplicates.",
     "description": "The metric is rated on a scale between 0 & 1; Computes the ratio of duplicate packets."
