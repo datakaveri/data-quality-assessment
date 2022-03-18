@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[75]:
+# In[147]:
 
 
 #importing the required libraries
@@ -12,23 +12,18 @@ import re
 import json
 
 #reading from json config file
-with open("Config.json") as file:
+with open("config.json") as file:
     data_dict = json.load(file)
-#print(data_dict['duplicateDetection'][0])
 
-#reading from config.ini file
-#config_object = ConfigParser()
-#config_object.read("config.ini")
-#dd = config_object["DUPLICATEDETECTION"]
-#filename = dd["filename"]
-#column_dupe = dd["column_name"]
+print(data_dict['duplicateDetection']["inputFields"][0])
+
 
 
 #parsing Dataset (use nrows attribute to take first n rows)
-df = pd.read_csv(data_dict['duplicateDetection'][0]['fileName'], parse_dates = ['observationDateTime'])
+df = pd.read_csv(data_dict['fileName'], parse_dates = ['observationDateTime'])
 
 
-# In[76]:
+# In[148]:
 
 
 #printing details of the dataset for the user input
@@ -41,29 +36,29 @@ print(df.shape)
 #print(df["location.coordinates"][0][0])
 
 
-# In[77]:
+# In[150]:
 
 
 #Count Number of duplicates
 
-dupeCount = len(df)-len(df.drop_duplicates(subset = [data_dict['duplicateDetection'][1]["columnName1"], data_dict['duplicateDetection'][2]['columnName2']]))
+dupeCount = len(df)-len(df.drop_duplicates(subset = [data_dict['duplicateDetection']["inputFields"][0], data_dict['duplicateDetection']['inputFields'][1]]))
 print('The number of duplicate rows in the dataset is: ' + str(dupeCount))
 
 
-# In[78]:
+# In[154]:
 
 
 #drop duplicate timestamps
 bool = input("Would you like to drop the duplicates from the dataset? [y/n] ")
 if bool == 'y':
-    df1 = df.drop_duplicates(subset = [data_dict['duplicateDetection'][1]["columnName1"], data_dict['duplicateDetection'][2]["columnName2"]], inplace = False,ignore_index=True)
-    print('The length of the dataset after removing the duplicate rows from the columns ' + data_dict['duplicateDetection'][1]["columnName1"] + ' & ' + data_dict['duplicateDetection'][2]["columnName2"] + ' is: ' + str(df1.shape))
+    df1 = df.drop_duplicates(subset = [data_dict['duplicateDetection']['inputFields'][0], data_dict['duplicateDetection']['inputFields'][1]], inplace = False, ignore_index=True)
+    print('The length of the dataset after removing the duplicate rows from the columns ' + data_dict['duplicateDetection']["inputFields"][0] + ' & ' + data_dict['duplicateDetection']["inputFields"][1] + ' is: ' + str(df1.shape))
 else:
     df1 = df
-    print('The length of the dataset without removing the duplicate rows from the columns ' + data_dict['duplicateDetection'][1]["columnName1"] + ' & ' + data_dict['duplicateDetection'][2]["columnName2"] + ' is: ' + str(df1.shape))
+    print('The length of the dataset without removing the duplicate rows from the columns ' + data_dict['duplicateDetection']["inputFields"][0] + ' & ' + data_dict['duplicateDetection']["inputFields"][1] + ' is: ' + str(df1.shape))
 
 
-# In[95]:
+# In[155]:
 
 
 #Calculating Duplication metric
@@ -72,24 +67,31 @@ dupePercent = round(dupeMetric*100,2)
 print("The metric score for duplicates is: " + str(dupeMetric) + " or " + str(dupePercent) + "%")
 
 
-# In[102]:
+# In[160]:
 
 
 #Outputting the result to a json report
 
 outputParam = {
-    "duplicateDetection":[
-    {"fileName": data_dict["duplicateDetection"][0]["fileName"]},
-    {"Metric Score": str(round(dupeMetric,3))},
-    {"Metric Percent": str(dupePercent) + '%'},
-    {"Metric Label": "duplicate detection"},
-    {"Metric Message": "The metric is rated on a scale between 0 & 1; 1 being the highest possible score."}    
-    ]
+    "fileName": data_dict["fileName"],
+    "duplicateDetection":{
+    "value": (round(dupeMetric,3)),
+    "type": "number",    
+    "metricLabel": "Duplicate Count Metric",
+    "metricMessage": "For this dataset, " + str(dupePercent) + "% of the data packets are duplicates.",
+    "description": "The metric is rated on a scale between 0 & 1; Computes the ratio of duplicate packets."
+    }
 }
 
 myJSON = json.dumps(outputParam, indent = 4)
 
-with open("Report.json", "w") as jsonfile:
+with open(data_dict["fileName"] + "Report.json", "w") as jsonfile:
     jsonfile.write(myJSON)
     print("Output file successfully created.")
+
+
+# In[ ]:
+
+
+
 

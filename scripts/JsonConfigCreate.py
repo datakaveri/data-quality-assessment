@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[45]:
+# In[54]:
 
 
 import json
@@ -38,16 +38,15 @@ usercolumnName1 = columnCheck()
 userColumnName2 = columnCheck()
 
 inputParam = {
-    "duplicateDetection":[
-    {"fileName": userfileName},
-    {"columnName1": usercolumnName1},
-    {"columnName2": userColumnName2}    
-    ]
+    "fileName": userfileName,
+    "duplicateDetection":{
+    "inputFields": [usercolumnName1, userColumnName2]  
+    }
 }
 
 myJSON = json.dumps(inputParam, indent = 4)
 
-with open("Config.json", "w") as jsonfile:
+with open("config.json", "w") as jsonfile:
     jsonfile.write(myJSON)
     print("Configuration file successfully created.")
 
