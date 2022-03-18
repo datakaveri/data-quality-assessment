@@ -128,6 +128,8 @@ with open(schemaFile, "r") as f1:
 
 #Remove Required properties and Additional Properties from Schema
 del schema['required']
+#NOTE: Should we explicitly make additional properties as false
+schema['additionalProperties'] = False
 
 num_samples, err_count, err_data_arr, add_err_count, req_err_cnt = validate_data_with_schema(data, schema)
 
