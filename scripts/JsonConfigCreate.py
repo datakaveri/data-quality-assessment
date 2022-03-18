@@ -1,46 +1,51 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[28]:
+# In[45]:
 
 
 import json
 import pandas as pd
 
 #initializing and clearing variables
-userfile_name = ''
-usercolumn_name = ''
+userfileName = ''
+usercolumnName1 = ''
+usercolumnName2 = ''
 
 #file format validation
-def format_check(prompt = 'Which file would you like to open? '):
-    userfile_name = input(prompt)
-    if userfile_name[-4:] in ('.csv'): return userfile_name
-    return format_check(prompt = 'The file must be in .csv format. Please retry: ')
+def formatCheck(prompt = 'Which file would you like to open? '):
+    userfileName = input(prompt)
+    if userfileName[-4:] in ('.csv'): return userfileName
+    return formatCheck(prompt = 'The file must be in .csv format. Please retry: ')
 
 #column existence validation
-def column_check(prompt = 'Which column would you like to search for duplicates? '):
-    usercolumn_name = input(prompt)
-    if usercolumn_name in df: return usercolumn_name
-    return column_check(prompt = 'This column does not exist in the dataset. Please retry: ')
+def columnCheck(prompt = 'Which columns would you like to check for duplicates? Please enter the first followed by the second column name: '):
+    usercolumnName = input(prompt)
+    if usercolumnName in df: return usercolumnName
+    return columnCheck(prompt = 'This column does not exist in the dataset. Please retry: ')
 
 #reading the file and checking for exceptions
 while True:
-    userfile_name = format_check()
+    userfileName = formatCheck()
     try:
-        df = pd.read_csv(userfile_name, parse_dates = ['observationDateTime'])
+        df = pd.read_csv(userfileName, parse_dates = ['observationDateTime'])
     except:
         print("This file does not exist. Please enter a valid file name. ")
     else:
         break
 
-usercolumn_name = column_check()
+usercolumnName1 = columnCheck()
+userColumnName2 = columnCheck()
 
-input_param = {
-    "filename": userfile_name,
-    "column_name": usercolumn_name
+inputParam = {
+    "duplicateDetection":[
+    {"fileName": userfileName},
+    {"columnName1": usercolumnName1},
+    {"columnName2": userColumnName2}    
+    ]
 }
 
-myJSON = json.dumps(input_param)
+myJSON = json.dumps(inputParam, indent = 4)
 
 with open("Config.json", "w") as jsonfile:
     jsonfile.write(myJSON)
