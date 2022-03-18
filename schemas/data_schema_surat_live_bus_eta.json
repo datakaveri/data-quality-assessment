@@ -1,0 +1,58 @@
+{
+	"$id": "https://voc.iudx.org.in/TransitManagement",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "object",
+	"properties": {
+		"id": {
+			"type": "string"
+		},
+		"location": {
+			"type": "object",
+			"properties": {
+				"coordinates": {
+					"type": "array",
+					"items": {
+						"type": "number"
+					}
+				}
+			}
+		},
+		"last_stop_id": {
+			"type": "string"
+		},
+		"actual_trip_start_time": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"speed": {
+			"type": "number"
+		},
+		"vehicle_label": {
+			"type": "string"
+		},
+		"observationDateTime": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"trip_delay": {
+			"type": "number"
+		},
+		"trip_direction": {
+			"type": "string"
+		},
+		"last_stop_arrival_time": {
+			"type": "string"
+		},
+		"route_id": {
+			"type": "string"
+		},
+		"license_plate": {
+			"type": "string"
+		},
+		"trip_id": {
+			"type": "string"
+		}
+	},
+	"required": ["id", "location", "last_stop_id", "actual_trip_start_time", "speed", "vehicle_label", "observationDateTime", "trip_delay", "trip_direction", "last_stop_arrival_time", "route_id", "license_plate", "trip_id"],
+	"additionalProperties": false
+}
