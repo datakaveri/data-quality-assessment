@@ -1,0 +1,19 @@
+{
+    "duplicateDetection": [
+        {
+            "fileName": "suratITMS_7days.csv"
+        },
+        {
+            "Metric Score": "0.061"
+        },
+        {
+            "Metric Percent": "6.06%"
+        },
+        {
+            "Metric Label": "duplicate detection"
+        },
+        {
+            "Metric Message": "The metric is rated on a scale between 0 & 1, 1 being the highest possible score."
+        }
+    ]
+}
