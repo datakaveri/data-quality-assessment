@@ -1,0 +1,177 @@
+import jsonschema
+import json
+import sys
+import requests
+import re
+import logging
+
+#Expecting 'data' to be a list
+def validate_data_with_schema(data, schema):
+
+    if isinstance(data, list):
+        data_array = data
+    else:
+        data_array = []
+        data_array.append(data)
+
+    num_samples = len(data_array)
+
+    err_count = 0
+    additional_prop_err_count = 0
+    req_prop_err_count = 0
+    err_data_arr = []
+    for i in range(num_samples):
+        data_packet = data_array[i]
+        try:
+           jsonschema.validate(data_packet, schema )
+
+        except jsonschema.exceptions.ValidationError as errV:
+            logging.debug ("Validation Error Occured")
+            v = jsonschema.Draft7Validator(schema, types=(), format_checker=None)
+            errors = sorted(v.iter_errors(data_packet), key=lambda e: e.path)
+            if len(errors) > 0:
+                err_count = err_count + 1
+            err_data_arr.append(data_packet)
+            #To track if 'Additional Properties' error occured
+            flag_0 = 0
+            #To track if 'Required Properties' error occured
+            flag_1 = 0
+            for error in errors:
+                logging.debug (error.message)
+                z = re.match("(Additional properties)", error.message)
+                if z:
+                   #logging.debug(z.groups())
+                   flag_0 = 1
+
+                z =  error.message.split(' ')
+                if z[-1] == 'property' and z[-2] == 'required' :
+                   flag_1 = 1
+
+            additional_prop_err_count = additional_prop_err_count + flag_0
+            req_prop_err_count = req_prop_err_count + flag_1
+        except jsonschema.exceptions.SchemaError as errS:
+           logging.debug ("Schema Error Occured")
+           logging.debug (errS.message)
+
+    return num_samples, err_count, err_data_arr, additional_prop_err_count, req_prop_err_count
+
+
+#Main program
+if len(sys.argv) < 2:
+    print('###########################################################################')
+    print("Not enough arguments")
+    print("Usage: python3 validate_format <ConfiFilePath>")
+    print('###########################################################################')
+    sys.exit()
+
+#logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
+logging.basicConfig(stream=sys.stderr, level=logging.INFO)
+
+#Get Config File
+configFile = sys.argv[1]
+with open(configFile, "r") as cf:
+    config = json.load(cf)
+
+#Get the data file
+#dataFile = sys.argv[1]
+dataFile = "../data/"+config['dataFileNameJSON']
+
+#Get the schema file
+#schemaFile = sys.argv[2]
+schemaFile = "../schemas/"+config['schemaFileName']
+
+#Load the data file
+with open(dataFile, "r") as f:
+    data = json.load(f)
+
+#Load the schema file
+with open(schemaFile, "r") as f1:
+    schema = json.load(f1)
+
+
+#####################################################################
+# Format Validity for attributes for which data formats are provided
+# in the Schema
+# For this metric we will ignore
+#   1. errors that occur because "required" fields are not there
+#   2. errors that occur because additional fields are present
+#
+#####################################################################
+
+# Remove Required properties and Additional Properties from Schema
+del schema['additionalProperties']
+del schema['required']
+
+num_samples, err_count, err_data_arr, add_err_count, req_err_cnt = validate_data_with_schema(data, schema)
+
+logging.debug(err_data_arr)
+logging.info('###########################################################################')
+logging.info("Total Samples: " + str(num_samples))
+logging.info("Total Format Errors: " + str(err_count))
+format_adherence_metric = 1 - err_count/num_samples
+logging.info("Format Adherence Metric: " + str(format_adherence_metric))
+logging.info('###########################################################################')
+
+
+#######################################################################
+# Unknown data attribute metric: Fraction of data points for
+# which contain only known fields:(1 - fraction(datapoints that contain
+# unknown attribtues))
+# in the Schema
+# For this metric we will ignore
+#   1. errors that occur because of format issues
+#   2. errors that occur because of required fields not present
+#
+#######################################################################
+with open(schemaFile, "r") as f1:
+    schema = json.load(f1)
+
+#Remove Required properties and Additional Properties from Schema
+del schema['required']
+
+num_samples, err_count, err_data_arr, add_err_count, req_err_cnt = validate_data_with_schema(data, schema)
+
+logging.debug(err_data_arr)
+logging.info("Total samples: " + str(num_samples))
+logging.info("Total Additional Fields Error Count: " + str(add_err_count))
+unknown_fields_absent_metric = 1 - add_err_count/num_samples
+logging.info("Unknown_Attributes_Absent_Metric: " + str(unknown_fields_absent_metric))
+
+#######################################################################
+# One by one check the required properties are present in packets or
+# not
+#######################################################################
+with open(schemaFile, "r") as f1:
+    schema = json.load(f1)
+
+del schema['additionalProperties']
+req = schema['required']
+logging.debug(len(req))
+missing_attr = {}
+per_attr_completeness_metric = {}
+total_missing_count = 0
+for attr in req:
+    schema['required'] = [attr]
+    num_samples, err_count, err_data_arr, add_err_count, req_err_count = validate_data_with_schema(data, schema)
+    logging.debug("Required Field Error Count for " + attr + ' is: ' + str(req_err_count))
+    missing_attr[attr] = req_err_count
+    per_attr_completeness_metric[attr] = 1- req_err_count/num_samples
+    total_missing_count = total_missing_count + req_err_count
+
+logging.debug(missing_attr)
+
+logging.info('###########################################################################')
+logging.info('##### Total Missing Fields Count for Required fields #######')
+logging.info("Total samples: " + str(num_samples))
+completeness_metric = 1 - total_missing_count/(num_samples*len(req))
+logging.info("Attribute_Completeness_Metric: "+str(completeness_metric))
+logging.info("Per_Attribute_Completeness_Metric: "+str(per_attr_completeness_metric))
+logging.info('###########################################################################')
+
+
+
+logging.info('################## Final Metrics ##########################################')
+logging.info("Format Adherence Metric: " + str(format_adherence_metric))
+logging.info("Additional Fields Absent Metric: " + str(unknown_fields_absent_metric))
+logging.info("Attribute Completeness Metric: "+str(completeness_metric))
+logging.info('###########################################################################')

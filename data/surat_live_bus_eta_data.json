@@ -1,0 +1,3908 @@
+[
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:25",
+            "location": {
+                "coordinates": [
+                    72.848299,
+                    21.146356
+                ],
+                "type": "Point"
+            },
+            "speed": 17.0,
+            "observationDateTime": "2021-05-08T08:29:45+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 36,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4028",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:21",
+            "location": {
+                "coordinates": [
+                    72.859182,
+                    21.116843
+                ],
+                "type": "Point"
+            },
+            "speed": 18.0,
+            "observationDateTime": "2021-05-08T08:29:51+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 7,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M49",
+            "last_stop_id": "2041",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:28:39",
+            "location": {
+                "coordinates": [
+                    72.833627,
+                    21.178609
+                ],
+                "type": "Point"
+            },
+            "speed": 17.0,
+            "observationDateTime": "2021-05-08T08:29:50+05:30",
+            "trip_id": "16004326",
+            "license_plate": "GJ05BX3416",
+            "trip_delay": 127,
+            "actual_trip_start_time": "2021-05-08T08:12:48+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M53",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:24:55",
+            "location": {
+                "coordinates": [
+                    72.860109,
+                    21.114961
+                ],
+                "type": "Point"
+            },
+            "speed": 29.0,
+            "observationDateTime": "2021-05-08T08:26:29+05:30",
+            "trip_id": "16004191",
+            "license_plate": "GJ05BX3438",
+            "trip_delay": 131,
+            "actual_trip_start_time": "2021-05-08T08:09:07+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "2047",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:02",
+            "location": {
+                "coordinates": [
+                    72.847256,
+                    21.149716
+                ],
+                "type": "Point"
+            },
+            "speed": 38.0,
+            "observationDateTime": "2021-05-08T08:29:47+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 26,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865129,
+                    21.103205
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:29:57+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1212,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:25",
+            "location": {
+                "coordinates": [
+                    72.848551,
+                    21.144395
+                ],
+                "type": "Point"
+            },
+            "speed": 13.0,
+            "observationDateTime": "2021-05-08T08:30:10+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 37,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4028",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:21",
+            "location": {
+                "coordinates": [
+                    72.85876,
+                    21.117956
+                ],
+                "type": "Point"
+            },
+            "speed": 34.0,
+            "observationDateTime": "2021-05-08T08:30:11+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 3,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M49",
+            "last_stop_id": "2041",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:28:39",
+            "location": {
+                "coordinates": [
+                    72.832844,
+                    21.17985
+                ],
+                "type": "Point"
+            },
+            "speed": 36.0,
+            "observationDateTime": "2021-05-08T08:30:10+05:30",
+            "trip_id": "16004326",
+            "license_plate": "GJ05BX3416",
+            "trip_delay": 125,
+            "actual_trip_start_time": "2021-05-08T08:12:48+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M53",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:24:55",
+            "location": {
+                "coordinates": [
+                    72.860109,
+                    21.114961
+                ],
+                "type": "Point"
+            },
+            "speed": 29.0,
+            "observationDateTime": "2021-05-08T08:26:29+05:30",
+            "trip_id": "16004191",
+            "license_plate": "GJ05BX3438",
+            "trip_delay": 131,
+            "actual_trip_start_time": "2021-05-08T08:09:07+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "2047",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:02",
+            "location": {
+                "coordinates": [
+                    72.847708,
+                    21.149292
+                ],
+                "type": "Point"
+            },
+            "speed": 40.0,
+            "observationDateTime": "2021-05-08T08:29:52+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 22,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865129,
+                    21.103205
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:30:12+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1202,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:25",
+            "location": {
+                "coordinates": [
+                    72.848642,
+                    21.144158
+                ],
+                "type": "Point"
+            },
+            "speed": 20.0,
+            "observationDateTime": "2021-05-08T08:30:20+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 32,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4028",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:21",
+            "location": {
+                "coordinates": [
+                    72.858387,
+                    21.118873
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:30:21+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 5,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M49",
+            "last_stop_id": "2041",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:28:39",
+            "location": {
+                "coordinates": [
+                    72.832441,
+                    21.1806
+                ],
+                "type": "Point"
+            },
+            "speed": 37.0,
+            "observationDateTime": "2021-05-08T08:30:19+05:30",
+            "trip_id": "16004326",
+            "license_plate": "GJ05BX3416",
+            "trip_delay": 128,
+            "actual_trip_start_time": "2021-05-08T08:12:48+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M53",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:24:55",
+            "location": {
+                "coordinates": [
+                    72.860109,
+                    21.114961
+                ],
+                "type": "Point"
+            },
+            "speed": 29.0,
+            "observationDateTime": "2021-05-08T08:26:29+05:30",
+            "trip_id": "16004191",
+            "license_plate": "GJ05BX3438",
+            "trip_delay": 131,
+            "actual_trip_start_time": "2021-05-08T08:09:07+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "2047",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:02",
+            "location": {
+                "coordinates": [
+                    72.847708,
+                    21.149292
+                ],
+                "type": "Point"
+            },
+            "speed": 40.0,
+            "observationDateTime": "2021-05-08T08:29:52+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 22,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865132,
+                    21.103201
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:30:22+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1193,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:25",
+            "location": {
+                "coordinates": [
+                    72.848642,
+                    21.144158
+                ],
+                "type": "Point"
+            },
+            "speed": 20.0,
+            "observationDateTime": "2021-05-08T08:30:20+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 32,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4028",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:21",
+            "location": {
+                "coordinates": [
+                    72.857988,
+                    21.119791
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:30:31+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 10,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M53",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:24:55",
+            "location": {
+                "coordinates": [
+                    72.860109,
+                    21.114961
+                ],
+                "type": "Point"
+            },
+            "speed": 29.0,
+            "observationDateTime": "2021-05-08T08:26:29+05:30",
+            "trip_id": "16004191",
+            "license_plate": "GJ05BX3438",
+            "trip_delay": 131,
+            "actual_trip_start_time": "2021-05-08T08:09:07+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "2047",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:02",
+            "location": {
+                "coordinates": [
+                    72.847708,
+                    21.149292
+                ],
+                "type": "Point"
+            },
+            "speed": 40.0,
+            "observationDateTime": "2021-05-08T08:29:52+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 22,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865132,
+                    21.103201
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:30:31+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1183,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:25",
+            "location": {
+                "coordinates": [
+                    72.848761,
+                    21.143825
+                ],
+                "type": "Point"
+            },
+            "speed": 33.0,
+            "observationDateTime": "2021-05-08T08:30:25+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 29,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4028",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:21",
+            "location": {
+                "coordinates": [
+                    72.857607,
+                    21.120716
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:30:41+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 10,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M53",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:24:55",
+            "location": {
+                "coordinates": [
+                    72.860109,
+                    21.114961
+                ],
+                "type": "Point"
+            },
+            "speed": 29.0,
+            "observationDateTime": "2021-05-08T08:26:29+05:30",
+            "trip_id": "16004191",
+            "license_plate": "GJ05BX3438",
+            "trip_delay": 131,
+            "actual_trip_start_time": "2021-05-08T08:09:07+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "2047",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:02",
+            "location": {
+                "coordinates": [
+                    72.847708,
+                    21.149292
+                ],
+                "type": "Point"
+            },
+            "speed": 40.0,
+            "observationDateTime": "2021-05-08T08:29:52+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 22,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865132,
+                    21.103201
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:30:46+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1173,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:25",
+            "location": {
+                "coordinates": [
+                    72.848761,
+                    21.143825
+                ],
+                "type": "Point"
+            },
+            "speed": 33.0,
+            "observationDateTime": "2021-05-08T08:30:25+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 29,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4027",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:31",
+            "location": {
+                "coordinates": [
+                    72.85721,
+                    21.121634
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:30:51+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 31,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M53",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:24:55",
+            "location": {
+                "coordinates": [
+                    72.860109,
+                    21.114961
+                ],
+                "type": "Point"
+            },
+            "speed": 29.0,
+            "observationDateTime": "2021-05-08T08:26:29+05:30",
+            "trip_id": "16004191",
+            "license_plate": "GJ05BX3438",
+            "trip_delay": 131,
+            "actual_trip_start_time": "2021-05-08T08:09:07+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "2047",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:02",
+            "location": {
+                "coordinates": [
+                    72.847708,
+                    21.149292
+                ],
+                "type": "Point"
+            },
+            "speed": 40.0,
+            "observationDateTime": "2021-05-08T08:29:52+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 22,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865132,
+                    21.103201
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:30:56+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1153,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:25",
+            "location": {
+                "coordinates": [
+                    72.848761,
+                    21.143825
+                ],
+                "type": "Point"
+            },
+            "speed": 33.0,
+            "observationDateTime": "2021-05-08T08:30:25+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 29,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4027",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:31",
+            "location": {
+                "coordinates": [
+                    72.856369,
+                    21.123457
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:31:10+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 41,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M53",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:24:55",
+            "location": {
+                "coordinates": [
+                    72.860776,
+                    21.113269
+                ],
+                "type": "Point"
+            },
+            "speed": 24.0,
+            "observationDateTime": "2021-05-08T08:26:59+05:30",
+            "trip_id": "16004191",
+            "license_plate": "GJ05BX3438",
+            "trip_delay": 131,
+            "actual_trip_start_time": "2021-05-08T08:09:07+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "2047",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:02",
+            "location": {
+                "coordinates": [
+                    72.848315,
+                    21.146154
+                ],
+                "type": "Point"
+            },
+            "speed": 23.0,
+            "observationDateTime": "2021-05-08T08:30:47+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 22,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865132,
+                    21.103202
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:31:11+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1143,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:25",
+            "location": {
+                "coordinates": [
+                    72.848761,
+                    21.143825
+                ],
+                "type": "Point"
+            },
+            "speed": 33.0,
+            "observationDateTime": "2021-05-08T08:30:25+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 29,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4027",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:31",
+            "location": {
+                "coordinates": [
+                    72.856369,
+                    21.123457
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:31:10+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 41,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M53",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:24:55",
+            "location": {
+                "coordinates": [
+                    72.862421,
+                    21.109091
+                ],
+                "type": "Point"
+            },
+            "speed": 20.0,
+            "observationDateTime": "2021-05-08T08:27:59+05:30",
+            "trip_id": "16004191",
+            "license_plate": "GJ05BX3438",
+            "trip_delay": 131,
+            "actual_trip_start_time": "2021-05-08T08:09:07+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:27",
+            "location": {
+                "coordinates": [
+                    72.848607,
+                    21.144264
+                ],
+                "type": "Point"
+            },
+            "speed": 20.0,
+            "observationDateTime": "2021-05-08T08:31:17+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 27,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865137,
+                    21.103196
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:31:21+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1133,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:29:25",
+            "location": {
+                "coordinates": [
+                    72.850467,
+                    21.139263
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:31:15+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 29,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4027",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:31",
+            "location": {
+                "coordinates": [
+                    72.856081,
+                    21.124116
+                ],
+                "type": "Point"
+            },
+            "speed": 21.0,
+            "observationDateTime": "2021-05-08T08:31:20+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 42,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:27",
+            "location": {
+                "coordinates": [
+                    72.848607,
+                    21.144264
+                ],
+                "type": "Point"
+            },
+            "speed": 20.0,
+            "observationDateTime": "2021-05-08T08:31:17+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 27,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865137,
+                    21.103196
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:31:31+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1123,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4023",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:55",
+            "location": {
+                "coordinates": [
+                    72.851604,
+                    21.136469
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:31:45+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 62,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4027",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:31",
+            "location": {
+                "coordinates": [
+                    72.855482,
+                    21.125605
+                ],
+                "type": "Point"
+            },
+            "speed": 38.0,
+            "observationDateTime": "2021-05-08T08:31:40+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 42,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:27",
+            "location": {
+                "coordinates": [
+                    72.848607,
+                    21.144264
+                ],
+                "type": "Point"
+            },
+            "speed": 20.0,
+            "observationDateTime": "2021-05-08T08:31:17+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 27,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865137,
+                    21.103196
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:31:46+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1113,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4023",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:55",
+            "location": {
+                "coordinates": [
+                    72.85179,
+                    21.136002
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:31:49+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 62,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4027",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:31",
+            "location": {
+                "coordinates": [
+                    72.855148,
+                    21.126534
+                ],
+                "type": "Point"
+            },
+            "speed": 34.0,
+            "observationDateTime": "2021-05-08T08:31:50+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 51,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:27",
+            "location": {
+                "coordinates": [
+                    72.848607,
+                    21.144264
+                ],
+                "type": "Point"
+            },
+            "speed": 20.0,
+            "observationDateTime": "2021-05-08T08:31:17+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 27,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865143,
+                    21.103187
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:31:56+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1103,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4024",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:31:49",
+            "location": {
+                "coordinates": [
+                    72.852303,
+                    21.134643
+                ],
+                "type": "Point"
+            },
+            "speed": 40.0,
+            "observationDateTime": "2021-05-08T08:32:04+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 76,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4027",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:31",
+            "location": {
+                "coordinates": [
+                    72.854959,
+                    21.127107
+                ],
+                "type": "Point"
+            },
+            "speed": 21.0,
+            "observationDateTime": "2021-05-08T08:32:00+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 50,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2041",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.834389,
+                    21.177926
+                ],
+                "type": "Point"
+            },
+            "speed": 11.0,
+            "observationDateTime": "2021-05-08T08:32:05+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 41,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4022",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:27",
+            "location": {
+                "coordinates": [
+                    72.848607,
+                    21.144264
+                ],
+                "type": "Point"
+            },
+            "speed": 20.0,
+            "observationDateTime": "2021-05-08T08:31:17+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 27,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865143,
+                    21.103187
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:32:01+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1083,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4024",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:31:49",
+            "location": {
+                "coordinates": [
+                    72.852441,
+                    21.134248
+                ],
+                "type": "Point"
+            },
+            "speed": 17.0,
+            "observationDateTime": "2021-05-08T08:32:10+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 72,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4027",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:31",
+            "location": {
+                "coordinates": [
+                    72.854686,
+                    21.127883
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:32:11+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 56,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2041",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.834464,
+                    21.177831
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:32:15+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 41,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4023",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:31:57",
+            "location": {
+                "coordinates": [
+                    72.85002,
+                    21.140467
+                ],
+                "type": "Point"
+            },
+            "speed": 38.0,
+            "observationDateTime": "2021-05-08T08:32:01+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 12,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865143,
+                    21.103187
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:32:16+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1073,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4024",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:31:49",
+            "location": {
+                "coordinates": [
+                    72.852569,
+                    21.133922
+                ],
+                "type": "Point"
+            },
+            "speed": 23.0,
+            "observationDateTime": "2021-05-08T08:32:25+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 66,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4027",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:30:31",
+            "location": {
+                "coordinates": [
+                    72.854348,
+                    21.128819
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:32:21+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 56,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2041",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.834468,
+                    21.177825
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:32:21+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 52,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4023",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:31:57",
+            "location": {
+                "coordinates": [
+                    72.850931,
+                    21.138116
+                ],
+                "type": "Point"
+            },
+            "speed": 38.0,
+            "observationDateTime": "2021-05-08T08:32:26+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 5,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865145,
+                    21.103185
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:32:26+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1063,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4024",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:31:49",
+            "location": {
+                "coordinates": [
+                    72.852875,
+                    21.133249
+                ],
+                "type": "Point"
+            },
+            "speed": 36.0,
+            "observationDateTime": "2021-05-08T08:32:35+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 66,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4026",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:32:31",
+            "location": {
+                "coordinates": [
+                    72.85369,
+                    21.13071
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:32:40+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 72,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2041",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.834515,
+                    21.177767
+                ],
+                "type": "Point"
+            },
+            "speed": 6.0,
+            "observationDateTime": "2021-05-08T08:32:31+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 61,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4023",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:31:57",
+            "location": {
+                "coordinates": [
+                    72.851124,
+                    21.137652
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:32:31+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 1,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865148,
+                    21.103181
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:32:40+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1054,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4025",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:32:35",
+            "location": {
+                "coordinates": [
+                    72.85327,
+                    21.132323
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:32:45+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 72,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4026",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:32:31",
+            "location": {
+                "coordinates": [
+                    72.853355,
+                    21.13164
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:32:50+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 77,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2041",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.834818,
+                    21.177386
+                ],
+                "type": "Point"
+            },
+            "speed": 7.0,
+            "observationDateTime": "2021-05-08T08:32:50+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 73,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4023",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:31:57",
+            "location": {
+                "coordinates": [
+                    72.851316,
+                    21.137191
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:32:36+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 1,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.86515,
+                    21.10318
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:32:51+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1043,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4025",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:32:35",
+            "location": {
+                "coordinates": [
+                    72.85327,
+                    21.132323
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:32:45+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 72,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4026",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:32:31",
+            "location": {
+                "coordinates": [
+                    72.852958,
+                    21.13255
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:33:00+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 77,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2041",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.835369,
+                    21.176722
+                ],
+                "type": "Point"
+            },
+            "speed": 33.0,
+            "observationDateTime": "2021-05-08T08:33:05+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 75,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4023",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:31:57",
+            "location": {
+                "coordinates": [
+                    72.85169,
+                    21.136254
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:32:46+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 1,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.86514,
+                    21.103192
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:33:06+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1028,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4025",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:32:35",
+            "location": {
+                "coordinates": [
+                    72.85434,
+                    21.129511
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:33:15+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 72,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4026",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:32:31",
+            "location": {
+                "coordinates": [
+                    72.852616,
+                    21.133377
+                ],
+                "type": "Point"
+            },
+            "speed": 36.0,
+            "observationDateTime": "2021-05-08T08:33:10+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 77,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2041",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.83608,
+                    21.176033
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:33:15+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 73,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4023",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:31:57",
+            "location": {
+                "coordinates": [
+                    72.852366,
+                    21.134463
+                ],
+                "type": "Point"
+            },
+            "speed": 27.0,
+            "observationDateTime": "2021-05-08T08:33:06+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 1,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865133,
+                    21.103201
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:33:16+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 1018,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:10",
+            "location": {
+                "coordinates": [
+                    72.854649,
+                    21.128558
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:33:25+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 97,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4025",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:00",
+            "location": {
+                "coordinates": [
+                    72.852224,
+                    21.1344
+                ],
+                "type": "Point"
+            },
+            "speed": 23.0,
+            "observationDateTime": "2021-05-08T08:33:30+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 88,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2041",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.836813,
+                    21.175336
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:33:25+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 67,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4024",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:32:46",
+            "location": {
+                "coordinates": [
+                    72.852609,
+                    21.133826
+                ],
+                "type": "Point"
+            },
+            "speed": 22.0,
+            "observationDateTime": "2021-05-08T08:33:26+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 5,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865133,
+                    21.103201
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:33:26+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 998,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:10",
+            "location": {
+                "coordinates": [
+                    72.855026,
+                    21.127338
+                ],
+                "type": "Point"
+            },
+            "speed": 23.0,
+            "observationDateTime": "2021-05-08T08:33:40+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 98,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4025",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:00",
+            "location": {
+                "coordinates": [
+                    72.85189,
+                    21.135176
+                ],
+                "type": "Point"
+            },
+            "speed": 40.0,
+            "observationDateTime": "2021-05-08T08:33:40+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 91,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2041",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.837245,
+                    21.174903
+                ],
+                "type": "Point"
+            },
+            "speed": 6.0,
+            "observationDateTime": "2021-05-08T08:33:35+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 67,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4024",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:32:46",
+            "location": {
+                "coordinates": [
+                    72.852904,
+                    21.133183
+                ],
+                "type": "Point"
+            },
+            "speed": 33.0,
+            "observationDateTime": "2021-05-08T08:33:36+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 5,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865132,
+                    21.103202
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:33:41+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 988,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:10",
+            "location": {
+                "coordinates": [
+                    72.855026,
+                    21.127338
+                ],
+                "type": "Point"
+            },
+            "speed": 23.0,
+            "observationDateTime": "2021-05-08T08:33:40+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 98,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4024",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:50",
+            "location": {
+                "coordinates": [
+                    72.851499,
+                    21.136114
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:33:50+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 100,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2042",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:35",
+            "location": {
+                "coordinates": [
+                    72.837512,
+                    21.174628
+                ],
+                "type": "Point"
+            },
+            "speed": 24.0,
+            "observationDateTime": "2021-05-08T08:33:45+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 67,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4025",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:36",
+            "location": {
+                "coordinates": [
+                    72.853453,
+                    21.131853
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:33:51+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 13,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865131,
+                    21.103203
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:33:51+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 978,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:10",
+            "location": {
+                "coordinates": [
+                    72.85527,
+                    21.126558
+                ],
+                "type": "Point"
+            },
+            "speed": 28.0,
+            "observationDateTime": "2021-05-08T08:33:54+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 98,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4024",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:50",
+            "location": {
+                "coordinates": [
+                    72.851145,
+                    21.137051
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:00+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 106,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2042",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:35",
+            "location": {
+                "coordinates": [
+                    72.838366,
+                    21.173682
+                ],
+                "type": "Point"
+            },
+            "speed": 38.0,
+            "observationDateTime": "2021-05-08T08:34:00+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 67,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4025",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:36",
+            "location": {
+                "coordinates": [
+                    72.8538,
+                    21.13091
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:01+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 17,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865131,
+                    21.103203
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:34:01+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 968,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:10",
+            "location": {
+                "coordinates": [
+                    72.855565,
+                    21.125685
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:04+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 96,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4024",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:50",
+            "location": {
+                "coordinates": [
+                    72.850785,
+                    21.137985
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:10+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 110,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2042",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:35",
+            "location": {
+                "coordinates": [
+                    72.838634,
+                    21.173352
+                ],
+                "type": "Point"
+            },
+            "speed": 24.0,
+            "observationDateTime": "2021-05-08T08:34:05+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 64,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4025",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:36",
+            "location": {
+                "coordinates": [
+                    72.854343,
+                    21.129504
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:16+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 17,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865131,
+                    21.103203
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:34:16+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 958,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:10",
+            "location": {
+                "coordinates": [
+                    72.856125,
+                    21.124318
+                ],
+                "type": "Point"
+            },
+            "speed": 30.0,
+            "observationDateTime": "2021-05-08T08:34:19+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 100,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4024",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:50",
+            "location": {
+                "coordinates": [
+                    72.850418,
+                    21.138911
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:20+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 115,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2042",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:35",
+            "location": {
+                "coordinates": [
+                    72.839113,
+                    21.172736
+                ],
+                "type": "Point"
+            },
+            "speed": 31.0,
+            "observationDateTime": "2021-05-08T08:34:20+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 64,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:11",
+            "location": {
+                "coordinates": [
+                    72.854651,
+                    21.128553
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:26+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 32,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865131,
+                    21.103203
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:34:26+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 948,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:10",
+            "location": {
+                "coordinates": [
+                    72.856424,
+                    21.12368
+                ],
+                "type": "Point"
+            },
+            "speed": 34.0,
+            "observationDateTime": "2021-05-08T08:34:29+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 103,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4024",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:50",
+            "location": {
+                "coordinates": [
+                    72.849628,
+                    21.140755
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:39+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 120,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2042",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:35",
+            "location": {
+                "coordinates": [
+                    72.839798,
+                    21.171479
+                ],
+                "type": "Point"
+            },
+            "speed": 38.0,
+            "observationDateTime": "2021-05-08T08:34:35+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 68,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:11",
+            "location": {
+                "coordinates": [
+                    72.854936,
+                    21.127626
+                ],
+                "type": "Point"
+            },
+            "speed": 35.0,
+            "observationDateTime": "2021-05-08T08:34:36+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 36,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865131,
+                    21.103203
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:34:41+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 928,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:10",
+            "location": {
+                "coordinates": [
+                    72.857085,
+                    21.122335
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:44+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 110,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4023",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:39",
+            "location": {
+                "coordinates": [
+                    72.849314,
+                    21.141706
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:49+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 133,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2043",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:40",
+            "location": {
+                "coordinates": [
+                    72.840013,
+                    21.170541
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:34:50+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 60,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:11",
+            "location": {
+                "coordinates": [
+                    72.855042,
+                    21.127285
+                ],
+                "type": "Point"
+            },
+            "speed": 26.0,
+            "observationDateTime": "2021-05-08T08:34:41+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 38,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865131,
+                    21.103203
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:34:50+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 919,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:10",
+            "location": {
+                "coordinates": [
+                    72.857501,
+                    21.121422
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:54+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 114,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4023",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:39",
+            "location": {
+                "coordinates": [
+                    72.849,
+                    21.14265
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:59+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 138,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2043",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:40",
+            "location": {
+                "coordinates": [
+                    72.840085,
+                    21.170041
+                ],
+                "type": "Point"
+            },
+            "speed": 24.0,
+            "observationDateTime": "2021-05-08T08:35:04+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 66,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:11",
+            "location": {
+                "coordinates": [
+                    72.855412,
+                    21.126103
+                ],
+                "type": "Point"
+            },
+            "speed": 36.0,
+            "observationDateTime": "2021-05-08T08:35:01+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 35,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865131,
+                    21.103203
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:35:00+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 909,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:10",
+            "location": {
+                "coordinates": [
+                    72.857706,
+                    21.120966
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:34:59+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 114,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4023",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:39",
+            "location": {
+                "coordinates": [
+                    72.84868,
+                    21.143595
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:35:09+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 138,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2043",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:40",
+            "location": {
+                "coordinates": [
+                    72.840195,
+                    21.169283
+                ],
+                "type": "Point"
+            },
+            "speed": 34.0,
+            "observationDateTime": "2021-05-08T08:35:14+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 68,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:11",
+            "location": {
+                "coordinates": [
+                    72.855773,
+                    21.125171
+                ],
+                "type": "Point"
+            },
+            "speed": 38.0,
+            "observationDateTime": "2021-05-08T08:35:11+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 35,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865131,
+                    21.103203
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:35:15+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 899,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:33:10",
+            "location": {
+                "coordinates": [
+                    72.858016,
+                    21.120246
+                ],
+                "type": "Point"
+            },
+            "speed": 10.0,
+            "observationDateTime": "2021-05-08T08:35:15+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 114,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4023",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:39",
+            "location": {
+                "coordinates": [
+                    72.848459,
+                    21.144225
+                ],
+                "type": "Point"
+            },
+            "speed": 20.0,
+            "observationDateTime": "2021-05-08T08:35:19+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 143,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2043",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:40",
+            "location": {
+                "coordinates": [
+                    72.840266,
+                    21.168854
+                ],
+                "type": "Point"
+            },
+            "speed": 28.0,
+            "observationDateTime": "2021-05-08T08:35:19+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 66,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:11",
+            "location": {
+                "coordinates": [
+                    72.855921,
+                    21.124812
+                ],
+                "type": "Point"
+            },
+            "speed": 38.0,
+            "observationDateTime": "2021-05-08T08:35:16+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 40,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865131,
+                    21.103203
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:35:20+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 889,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:35:10",
+            "location": {
+                "coordinates": [
+                    72.858594,
+                    21.118811
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:35:34+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 113,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4023",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:39",
+            "location": {
+                "coordinates": [
+                    72.848269,
+                    21.144761
+                ],
+                "type": "Point"
+            },
+            "speed": 28.0,
+            "observationDateTime": "2021-05-08T08:35:29+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 141,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2043",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:40",
+            "location": {
+                "coordinates": [
+                    72.840266,
+                    21.168854
+                ],
+                "type": "Point"
+            },
+            "speed": 28.0,
+            "observationDateTime": "2021-05-08T08:35:19+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 66,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:11",
+            "location": {
+                "coordinates": [
+                    72.856121,
+                    21.124327
+                ],
+                "type": "Point"
+            },
+            "speed": 27.0,
+            "observationDateTime": "2021-05-08T08:35:21+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 40,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865132,
+                    21.103202
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:35:35+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 879,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:35:10",
+            "location": {
+                "coordinates": [
+                    72.858959,
+                    21.117872
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:35:44+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 118,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4023",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:39",
+            "location": {
+                "coordinates": [
+                    72.848164,
+                    21.145692
+                ],
+                "type": "Point"
+            },
+            "speed": 40.0,
+            "observationDateTime": "2021-05-08T08:35:39+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 146,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2043",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:40",
+            "location": {
+                "coordinates": [
+                    72.840266,
+                    21.168854
+                ],
+                "type": "Point"
+            },
+            "speed": 28.0,
+            "observationDateTime": "2021-05-08T08:35:19+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 66,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:11",
+            "location": {
+                "coordinates": [
+                    72.856792,
+                    21.122945
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:35:41+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 41,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865134,
+                    21.1032
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:35:45+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 869,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:35:10",
+            "location": {
+                "coordinates": [
+                    72.85934,
+                    21.116924
+                ],
+                "type": "Point"
+            },
+            "speed": 23.0,
+            "observationDateTime": "2021-05-08T08:35:59+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 119,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4022",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:35:49",
+            "location": {
+                "coordinates": [
+                    72.848093,
+                    21.146649
+                ],
+                "type": "Point"
+            },
+            "speed": 11.0,
+            "observationDateTime": "2021-05-08T08:36:00+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 147,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2043",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:40",
+            "location": {
+                "coordinates": [
+                    72.84071,
+                    21.166585
+                ],
+                "type": "Point"
+            },
+            "speed": 18.0,
+            "observationDateTime": "2021-05-08T08:35:54+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 66,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:11",
+            "location": {
+                "coordinates": [
+                    72.85743,
+                    21.121579
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:35:56+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 51,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865134,
+                    21.1032
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:35:55+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 859,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:35:10",
+            "location": {
+                "coordinates": [
+                    72.859632,
+                    21.116194
+                ],
+                "type": "Point"
+            },
+            "speed": 34.0,
+            "observationDateTime": "2021-05-08T08:36:09+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 119,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4022",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:35:49",
+            "location": {
+                "coordinates": [
+                    72.84806,
+                    21.147131
+                ],
+                "type": "Point"
+            },
+            "speed": 24.0,
+            "observationDateTime": "2021-05-08T08:36:10+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 145,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2043",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:40",
+            "location": {
+                "coordinates": [
+                    72.84071,
+                    21.166585
+                ],
+                "type": "Point"
+            },
+            "speed": 18.0,
+            "observationDateTime": "2021-05-08T08:35:54+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 66,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:11",
+            "location": {
+                "coordinates": [
+                    72.857823,
+                    21.120698
+                ],
+                "type": "Point"
+            },
+            "speed": 36.0,
+            "observationDateTime": "2021-05-08T08:36:06+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 51,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865134,
+                    21.1032
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:36:10+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 839,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4028",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:36:09",
+            "location": {
+                "coordinates": [
+                    72.859811,
+                    21.115747
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:36:19+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 119,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4022",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:35:49",
+            "location": {
+                "coordinates": [
+                    72.848018,
+                    21.147629
+                ],
+                "type": "Point"
+            },
+            "speed": 22.0,
+            "observationDateTime": "2021-05-08T08:36:19+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 143,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2043",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:40",
+            "location": {
+                "coordinates": [
+                    72.840777,
+                    21.166311
+                ],
+                "type": "Point"
+            },
+            "speed": 26.0,
+            "observationDateTime": "2021-05-08T08:35:59+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 69,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4026",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:11",
+            "location": {
+                "coordinates": [
+                    72.857823,
+                    21.120698
+                ],
+                "type": "Point"
+            },
+            "speed": 36.0,
+            "observationDateTime": "2021-05-08T08:36:06+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 51,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865134,
+                    21.1032
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:36:20+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 829,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4028",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:36:09",
+            "location": {
+                "coordinates": [
+                    72.859936,
+                    21.115441
+                ],
+                "type": "Point"
+            },
+            "speed": 27.0,
+            "observationDateTime": "2021-05-08T08:36:34+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 110,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4022",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:35:49",
+            "location": {
+                "coordinates": [
+                    72.847899,
+                    21.148386
+                ],
+                "type": "Point"
+            },
+            "speed": 36.0,
+            "observationDateTime": "2021-05-08T08:36:29+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 146,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2043",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:40",
+            "location": {
+                "coordinates": [
+                    72.840777,
+                    21.166311
+                ],
+                "type": "Point"
+            },
+            "speed": 26.0,
+            "observationDateTime": "2021-05-08T08:35:59+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 69,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:36:11",
+            "location": {
+                "coordinates": [
+                    72.858152,
+                    21.119927
+                ],
+                "type": "Point"
+            },
+            "speed": 23.0,
+            "observationDateTime": "2021-05-08T08:36:26+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 47,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865134,
+                    21.1032
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:36:36+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 819,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4028",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:36:09",
+            "location": {
+                "coordinates": [
+                    72.860077,
+                    21.115059
+                ],
+                "type": "Point"
+            },
+            "speed": 34.0,
+            "observationDateTime": "2021-05-08T08:36:39+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 110,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4022",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:35:49",
+            "location": {
+                "coordinates": [
+                    72.84754,
+                    21.14926
+                ],
+                "type": "Point"
+            },
+            "speed": 38.0,
+            "observationDateTime": "2021-05-08T08:36:39+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 149,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2043",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:34:40",
+            "location": {
+                "coordinates": [
+                    72.841133,
+                    21.164523
+                ],
+                "type": "Point"
+            },
+            "speed": 40.0,
+            "observationDateTime": "2021-05-08T08:36:20+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 69,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:36:11",
+            "location": {
+                "coordinates": [
+                    72.858804,
+                    21.118273
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:36:45+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 50,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865134,
+                    21.1032
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:36:46+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 808,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4028",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:36:09",
+            "location": {
+                "coordinates": [
+                    72.860239,
+                    21.114601
+                ],
+                "type": "Point"
+            },
+            "speed": 41.0,
+            "observationDateTime": "2021-05-08T08:36:44+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 110,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M28",
+            "last_stop_id": "4022",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:35:49",
+            "location": {
+                "coordinates": [
+                    72.846765,
+                    21.149947
+                ],
+                "type": "Point"
+            },
+            "speed": 38.0,
+            "observationDateTime": "2021-05-08T08:36:49+05:30",
+            "trip_id": "16004361",
+            "license_plate": "GJ05BX3239",
+            "trip_delay": 155,
+            "actual_trip_start_time": "2021-05-08T08:26:51+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M59",
+            "last_stop_id": "2044",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:36:05",
+            "location": {
+                "coordinates": [
+                    72.842221,
+                    21.161209
+                ],
+                "type": "Point"
+            },
+            "speed": 39.0,
+            "observationDateTime": "2021-05-08T08:36:54+05:30",
+            "trip_id": "16004199",
+            "license_plate": "GJ05BX3480",
+            "trip_delay": 47,
+            "actual_trip_start_time": "2021-05-08T08:30:45+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M60",
+            "last_stop_id": "4027",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:36:11",
+            "location": {
+                "coordinates": [
+                    72.859141,
+                    21.117402
+                ],
+                "type": "Point"
+            },
+            "speed": 30.0,
+            "observationDateTime": "2021-05-08T08:36:55+05:30",
+            "trip_id": "16004281",
+            "license_plate": "GJ05BX3508",
+            "trip_delay": 55,
+            "actual_trip_start_time": "2021-05-08T08:21:28+05:30",
+            "trip_direction": "UP"
+        },
+        {
+            "vehicle_label": "M69",
+            "last_stop_id": "4031",
+            "route_id": "11D",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": null,
+            "location": {
+                "coordinates": [
+                    72.865137,
+                    21.103196
+                ],
+                "type": "Point"
+            },
+            "speed": 0.0,
+            "observationDateTime": "2021-05-08T08:36:56+05:30",
+            "trip_id": "16004343",
+            "license_plate": "GJ05BX3862",
+            "trip_delay": 798,
+            "actual_trip_start_time": "2021-05-08T08:18:34+05:30",
+            "trip_direction": "DN"
+        },
+        {
+            "vehicle_label": "M22",
+            "last_stop_id": "4028",
+            "route_id": "11U",
+            "id": "suratmunicipal.org/6db486cb4f720e8585ba1f45a931c63c25dbbbda/rs.iudx.org.in/surat-itms-realtime-info/surat-itms-live-eta",
+            "last_stop_arrival_time": "08:36:09",
+            "location": {
+                "coordinates": [
+                    72.860239,
+                    21.114601
+                ],
+                "type": "Point"
+            },
+            "speed": 41.0,
+            "observationDateTime": "2021-05-08T08:36:44+05:30",
+            "trip_id": "16004236",
+            "license_plate": "GJ05BX3216",
+            "trip_delay": 110,
+            "actual_trip_start_time": "2021-05-08T08:20:46+05:30",
+            "trip_direction": "UP"
+        }
+    ]
