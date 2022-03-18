@@ -1,0 +1,9 @@
+{
+    "fileName": "surattest.csv",
+    "duplicateDetection": {
+        "inputFields": [
+            "license_plate",
+            "observationDateTime"
+        ]
+    }
+}
