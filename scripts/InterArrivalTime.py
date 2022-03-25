@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[926]:
+# In[1597]:
 
 
 #importing the required libraries
@@ -14,15 +14,16 @@ import sys
 import json
 from scipy.stats import norm
 import statistics
-from os import path
-from math import ceil, floor
+import os
+from math import ceil, floor, sqrt
 
 #Get the data file
-#configFile = sys.argv[1]
+#configFile = "config.json"
+configFile = sys.argv[1]
 #dataFile = sys.argv[2]
 
 #reading from json config file
-with open("config.json", "r") as file:
+with open(configFile, "r") as file:
     data_dict = json.load(file)
 
 dataFile = "../data/"+data_dict['fileName']
@@ -38,7 +39,7 @@ iat = [0]
 df = pd.read_csv(data_dict["fileName"], parse_dates = ['observationDateTime'])
 
 
-# In[927]:
+# In[1598]:
 
 
 #printing details of the dataset for the user input
@@ -50,7 +51,7 @@ print('The shape of this dataset is: ' + str(df.shape))
 #df['observationDateTime']
 
 
-# In[928]:
+# In[1599]:
 
 
 #dropping duplicate timestamps
@@ -59,215 +60,234 @@ print(str(len(df)-len(df1)) + " duplicate rows have been dropped.")
 print("The shape of the dataframe is now: " + str(df1.shape))
 
 
-# In[929]:
+# In[1600]:
 
 
+#creating an array of sorted interarrival times
 dfSorted = df1.sort_values(data_dict['interArrivalTime']['inputFields'][1])
-#print(dfSorted)
-#dfSorted.to_csv('varibable.csv')
 iatDict = {k: g['observationDateTime'].tolist() for k,g in dfSorted.groupby(data_dict['interArrivalTime']['inputFields'][0])}
-#print(iatDict)
 dfIAT = pd.DataFrame.from_dict(iatDict, orient = 'index').transpose()
-#dfIAT.to_csv('sensor_test.csv')
 IATdiff = dfIAT.diff()
 
+#print(IATdiff)
+#finding the average IAT for each sensor
+avgArr = []
+stdArr = []
+i = 0
+while i < IATdiff.shape[1]:
+    avgArr.append(np.mean(IATdiff.iloc[:,i]))
+    stdArr.append(np.std(IATdiff.iloc[:,i]))
+    i+=1
+avgArr = pd.DataFrame(avgArr)
+stdArr = pd.DataFrame(stdArr)
 
-# In[930]:
+avgArr.columns = ['Average IAT for each sensor']
+stdArr.columns = ['Std of IAT for each sensor']
+overallAvg = np.mean(avgArr)
+overallAvg = overallAvg.dt.total_seconds()
+overallStd = np.mean(stdArr)
+overallStd = overallStd.dt.total_seconds()
+
+
+# In[1601]:
 
 
 #creating a plottable array
 columnTitles = IATdiff.columns
 i = 0
 j = 0
-Arr = []
 plotArr = []
 plotRows = []
+
+#creating an array with no. of occurences of each timedelta and sorting
 while i < len(columnTitles):
     plotArr.append(IATdiff[columnTitles[i]].value_counts().sort_index())
     i+=1
-    
+
+#converting a list to a dataframe
 plotArrDf = pd.DataFrame(plotArr)
 rowTitles = plotArrDf.columns
+
 
 while j < len(rowTitles):
     plotRows.append(plotArrDf[rowTitles[j]])
     j+=1
 
-#function to round up to nearest 10
+#functions to round up and down to nearest 10
 def next_ten(x):
     return int(ceil(x/10.0))*10
 
 def prev_ten(x):
     return int(floor(x/10.0))*10
-    
-plotRowsDf = pd.DataFrame(plotRows)
-#print(plotArrDf)
+
 plotArrDf = plotArrDf.sum()
 plotArrDf = plotArrDf.sort_index()
 plotArrDf.index = plotArrDf.index.total_seconds()
 plotArrDf = pd.DataFrame.from_dict(plotArrDf)
 plotArrDf.reset_index(level=0, inplace=True)
 plotArrDf.columns = ["TimeDelta", "No. Of Occurences"]
-#print(len(plotArrDf['TimeDelta']))
-#print(len(plotArrDf['No. Of Occurences']))
-#ceil_val = next_ten(plotArrDf.max())+10
-#floor_val = prev_ten(plotArrDf.min())
+
 ceil_val = next_ten(plotArrDf['TimeDelta'].max())+10
 floor_val = prev_ten(plotArrDf['TimeDelta'].min())
-
-#print(plotArrDf)
-#plotArrDf.to_csv('varibable.csv')
+print(plotArrDf)
 
 
-# In[961]:
+# In[1602]:
 
 
 #Computing mean,std,mode with outliers
-print(plotArrDf["TimeDelta"])
-avg = np.mean(plotArrDf["TimeDelta"])/60
-std = np.std(plotArrDf["TimeDelta"])/60
-maxi = np.max(plotArrDf["TimeDelta"])/60
-print("The average inter-arrival time for all the sensors including outliers is: " + str(round(avg,2)) + " minutes.")
-print("The standard deviation of the inter-arrival time for all the sensors including outliers is: " + str(round(std,2)) + " minutes.")
+print("The average inter-arrival time for all the sensors including outliers is: " + str(round(overallAvg.values[0],3)) + " seconds.")
+print("The standard deviation of the inter-arrival time for all the sensors including outliers is: " + str(round(overallStd.values[0],3)) + " seconds.")
 
 mode_index = plotArrDf["No. Of Occurences"].idxmax()
-mode = plotArrDf["TimeDelta"][mode_index]/60
+mode = plotArrDf["TimeDelta"][mode_index]
+print("The mode of the inter-arrival times for the sensors is: " + str(round(mode,3)) + " seconds")
 
 
-# In[932]:
+# In[1603]:
 
 
 #Outlier detection
 #detecting and summing all timedelta values greater than 2*mode to 
 #compute total outage time
 
-twiceMode = 2*mode
+twiceMode = 5*mode
 outliers = []
 i = 0
 
 bool = input("Would you like to compute the total outage time of all the sensors? [y/n] ")
 if bool == 'y':
     while i < len(plotArrDf):
-        if (plotArrDf['TimeDelta'][i])/60 > twiceMode+1:
-            outliers.append(plotArrDf['TimeDelta'][i]/60)
+        if (plotArrDf['TimeDelta'][i]) > twiceMode:
+            outliers.append(plotArrDf['TimeDelta'][i])
             i+=1
         else:
             i+=1
-    totalOutage = (sum(outliers)/(60*24))
-    print("The total outage time of all the sensors combined is: " + str(round(totalOutage, 2)) + " days")
+    totalOutage = (sum(outliers)/(3600))
+    print("The total outage time of all the sensors combined is: " + str(round(totalOutage, 2)) + " hours, or " + str(round(totalOutage*60,2)) + " minutes.")
 else:
-    print("Outliers of a value greater than 2*mode will be removed for a legible output plot.")
+    print("Outliers of a value greater than 5*mode will be removed for a legible output plot.")
 
 
-# In[933]:
+# In[1604]:
 
 
 #Outlier Removal
 i = 0
 #print(twiceMode)
 #print(plotArrDf)
-plotArrDfIn = plotArrDf[plotArrDf.TimeDelta < (twiceMode*60)+1]
+plotArrDfIn = plotArrDf[plotArrDf.TimeDelta < (twiceMode)]
 #print(plotArrDfIn)
+plotArrDfIn.to_csv('plotArrDfIn.csv')
+avgArrIn = []
+stdArrIn = []
+i = 0
+#computing the average after removing the outliers
+while i < len(plotArrDfIn):
+    avgArrIn.append((plotArrDfIn['TimeDelta'][i]*plotArrDfIn['No. Of Occurences'][i]))
+    #stdArr.append(np.std(IATdiff.iloc[:,i]))
+    i+=1
+
+avgArrIn = sum(avgArrIn)/(plotArrDfIn['No. Of Occurences'].sum())
+
+#computing the standard deviation after removing the outliers
+i = 0
+while i < len(plotArrDfIn):
+    
+    stdArrIn.append((plotArrDfIn['TimeDelta'][i] - avgArrIn)*(plotArrDfIn['TimeDelta'][i] - avgArrIn)*plotArrDfIn['No. Of Occurences'][i])
+    i+=1
+stdArrIn = math.sqrt(sum(stdArrIn)/(plotArrDfIn['No. Of Occurences'].sum()))
+print("The average inter-arrival time for all the sensors excluding outliers is: " + str(round(avgArrIn,2)) + " seconds.")
+print("The standard deviation of all the inter-arrival times excluding outliers is: " + str(round(stdArrIn,2)) + " seconds.")
 
 
-# In[934]:
+# In[1605]:
 
 
 #Plotting the Array
 
-#plotArrDfIndex = plotArrDfIn.set_index('TimeDelta')
-plot = plotArrDfIn['No. Of Occurences'].plot.bar()
-plt.xlabel("Inter-Arrival Time (in minutes)")
+out = pd.cut(plotArrDfIn.TimeDelta, len(plotArrDfIn.TimeDelta), right = True, ordered = True)
+#print(out)
+plotArrDfIndex = plotArrDfIn.set_index('TimeDelta')
+#print(plotArrDfIn)
+
+xlabels = out
+
+#print(plotArrDfIn)
+
+ylabels = []
+i = 0
+while i < len(plotArrDfIn):
+    ylabels = ((plotArrDfIn["No. Of Occurences"]/(plotArrDfIn["No. Of Occurences"].sum()),3))
+    i+=1
+
+ax = plotArrDfIn['No. Of Occurences'].plot.line()
+type(ax)
+vals = ax.get_yticks()
+ax.set_yticklabels([round(x/(plotArrDfIn["No. Of Occurences"].sum()),3) for x in vals])
+
+
+#xlabels = round(plotArrDfIn.TimeDelta,3)
+#ax.set_xticklabels(xlabels)
+
+plt.xticks(rotation = 45, ha="right")
+plt.xlabel("Inter-Arrival Time (in seconds)")
 plt.ylabel("No. of Occurences")
-xlabels = round(plotArrDfIn.TimeDelta/60,2)
-plot.set_xticklabels(xlabels)
-plt.xticks(rotation = 90, ha="right")
-#plot = plt.bar(plotArrDfIn['TimeDelta']/60,plotArrDfIn['No. Of Occurences'])
-plt.show()
+plot.figure.savefig('InterArrivalTimeFrequency.pdf', bbox_inches='tight')  
 
 
-#floor_val
-#ceil_val
-#bins = np.arange(floor_val,ceil_val,15)
-#plt.hist(plotArrDf, bins=np.arange(floor_val,ceil_val,15))
-#plot = plt.hist(plotArrDf, bins=40, alpha=0.5)
-#plt.show()
-
-
-# In[959]:
-
-
-#Computing mean,std,mode without outliers
-
-avgIn = np.mean(plotArrDfIn["TimeDelta"])/60
-stdIn = np.std(plotArrDfIn["TimeDelta"])/60
-maxIn = np.max(plotArrDfIn["TimeDelta"])/60
-
-print("The average inter-arrival time for all the sensors with outliers removed is: " + str(round(avgIn,2)) + " minutes.")
-print("The standard deviation of the inter-arrival time for all the sensors combined with outliers removed is: " + str(round(stdIn,2)) + " minutes.")
-print("The mode of the inter-arrival time for all the sensors is: " + str(mode) + " minutes")
-
-
-# In[986]:
+# In[1606]:
 
 
 #InterArrival Time metrics
 i = 0
-alpha = 0.1
+alpha = data_dict["interArrivalTime"]["alpha"][2]
 metricOut = []
 #1. No. of data packets within alpha*std +/- mode
 metricDf = plotArrDf
-#print(std)
-#print(mode + alpha*std)
-#print(metricDf)
+
 while i < len(metricDf):
-    if (metricDf['TimeDelta'][i]/60 < (mode - (alpha*std))) or (metricDf['TimeDelta'][i]/60 > (mode + (alpha*std))):
+    if (metricDf['TimeDelta'][i] < (mode - (alpha*mode))) or (metricDf['TimeDelta'][i] > (mode + (alpha*mode))):
         metricOut.append(i)
         i+=1
     else:
         i+=1
-print("There are " + str(len(metricDf) - len(metricOut)) + " data packets that lie outside the range of (mode +/- alpha*std)")
+
+compute = []
+i = 0
+while i < len(metricOut):
+    compute.append(metricDf["No. Of Occurences"][metricOut[i]])
+    i+=1
+N0metric = 1- (np.sum(compute)/(metricDf["No. Of Occurences"].sum()))
+print(N0metric)
+packetNo = (metricDf["No. Of Occurences"].sum()) - np.sum(compute)
+print("There are " + str(packetNo) + " data packets that lie inside the range of (mode +/- alpha*mode)")
 print("Here, alpha is: " + str(alpha))
-N_0 = (len(metricDf)-len(metricOut))/(len(metricDf))
-print(N_0)
 
 
-# In[46]:
+# In[1607]:
 
 
 #Appending to existing json output file
-IATOutput = []
 
 outputParamIAT = {
     "fileName": data_dict["fileName"],
     "InterArrivalTime":{
-    "value": 5,
-    "type": "number",    
-    "metricLabel": "Duplicate Count Metric",
-    "metricMessage": "For this dataset, % of the data packets are duplicates.",
-    "description": "The metric is rated on a scale between 0 & 1; Computes the ratio of duplicate packets."
+        "value": round(N0metric,4),
+        "value_alpha": data_dict["interArrivalTime"]["alpha"],
+        "mean": round(overallAvg.values[0],3),
+        "std": round(overallStd.values[0],3),
+        "mode": mode,
+        "type": "number",    
+        "metricLabel": "InterArrival Time Mode Spread",
+        "metricMessage": "For this dataset, " + str(packetNo) + " data packets lie within the range of (mode +/- alpha*mode), where alpha is: " + str(alpha),
+        "description": "The metric is rated on a scale between 0 & 1; Computes the ratio of packets inside the range to the total number of packets."
     }
 }
+        
+myJSON = json.dumps(outputParamIAT, indent = 4)
 
-f = data_dict["fileName"] + "Report.json"
-#checking if file exists
-if path.isfile(f) is False:
-    raise Exception("File not found")
-    
-myJSON = json.dumps(IATOutput, indent = 4)
-#reading JSON file
-with open(f,'r+') as fp:
-    IATOutput = json.load(fp)
-    IATOutput.update(outputParamIAT)
-    #fp.seek(0)
-    fp.write(myJSON)
-    #for i in range(3):
-       #IATOutput.append(outputParamIAT[[(x, x**3) for x in range(1,3)]])
-    #json.dumps(IATOutput, indent = 4)
-
-
-# In[ ]:
-
-
-
+with open(os.path.splitext(data_dict["fileName"])[0] + "_Report.json", "a+") as jsonfile:
+    jsonfile.write(myJSON)
+    print("Output file successfully created.")
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[58]:
 
 
 #importing the required libraries
@@ -10,16 +10,32 @@ import numpy as np
 import matplotlib.pyplot as plt
 import re
 import json
+import os
+import sys
+
+#Get the data file
+#configFile = "config.json"
+configFile = sys.argv[1]
+#dataFile = sys.argv[2]
 
 #reading from json config file
-with open("config.json") as file:
+with open(configFile, "r") as file:
     data_dict = json.load(file)
 
+dataFile = "../data/" + data_dict['fileName']
 #parsing Dataset (use nrows attribute to take first n rows)
-df = pd.read_csv(data_dict['fileName'], parse_dates = ['observationDateTime'])
+df = pd.read_csv(data_dict["fileName"], parse_dates = ['observationDateTime'])
 
 
-# In[2]:
+#reading from json config file
+#with open("config.json") as file:
+#    data_dict = json.load(file)
+
+#parsing Dataset (use nrows attribute to take first n rows)
+#df = pd.read_csv(data_dict['fileName'], parse_dates = ['observationDateTime'])
+
+
+# In[59]:
 
 
 #printing details of the dataset for the user input
@@ -32,7 +48,7 @@ print(df.shape)
 #print(df["location.coordinates"][0][0])
 
 
-# In[3]:
+# In[60]:
 
 
 #Count Number of duplicates
@@ -41,7 +57,7 @@ dupeCount = len(df)-len(df.drop_duplicates(subset = [data_dict['duplicateDetecti
 print('The number of duplicate rows in the dataset is: ' + str(dupeCount))
 
 
-# In[5]:
+# In[42]:
 
 
 #drop duplicate timestamps
@@ -54,7 +70,7 @@ print('The number of duplicate rows in the dataset is: ' + str(dupeCount))
     #print('The length of the dataset without removing the duplicate rows from the columns ' + data_dict['duplicateDetection']["inputFields"][0] + ' & ' + data_dict['duplicateDetection']["inputFields"][1] + ' is: ' + str(df1.shape))
 
 
-# In[6]:
+# In[61]:
 
 
 #Calculating Duplication metric
@@ -63,7 +79,7 @@ dupePercent = round(dupeMetric*100,2)
 print("The metric score for duplicates is: " + str(dupeMetric) + " or " + str(dupePercent) + "%")
 
 
-# In[13]:
+# In[62]:
 
 
 #Outputting the result to a json report
@@ -80,13 +96,14 @@ outputParamDD = {
     }
 }
 
-print(type(outputParamDD))
+print(os.path.splitext(data_dict["fileName"])[0])
 
 myJSON = json.dumps(outputParamDD, indent = 4)
 
-with open(data_dict["fileName"] + "Report.json", "w") as jsonfile:
+with open(os.path.splitext(data_dict["fileName"])[0] + "_Report.json", "w") as jsonfile:
     jsonfile.write(myJSON)
     print("Output file successfully created.")
+    
 
 
 # In[ ]:
