@@ -1,0 +1,146 @@
+{
+	"$id": "https://voc.iudx.org.in/EnvAQM.jsonld",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "object",
+	"properties": {
+		"id":{
+			"type": "string"
+		},
+		"so2": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"airTemperature": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"pm10": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"illuminance": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"co2": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"airQualityIndex": {
+			"type": "number"
+		},
+		"uv": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"o3": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"ambientNoise": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"airQualityLevel": {
+			"type": "string"
+		},
+		"no2": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"relativeHumidity": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"atmosphericPressure": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"observationDateTime": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"pm2p5": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"co": {
+			"type": "object",
+			"properties": {
+				"avgOverTime": {
+					"type": "number"
+				}
+			},
+			"required": ["avgOverTime"]
+		},
+		"deviceStatus": {
+			"type": "string"
+		},
+		"aqiMajorPollutant": {
+			"type": "string"
+		}
+	},
+	"additionalProperties": false,
+	"required": ["id","so2", "airTemperature", "pm10", "illuminance", "co2", "airQualityIndex", "uv", "o3", "ambientNoise", "airQualityLevel", "no2", "relativeHumidity", "atmosphericPressure", "observationDateTime", "pm2p5", "co", "deviceStatus", "aqiMajorPollutant"],
+	"description": "Json Schema for data from Bosch-climo AQM sensors in Pune city."
+}
