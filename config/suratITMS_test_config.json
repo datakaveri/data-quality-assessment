@@ -1,0 +1,16 @@
+{
+    "fileName": "suratITMS_test.csv",
+    "duplicateDetection": {
+        "inputFields": [
+            "trip_id",
+            "observationDateTime"
+        ]
+    },
+    "interArrivalTime": {
+        "inputFields": [
+            "trip_id",
+            "observationDateTime"
+            ],
+        "alpha": [0.1, 0.3, 0.5]
+    }
+}
