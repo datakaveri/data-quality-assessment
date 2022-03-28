@@ -14,10 +14,18 @@ import os
 import sys
 from pathlib import Path
 
+if len(sys.argv) < 2:
+    print('###########################################################################')
+    print("Not enough arguments")
+    print("Usage: python3 DuplicationDetection.py <ConfiFilePath>")
+    print('###########################################################################')
+    sys.exit()
+
 #Get the data file
 #configFile = "config.json"
 configFile = sys.argv[1]
 #dataFile = sys.argv[2]
+
 
 #reading from json config file
 with open(configFile, "r") as file:
@@ -40,13 +48,12 @@ df = pd.read_csv(dataFile, parse_dates = ['observationDateTime'])
 
 
 #printing details of the dataset for the user input
-print('A sample of the dataset is shown below: ')
-print(df.head())
-print('The column headers in this dataset are: ')
-print(df.columns)
-print('The shape of this dataset is: (Rows, Columns) ')
-print(df.shape)
-#print(df["location.coordinates"][0][0])
+#print('A sample of the dataset is shown below: ')
+#print(df.head())
+#print('The column headers in this dataset are: ')
+#print(df.columns)
+#print('The shape of this dataset is: (Rows, Columns) ')
+#print(df.shape)
 
 
 # In[60]:
@@ -55,7 +62,6 @@ print(df.shape)
 #Count Number of duplicates
 
 dupeCount = len(df)-len(df.drop_duplicates(subset = [data_dict['duplicateDetection']["inputFields"][0], data_dict['duplicateDetection']['inputFields'][1]]))
-print('The number of duplicate rows in the dataset is: ' + str(dupeCount))
 
 
 # In[42]:
@@ -77,7 +83,12 @@ print('The number of duplicate rows in the dataset is: ' + str(dupeCount))
 #Calculating Duplication metric
 dupeMetric = 1- (dupeCount/len(df))
 dupePercent = round(dupeMetric*100,2)
+print("#######################################################################\n")
+print('The number of duplicate rows in the dataset is: ' + str(dupeCount))
+print('\n')
 print("The metric score for duplicates is: " + str(dupeMetric) + " or " + str(dupePercent) + "%")
+print('\n')
+print("#######################################################################\n")
 
 
 
