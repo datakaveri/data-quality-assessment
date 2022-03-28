@@ -36,22 +36,11 @@ This metric calculates the delta between the data packet timestamps and plots a 
 ## How to Run the Tool
 
 ### Required libraries and packages
+Once in the scripts folder, run the following command to install the package and library dependencies:
 
-Ensure that you have the below packages installed:
-- pandas
-- numpy
-- matplotlib.pyplot
-- re
-- json
-- jsonschema
-- os
-- sys
-- Path
-- scipy
-- math
-- requests
-- re
-- logging
+```console
+pip install -r requirements.txt
+```
 
 Prior to running the tool, ensure that the IUDX SDK is installed on your computer using the following command.
 
@@ -59,20 +48,25 @@ Prior to running the tool, ensure that the IUDX SDK is installed on your compute
 pip install git+https://github.com/datakaveri/iudx-python-sdk
 ```
 
-The tool can be run by downloading the repository to a local system with python3 installed and unpacking the folder structure present in the repository (a python virtual environment is highly recommended for this operation).
+### Running the tool
+Clone the repo from:
+
+``` console
+https://github.com/novoneel-iudx/data-quality-assessment.git
+```
 
 Present in the Config folder is a config.json file that requires you to input the name of the data file as well as select the attributes that you would like to check for duplicates. A recommended selection are the following columns: 
 - *observationDateTime*
 - *id* for AQM data & *trip_id* for ITMS data
 
-Present in the *data* folder in the repository is a sample dataset of ITMS data from Surat, as well as a couple of others.. Inside the Schemas folder are the corresponding schemas for these datasets. In order to assess the quality of these datasets, the scripts can be run in the order below with included system arguments:
+Present in the *data* folder in the repository is a sample dataset of ITMS data from Surat, as well as a couple of others. Inside the Schemas folder are the corresponding schemas for these datasets. In order to assess the quality of these datasets, the scripts can be run in the order below with included system arguments:
 
 ```console
-python3 FormatValidation.py <test_data> <test_schema>
 python3 DuplicationDetection.py <../config/config.json>
 python3 InterArrivalTime.py <../config/config.json>
+python3 FormatValidation.py <test_data> <test_schema>
 ```
 
-Ensure that the datasets in *.csv* format are located in the *data* folder.
+Ensure that the datasetsm are in *.csv* format and are located in the *data* folder.
 
 The output report file will be generated in a *.json* format and and a *.pdf* format and will be located in the Reports folder. All the scripts will append their results to the same output file.
