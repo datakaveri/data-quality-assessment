@@ -91,8 +91,8 @@ outputParamDD = {
     "value": (round(dupeMetric,3)),
     "type": "number",    
     "metricLabel": "Duplicate Count Metric",
-    "metricMessage": "For this dataset, " + str(dupePercent) + "% of the data packets are not duplicates.",
-    "description": "The metric is rated on a scale between 0 & 1; Computes the ratio of duplicate packets."
+    "metricMessage": "For this dataset, " + str(dupePercent) + "% of the data packets are NOT duplicated.",
+    "description": "The metric is rated on a scale between 0 & 1; Computes (1- r) where r is the ratio of duplicate packets to the total number of packets." 
     }
 }
 
