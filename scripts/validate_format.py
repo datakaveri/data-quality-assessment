@@ -1,9 +1,11 @@
+
 import jsonschema
 import json
 import sys
 import requests
 import re
 import logging
+import os
 
 #Expecting 'data' to be a list
 def validate_data_with_schema(data, schema):
@@ -27,7 +29,8 @@ def validate_data_with_schema(data, schema):
 
         except jsonschema.exceptions.ValidationError as errV:
             logging.debug ("Validation Error Occured")
-            v = jsonschema.Draft7Validator(schema, types=(), format_checker=None)
+            #v = jsonschema.Draft7Validator(schema, types=(), format_checker=None)
+            v = jsonschema.Draft7Validator(schema)
             errors = sorted(v.iter_errors(data_packet), key=lambda e: e.path)
             if len(errors) > 0:
                 err_count = err_count + 1
@@ -177,3 +180,38 @@ logging.info("Format Adherence Metric: " + str(format_adherence_metric))
 logging.info("Additional Fields Absent Metric: " + str(unknown_fields_absent_metric))
 logging.info("Attribute Completeness Metric: "+str(completeness_metric))
 logging.info('###########################################################################')
+
+
+
+#Outputting the result to a json report
+
+outputParamFV = {
+    "FormatAdherence":{
+        "value": str(format_adherence_metric),
+        "type": "number",    
+        "metricLabel": "Format Adherence Metric",
+        "metricMessage": "For this dataset, " + str(format_adherence_metric) + " is the format adherence",
+        "description": "The metric is rated on a scale between 0 & 1; Computes the ratio of data packets with attributes that adhere to the format defined in the data schema."
+        },
+    "AdditionalFieldsAbsent":{
+        "value": str(unknown_fields_absent_metric),
+        "type": "number",    
+        "metricLabel": "Unknown Fields Absent Metric",
+        "metricMessage": "For this dataset, " + str(unknown_fields_absent_metric) + " is the additional fields absent metric.",
+        "description": "The metric is rated on a scale between 0 & 1; computed as (1 - r) where r is the ratio of packets with unknown fields to the total number of packets."
+        },
+    "AttributeCompleteness":{
+        "value": str(completeness_metric),
+        "type": "number",    
+        "metricLabel": "Completeness Metric",
+        "metricMessage": "For this dataset, " + str(completeness_metric) + " is the completeness metric.",
+        "description": "The metric is rated on a scale between 0 & 1; It is computed as follows: For each mandatory attribute, i, compute r(i) as the ratio of packets in which attribute i is missing. Then output 1 - average(r(i)) where the average is taken over all mandatory attributes."
+        }
+}
+myJSON = json.dumps(outputParamFV, indent = 4)
+filename = os.path.splitext(config["fileName"])[0] + "_Report.json"
+jsonpath = os.path.join("../outputReports/",filename)
+
+with open(jsonpath, "w") as jsonfile:
+    jsonfile.write(myJSON)
+    print("Output file successfully created.")
