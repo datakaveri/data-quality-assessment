@@ -12,6 +12,7 @@ import re
 import json
 import os
 import sys
+from pathlib import Path
 
 #Get the data file
 #configFile = "config.json"
@@ -24,7 +25,7 @@ with open(configFile, "r") as file:
 
 dataFile = "../data/" + data_dict['fileName']
 #parsing Dataset (use nrows attribute to take first n rows)
-df = pd.read_csv(data_dict["fileName"], parse_dates = ['observationDateTime'])
+df = pd.read_csv(dataFile, parse_dates = ['observationDateTime'])
 
 
 #reading from json config file
@@ -79,7 +80,6 @@ dupePercent = round(dupeMetric*100,2)
 print("The metric score for duplicates is: " + str(dupeMetric) + " or " + str(dupePercent) + "%")
 
 
-# In[62]:
 
 
 #Outputting the result to a json report
@@ -91,16 +91,18 @@ outputParamDD = {
     "value": (round(dupeMetric,3)),
     "type": "number",    
     "metricLabel": "Duplicate Count Metric",
-    "metricMessage": "For this dataset, " + str(dupePercent) + "% of the data packets are duplicates.",
+    "metricMessage": "For this dataset, " + str(dupePercent) + "% of the data packets are not duplicates.",
     "description": "The metric is rated on a scale between 0 & 1; Computes the ratio of duplicate packets."
     }
 }
 
-print(os.path.splitext(data_dict["fileName"])[0])
+#print(os.path.splitext(data_dict["fileName"])[0])
 
 myJSON = json.dumps(outputParamDD, indent = 4)
+filename = os.path.splitext(data_dict["fileName"])[0] + "_Report.json"
+jsonpath = os.path.join("../outputReports/",filename)
 
-with open(os.path.splitext(data_dict["fileName"])[0] + "_Report.json", "w") as jsonfile:
+with open(jsonpath, "w") as jsonfile:
     jsonfile.write(myJSON)
     print("Output file successfully created.")
     
