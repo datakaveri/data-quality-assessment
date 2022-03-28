@@ -38,9 +38,9 @@ This metric calculates the delta between the data packet timestamps and plots a 
 ### Required libraries and packages
 
 Ensure that you have the below packages installed:
-- pandas as pd
-- numpy as np
-- matplotlib.pyplot as plt
+- pandas
+- numpy
+- matplotlib.pyplot
 - re
 - json
 - jsonschema
