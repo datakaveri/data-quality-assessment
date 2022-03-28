@@ -67,6 +67,6 @@ python3 InterArrivalTime.py <../config/config.json>
 python3 FormatValidation.py <test_data> <test_schema>
 ```
 
-Ensure that the datasetsm are in *.csv* format and are located in the *data* folder.
+Ensure that the datasets are in *.csv* format and are located in the *data* folder.
 
 The output report file will be generated in a *.json* format and and a *.pdf* format and will be located in the Reports folder. All the scripts will append their results to the same output file.
