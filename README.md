@@ -35,6 +35,12 @@ This metric calculates the delta between the data packet timestamps and plots a 
 
 ## How to Run the Tool
 
+Prior to running the tool, ensure that the IUDX SDK is installed on your computer using the following command.
+
+```console
+pip install git+https://github.com/datakaveri/iudx-python-sdk
+```
+
 The tool can be run by downloading the repository to a local system with python3 installed and unpacking the folder structure present in the repository (a python virtual environment is highly recommended for this operation).
 
 Present in the Config folder is a config.json file that requires you to input the name of the data file as well as select the attributes that you would like to check for duplicates. A recommended selection are the following columns: 
@@ -43,9 +49,11 @@ Present in the Config folder is a config.json file that requires you to input th
 
 Present in the *data* folder in the repository is a sample dataset of ITMS data from Surat, as well as a couple of others.. Inside the Schemas folder are the corresponding schemas for these datasets. In order to assess the quality of these datasets, the scripts can be run in the order below with included system arguments:
 
-1. `FormatValidation.py <test_data> <test_schema>`
-2. `DataDuplication.py <config.json>`
-3. `InterArrivalTime.py <config.json>`
+```console
+FormatValidation.py <test_data> <test_schema>
+DataDuplication.py <config.json>
+InterArrivalTime.py <config.json>
+```
 
 Ensure that the datasets in *.csv* format are located in the *data* folder.
 
