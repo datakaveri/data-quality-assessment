@@ -15,7 +15,7 @@ import json
 from scipy.stats import norm
 import statistics
 import os
-from math import ceil, floor, sqrt
+import math
 
 #Get the data file
 #configFile = "config.json"
@@ -28,7 +28,7 @@ with open(configFile, "r") as file:
 
 dataFile = "../data/"+data_dict['fileName']
 #parsing Dataset (use nrows attribute to take first n rows)
-df = pd.read_csv(data_dict["fileName"], parse_dates = ['observationDateTime'])
+df = pd.read_csv(dataFile, parse_dates = ['observationDateTime'])
 
 #initiating variables
 i=0
@@ -36,7 +36,7 @@ j=1
 iat = [0]
 
 #parsing Dataset (use nrows attribute to take first n rows)
-df = pd.read_csv(data_dict["fileName"], parse_dates = ['observationDateTime'])
+#df = pd.read_csv(data_dict["fileName"], parse_dates = ['observationDateTime'])
 
 
 # In[1598]:
@@ -114,11 +114,11 @@ while j < len(rowTitles):
     j+=1
 
 #functions to round up and down to nearest 10
-def next_ten(x):
-    return int(ceil(x/10.0))*10
+#def next_ten(x):
+#    return int(ceil(x/10.0))*10
 
-def prev_ten(x):
-    return int(floor(x/10.0))*10
+#def prev_ten(x):
+#    return int(floor(x/10.0))*10
 
 plotArrDf = plotArrDf.sum()
 plotArrDf = plotArrDf.sort_index()
@@ -127,9 +127,9 @@ plotArrDf = pd.DataFrame.from_dict(plotArrDf)
 plotArrDf.reset_index(level=0, inplace=True)
 plotArrDf.columns = ["TimeDelta", "No. Of Occurences"]
 
-ceil_val = next_ten(plotArrDf['TimeDelta'].max())+10
-floor_val = prev_ten(plotArrDf['TimeDelta'].min())
-print(plotArrDf)
+#ceil_val = next_ten(plotArrDf['TimeDelta'].max())+10
+#floor_val = prev_ten(plotArrDf['TimeDelta'].min())
+#print(plotArrDf)
 
 
 # In[1602]:
@@ -203,17 +203,10 @@ print("The standard deviation of all the inter-arrival times excluding outliers 
 
 # In[1605]:
 
-
 #Plotting the Array
 
-out = pd.cut(plotArrDfIn.TimeDelta, len(plotArrDfIn.TimeDelta), right = True, ordered = True)
-#print(out)
 plotArrDfIndex = plotArrDfIn.set_index('TimeDelta')
-#print(plotArrDfIn)
-
-xlabels = out
-
-#print(plotArrDfIn)
+print(plotArrDfIn)
 
 ylabels = []
 i = 0
@@ -222,22 +215,16 @@ while i < len(plotArrDfIn):
     i+=1
 
 ax = plotArrDfIn['No. Of Occurences'].plot.line()
-type(ax)
 vals = ax.get_yticks()
 ax.set_yticklabels([round(x/(plotArrDfIn["No. Of Occurences"].sum()),3) for x in vals])
 
 
-#xlabels = round(plotArrDfIn.TimeDelta,3)
-#ax.set_xticklabels(xlabels)
-
-plt.xticks(rotation = 45, ha="right")
+xlabels = plotArrDfIn.TimeDelta
+plt.xticks(xlabels, rotation = 0, ha="right")
+plt.setp(ax.get_xticklabels()[::2], visible=False)
 plt.xlabel("Inter-Arrival Time (in seconds)")
-plt.ylabel("No. of Occurences")
-plot.figure.savefig('InterArrivalTimeFrequency.pdf', bbox_inches='tight')  
-
-
-# In[1606]:
-
+plt.ylabel("Ratio of No. of Occurences to Total Data Packets")
+ax.figure.savefig('../outputReports/InterArrivalTimeFrequency.pdf', bbox_inches='tight')  
 
 #InterArrival Time metrics
 i = 0
@@ -286,8 +273,10 @@ outputParamIAT = {
 }
         
 myJSON = json.dumps(outputParamIAT, indent = 4)
+filename = os.path.splitext(data_dict["fileName"])[0] + "_Report.json"
+jsonpath = os.path.join("../outputReports/", filename)
 
-with open(os.path.splitext(data_dict["fileName"])[0] + "_Report.json", "a+") as jsonfile:
+with open(jsonpath, "a+") as jsonfile:
     jsonfile.write(myJSON)
     print("Output file successfully created.")
 
