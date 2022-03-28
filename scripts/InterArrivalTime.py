@@ -236,29 +236,72 @@ ax.figure.savefig('../outputReports/InterArrivalTimeFrequency.pdf', bbox_inches=
 print("Plot saved as .pdf to outputReports folder")
 
 #InterArrival Time metrics
-i = 0
-alpha = data_dict["interArrivalTime"]["alpha"][2]
-metricOut = []
+alpha1 = data_dict["interArrivalTime"]["alpha"][0]
+alpha2 = data_dict["interArrivalTime"]["alpha"][1]
+alpha3 = data_dict["interArrivalTime"]["alpha"][2]
+
+metricOut1 = []
+metricOut2 = []
+metricOut3 = []
+
 #1. No. of data packets within alpha*std +/- mode
 metricDf = plotArrDf
 
+#alpha1
+i = 0
 while i < len(metricDf):
-    if (metricDf['TimeDelta'][i] < (mode - (alpha*mode))) or (metricDf['TimeDelta'][i] > (mode + (alpha*mode))):
-        metricOut.append(i)
+    if (metricDf['TimeDelta'][i] < (mode - (alpha1*mode))) or (metricDf['TimeDelta'][i] > (mode + (alpha1*mode))):
+        metricOut1.append(i)
         i+=1
     else:
         i+=1
 
-compute = []
+#alpha2
 i = 0
-while i < len(metricOut):
-    compute.append(metricDf["No. Of Occurences"][metricOut[i]])
+while i < len(metricDf):
+    if (metricDf['TimeDelta'][i] < (mode - (alpha2*mode))) or (metricDf['TimeDelta'][i] > (mode + (alpha2*mode))):
+        metricOut2.append(i)
+        i+=1
+    else:
+        i+=1
+#alpha3
+i = 0
+while i < len(metricDf):
+    if (metricDf['TimeDelta'][i] < (mode - (alpha3*mode))) or (metricDf['TimeDelta'][i] > (mode + (alpha3*mode))):
+        metricOut3.append(i)
+        i+=1
+    else:
+        i+=1
+
+compute1 = []
+compute2 = []
+compute3 = []
+
+i = 0
+while i < len(metricOut1):
+    compute1.append(metricDf["No. Of Occurences"][metricOut1[i]])
     i+=1
-N0metric = 1- (np.sum(compute)/(metricDf["No. Of Occurences"].sum()))
-print(N0metric)
-packetNo = (metricDf["No. Of Occurences"].sum()) - np.sum(compute)
-print("There are " + str(packetNo) + " data packets that lie inside the range of (mode +/- alpha*mode)")
-print("Here, alpha is: " + str(alpha))
+
+i=0
+while i < len(metricOut2):
+    compute2.append(metricDf["No. Of Occurences"][metricOut2[i]])
+    i+=1
+
+i=0
+while i < len(metricOut3):
+    compute3.append(metricDf["No. Of Occurences"][metricOut3[i]])
+    i+=1
+
+N0metric1 = 1- (np.sum(compute1)/(metricDf["No. Of Occurences"].sum()))
+N0metric2 = 1- (np.sum(compute2)/(metricDf["No. Of Occurences"].sum()))
+N0metric3 = 1- (np.sum(compute3)/(metricDf["No. Of Occurences"].sum()))
+#print(N0metric)
+packetNo1 = (metricDf["No. Of Occurences"].sum()) - np.sum(compute1)
+packetNo2 = (metricDf["No. Of Occurences"].sum()) - np.sum(compute2)
+packetNo3 = (metricDf["No. Of Occurences"].sum()) - np.sum(compute3)
+
+
+print("There are " + str(packetNo1) + " data packets that lie inside the range of (mode +/- alpha*mode) when alpha is: " + str(alpha1) + ", " + str(packetNo2) + " when alpha is: " + str(alpha2) + " , and " + str(packetNo3) + " when alpha is: " + str(alpha3))
 
 
 # In[1607]:
@@ -269,14 +312,14 @@ print("Here, alpha is: " + str(alpha))
 outputParamIAT = {
     "fileName": data_dict["fileName"],
     "InterArrivalTime":{
-        "value": round(N0metric,4),
+        "value": [(round(N0metric1,4)), (round(N0metric2, 4)), (round(N0metric3, 4))],
         "value_alpha": data_dict["interArrivalTime"]["alpha"],
         "mean": round(overallAvg.values[0],3),
         "std": round(overallStd.values[0],3),
         "mode": mode,
         "type": "number",    
         "metricLabel": "InterArrival Time Mode Spread",
-        "metricMessage": "For this dataset, " + str(packetNo) + " data packets lie within the range of (mode +/- alpha*mode), where alpha is: " + str(alpha),
+        "metricMessage": "There are " + str(packetNo1) + " data packets that lie inside the range of (mode +/- alpha*mode) when alpha is: " + str(alpha1) + ", " + str(packetNo2) + " when alpha is: " + str(alpha2) + " , and " + str(packetNo3) + " when alpha is: " + str(alpha3),
         "description": "The metric is rated on a scale between 0 & 1; Computes the ratio of packets inside the range to the total number of packets."
     }
 }
