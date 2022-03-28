@@ -17,6 +17,14 @@ import statistics
 import os
 import math
 
+
+if len(sys.argv) < 2:
+    print('###########################################################################')
+    print("Not enough arguments")
+    print("Usage: python3 InterArrivalTime.py <ConfigFilePath>")
+    print('###########################################################################')
+    sys.exit()
+
 #Get the data file
 #configFile = "config.json"
 configFile = sys.argv[1]
@@ -206,7 +214,7 @@ print("The standard deviation of all the inter-arrival times excluding outliers 
 #Plotting the Array
 
 plotArrDfIndex = plotArrDfIn.set_index('TimeDelta')
-print(plotArrDfIn)
+#print(plotArrDfIn)
 
 ylabels = []
 i = 0
@@ -225,6 +233,7 @@ plt.setp(ax.get_xticklabels()[::2], visible=False)
 plt.xlabel("Inter-Arrival Time (in seconds)")
 plt.ylabel("Ratio of No. of Occurences to Total Data Packets")
 ax.figure.savefig('../outputReports/InterArrivalTimeFrequency.pdf', bbox_inches='tight')  
+print("Plot saved as .pdf to outputReports folder")
 
 #InterArrival Time metrics
 i = 0
