@@ -1,4 +1,4 @@
-
+import ijson
 import jsonschema
 import json
 import sys
@@ -8,56 +8,71 @@ import logging
 import os
 
 #Expecting 'data' to be a list
-def validate_data_with_schema(data, schema):
-
-    if isinstance(data, list):
-        data_array = data
-    else:
-        data_array = []
-        data_array.append(data)
-
-    num_samples = len(data_array)
-
+def validate_data_with_schema(dataF, schema):
+    num_samples = 0
     err_count = 0
     additional_prop_err_count = 0
     req_prop_err_count = 0
     err_data_arr = []
-    for i in range(num_samples):
-        data_packet = data_array[i]
-        try:
-           jsonschema.validate(data_packet, schema )
 
-        except jsonschema.exceptions.ValidationError as errV:
-            logging.debug ("Validation Error Occured")
-            #v = jsonschema.Draft7Validator(schema, types=(), format_checker=None)
-            v = jsonschema.Draft7Validator(schema)
-            errors = sorted(v.iter_errors(data_packet), key=lambda e: e.path)
-            if len(errors) > 0:
-                err_count = err_count + 1
-            err_data_arr.append(data_packet)
-            #To track if 'Additional Properties' error occured
-            flag_0 = 0
-            #To track if 'Required Properties' error occured
-            flag_1 = 0
-            for error in errors:
-                logging.debug (error.message)
-                z = re.match("(Additional properties)", error.message)
-                if z:
-                   #logging.debug(z.groups())
-                   flag_0 = 1
+    with open(dataF, "r") as f:
+       for record in ijson.items(f, "item"):
+           num_samples = num_samples+1
+           data_packet = record
+           try:
+              jsonschema.validate(data_packet, schema )
 
-                z =  error.message.split(' ')
-                if z[-1] == 'property' and z[-2] == 'required' :
-                   flag_1 = 1
+           except jsonschema.exceptions.ValidationError as errV:
+               logging.debug ("Validation Error Occured")
+               #v = jsonschema.Draft7Validator(schema, types=(), format_checker=None)
+               v = jsonschema.Draft7Validator(schema)
+               errors = sorted(v.iter_errors(data_packet), key=lambda e: e.path)
+               if len(errors) > 0:
+                   err_count = err_count + 1
+               #err_data_arr.append(data_packet)
+               #To track if 'Additional Properties' error occured
+               flag_0 = 0
+               #To track if 'Required Properties' error occured
+               flag_1 = 0
+               for error in errors:
+                   logging.debug (error.message)
+                   z = re.match("(Additional properties)", error.message)
+                   if z:
+                      #logging.debug(z.groups())
+                      flag_0 = 1
 
-            additional_prop_err_count = additional_prop_err_count + flag_0
-            req_prop_err_count = req_prop_err_count + flag_1
-        except jsonschema.exceptions.SchemaError as errS:
-           logging.debug ("Schema Error Occured")
-           logging.debug (errS.message)
+                   z =  error.message.split(' ')
+                   if z[-1] == 'property' and z[-2] == 'required' :
+                      flag_1 = flag_1+1
+
+               additional_prop_err_count = additional_prop_err_count + flag_0
+               req_prop_err_count = req_prop_err_count + flag_1
+           except jsonschema.exceptions.SchemaError as errS:
+              logging.debug ("Schema Error Occured")
+              logging.debug (errS.message)
 
     return num_samples, err_count, err_data_arr, additional_prop_err_count, req_prop_err_count
 
+def validate_requiredFields(dataF, setReqd):
+    num_samples = 0
+    num_missing_prop = 0
+    with open(dataF, "r") as f:
+       #Read each record instead of reading all at a time
+       for record in ijson.items(f, "item"):
+           num_samples = num_samples+1
+           #setRecd = record.keys()
+           setRecd = []
+           #Null value detection. Null values are considered as not received attribute
+           for attr in record.keys():
+               if record[attr] is None:
+                   logging.debug("Received a Null Value for attribute: " + attr)
+               else:
+                   setRecd.append(attr)
+           diffSet = set(setReqd) - set(setRecd)
+           logging.debug("Difference from Required Fields for this packet: "+str(diffSet))
+           print("Difference from Required Fields for this packet: "+str(diffSet))
+           num_missing_prop = num_missing_prop + len(diffSet)
+       return num_samples, num_missing_prop
 
 #Main program
 if len(sys.argv) < 2:
@@ -84,8 +99,8 @@ dataFile = "../data/"+config['dataFileNameJSON']
 schemaFile = "../schemas/"+config['schemaFileName']
 
 #Load the data file
-with open(dataFile, "r") as f:
-    data = json.load(f)
+#with open(dataFile, "r") as f:
+#    data = json.load(f)
 
 #Load the schema file
 with open(schemaFile, "r") as f1:
@@ -105,9 +120,9 @@ with open(schemaFile, "r") as f1:
 del schema['additionalProperties']
 del schema['required']
 
-num_samples, err_count, err_data_arr, add_err_count, req_err_cnt = validate_data_with_schema(data, schema)
+num_samples, err_count, err_data_arr, add_err_count, req_err_cnt = validate_data_with_schema(dataFile, schema)
 
-logging.debug(err_data_arr)
+#logging.debug(err_data_arr)
 logging.info('###########################################################################')
 logging.info("Total Samples: " + str(num_samples))
 logging.info("Total Format Errors: " + str(err_count))
@@ -134,7 +149,7 @@ del schema['required']
 #NOTE: Should we explicitly make additional properties as false
 schema['additionalProperties'] = False
 
-num_samples, err_count, err_data_arr, add_err_count, req_err_cnt = validate_data_with_schema(data, schema)
+num_samples, err_count, err_data_arr, add_err_count, req_err_cnt = validate_data_with_schema(dataFile, schema)
 
 logging.debug(err_data_arr)
 logging.info("Total samples: " + str(num_samples))
@@ -153,24 +168,18 @@ del schema['additionalProperties']
 req = schema['required']
 logging.debug(len(req))
 missing_attr = {}
-per_attr_completeness_metric = {}
-total_missing_count = 0
-for attr in req:
-    schema['required'] = [attr]
-    num_samples, err_count, err_data_arr, add_err_count, req_err_count = validate_data_with_schema(data, schema)
-    logging.debug("Required Field Error Count for " + attr + ' is: ' + str(req_err_count))
-    missing_attr[attr] = req_err_count
-    per_attr_completeness_metric[attr] = 1- req_err_count/num_samples
-    total_missing_count = total_missing_count + req_err_count
+completeness_metric = 0
+num_samples, total_missing_count = validate_requiredFields(dataFile, req)
 
-logging.debug(missing_attr)
+logging.info("Total missing count: " + str(total_missing_count))
+
+
+completeness_metric = 1 - total_missing_count/(num_samples*len(req))
 
 logging.info('###########################################################################')
 logging.info('##### Total Missing Fields Count for Required fields #######')
 logging.info("Total samples: " + str(num_samples))
-completeness_metric = 1 - total_missing_count/(num_samples*len(req))
 logging.info("Attribute_Completeness_Metric: "+str(completeness_metric))
-logging.info("Per_Attribute_Completeness_Metric: "+str(per_attr_completeness_metric))
 logging.info('###########################################################################')
 
 
@@ -188,21 +197,21 @@ logging.info('##################################################################
 outputParamFV = {
     "FormatAdherence":{
         "value": str(format_adherence_metric),
-        "type": "number",    
+        "type": "number",
         "metricLabel": "Format Adherence Metric",
         "metricMessage": "For this dataset, " + str(format_adherence_metric) + " is the format adherence",
         "description": "The metric is rated on a scale between 0 & 1; Computes the ratio of data packets with attributes that adhere to the format defined in the data schema."
         },
     "AdditionalFieldsAbsent":{
         "value": str(unknown_fields_absent_metric),
-        "type": "number",    
+        "type": "number",
         "metricLabel": "Unknown Fields Absent Metric",
         "metricMessage": "For this dataset, " + str(unknown_fields_absent_metric) + " is the additional fields absent metric.",
         "description": "The metric is rated on a scale between 0 & 1; computed as (1 - r) where r is the ratio of packets with unknown fields to the total number of packets."
         },
     "AttributeCompleteness":{
         "value": str(completeness_metric),
-        "type": "number",    
+        "type": "number",
         "metricLabel": "Completeness Metric",
         "metricMessage": "For this dataset, " + str(completeness_metric) + " is the completeness metric.",
         "description": "The metric is rated on a scale between 0 & 1; It is computed as follows: For each mandatory attribute, i, compute r(i) as the ratio of packets in which attribute i is missing. Then output 1 - average(r(i)) where the average is taken over all mandatory attributes."
