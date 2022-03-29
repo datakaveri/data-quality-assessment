@@ -70,7 +70,6 @@ def validate_requiredFields(dataF, setReqd):
                    setRecd.append(attr)
            diffSet = set(setReqd) - set(setRecd)
            logging.debug("Difference from Required Fields for this packet: "+str(diffSet))
-           print("Difference from Required Fields for this packet: "+str(diffSet))
            num_missing_prop = num_missing_prop + len(diffSet)
        return num_samples, num_missing_prop
 
@@ -122,13 +121,13 @@ del schema['required']
 
 num_samples, err_count, err_data_arr, add_err_count, req_err_cnt = validate_data_with_schema(dataFile, schema)
 
-#logging.debug(err_data_arr)
-logging.info('###########################################################################')
-logging.info("Total Samples: " + str(num_samples))
-logging.info("Total Format Errors: " + str(err_count))
 format_adherence_metric = 1 - err_count/num_samples
-logging.info("Format Adherence Metric: " + str(format_adherence_metric))
-logging.info('###########################################################################')
+#logging.debug(err_data_arr)
+logging.debug('###########################################################################')
+logging.debug("Total Samples: " + str(num_samples))
+logging.debug("Total Format Errors: " + str(err_count))
+logging.debug("Format Adherence Metric: " + str(format_adherence_metric))
+logging.debug('###########################################################################')
 
 
 #######################################################################
@@ -152,10 +151,10 @@ schema['additionalProperties'] = False
 num_samples, err_count, err_data_arr, add_err_count, req_err_cnt = validate_data_with_schema(dataFile, schema)
 
 logging.debug(err_data_arr)
-logging.info("Total samples: " + str(num_samples))
-logging.info("Total Additional Fields Error Count: " + str(add_err_count))
 unknown_fields_absent_metric = 1 - add_err_count/num_samples
-logging.info("Unknown_Attributes_Absent_Metric: " + str(unknown_fields_absent_metric))
+logging.debug("Total samples: " + str(num_samples))
+logging.debug("Total Additional Fields Error Count: " + str(add_err_count))
+logging.debug("Unknown_Attributes_Absent_Metric: " + str(unknown_fields_absent_metric))
 
 #######################################################################
 # One by one check the required properties are present in packets or
@@ -171,23 +170,27 @@ missing_attr = {}
 completeness_metric = 0
 num_samples, total_missing_count = validate_requiredFields(dataFile, req)
 
-logging.info("Total missing count: " + str(total_missing_count))
+logging.debug("Total missing count: " + str(total_missing_count))
 
 
 completeness_metric = 1 - total_missing_count/(num_samples*len(req))
 
-logging.info('###########################################################################')
-logging.info('##### Total Missing Fields Count for Required fields #######')
-logging.info("Total samples: " + str(num_samples))
-logging.info("Attribute_Completeness_Metric: "+str(completeness_metric))
-logging.info('###########################################################################')
+logging.debug('###########################################################################')
+logging.debug('##### Total Missing Fields Count for Required fields #######')
+logging.debug("Total samples: " + str(num_samples))
+logging.debug("Attribute_Completeness_Metric: "+str(completeness_metric))
+logging.debug('###########################################################################')
 
 
 
 logging.info('################## Final Metrics ##########################################')
+logging.info('#')
 logging.info("Format Adherence Metric: " + str(format_adherence_metric))
+logging.info('#')
 logging.info("Additional Fields Absent Metric: " + str(unknown_fields_absent_metric))
+logging.info('#')
 logging.info("Attribute Completeness Metric: "+str(completeness_metric))
+logging.info('#')
 logging.info('###########################################################################')
 
 
@@ -221,6 +224,6 @@ myJSON = json.dumps(outputParamFV, indent = 4)
 filename = os.path.splitext(config["fileName"])[0] + "_Report.json"
 jsonpath = os.path.join("../outputReports/",filename)
 
-with open(jsonpath, "w") as jsonfile:
+with open(jsonpath, "a+") as jsonfile:
     jsonfile.write(myJSON)
     print("Output file successfully created.")
