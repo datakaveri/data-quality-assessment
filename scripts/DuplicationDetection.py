@@ -113,14 +113,6 @@ myJSON = json.dumps(outputParamDD, indent = 4)
 filename = os.path.splitext(data_dict["fileName"])[0] + "_Report.json"
 jsonpath = os.path.join("../outputReports/",filename)
 
-with open(jsonpath, "w") as jsonfile:
+with open(jsonpath, "a+") as jsonfile:
     jsonfile.write(myJSON)
     print("Output file successfully created.")
-    
-
-
-# In[ ]:
-
-
-
-

@@ -16,7 +16,9 @@ from scipy.stats import norm
 import statistics
 import os
 import math
+import warnings
 
+warnings.filterwarnings("ignore")
 
 if len(sys.argv) < 2:
     print('###########################################################################')
@@ -53,9 +55,9 @@ iat = [0]
 #printing details of the dataset for the user input
 #print('A sample of the dataset is shown below: ')
 #print(df.head())
-print('The column headers in this dataset are: ')
-print(df.columns)
-print('The shape of this dataset is: ' + str(df.shape))
+#print('The column headers in this dataset are: ')
+#print(df.columns)
+#print('The shape of this dataset is: ' + str(df.shape))
 #df['observationDateTime']
 
 
@@ -64,8 +66,6 @@ print('The shape of this dataset is: ' + str(df.shape))
 
 #dropping duplicate timestamps
 df1 = df.drop_duplicates(subset = [data_dict['interArrivalTime']['inputFields'][0], data_dict['interArrivalTime']['inputFields'][1]], inplace = False, ignore_index=True)
-print(str(len(df)-len(df1)) + " duplicate rows have been dropped.")
-print("The shape of the dataframe is now: " + str(df1.shape))
 
 
 # In[1600]:
@@ -144,12 +144,9 @@ plotArrDf.columns = ["TimeDelta", "No. Of Occurences"]
 
 
 #Computing mean,std,mode with outliers
-print("The average inter-arrival time for all the sensors including outliers is: " + str(round(overallAvg.values[0],3)) + " seconds.")
-print("The standard deviation of the inter-arrival time for all the sensors including outliers is: " + str(round(overallStd.values[0],3)) + " seconds.")
 
 mode_index = plotArrDf["No. Of Occurences"].idxmax()
 mode = plotArrDf["TimeDelta"][mode_index]
-print("The mode of the inter-arrival times for the sensors is: " + str(round(mode,3)) + " seconds")
 
 
 # In[1603]:
@@ -205,8 +202,6 @@ while i < len(plotArrDfIn):
     stdArrIn.append((plotArrDfIn['TimeDelta'][i] - avgArrIn)*(plotArrDfIn['TimeDelta'][i] - avgArrIn)*plotArrDfIn['No. Of Occurences'][i])
     i+=1
 stdArrIn = math.sqrt(sum(stdArrIn)/(plotArrDfIn['No. Of Occurences'].sum()))
-print("The average inter-arrival time for all the sensors excluding outliers is: " + str(round(avgArrIn,2)) + " seconds.")
-print("The standard deviation of all the inter-arrival times excluding outliers is: " + str(round(stdArrIn,2)) + " seconds.")
 
 
 # In[1605]:
@@ -228,12 +223,11 @@ ax.set_yticklabels([round(x/(plotArrDfIn["No. Of Occurences"].sum()),3) for x in
 
 
 xlabels = plotArrDfIn.TimeDelta
-plt.xticks(xlabels, rotation = 0, ha="right")
+plt.xticks(xlabels, rotation = 45, ha="right")
 plt.setp(ax.get_xticklabels()[::2], visible=False)
 plt.xlabel("Inter-Arrival Time (in seconds)")
 plt.ylabel("Ratio of No. of Occurences to Total Data Packets")
 ax.figure.savefig('../outputReports/InterArrivalTimeFrequency.pdf', bbox_inches='tight')  
-print("Plot saved as .pdf to outputReports folder")
 
 #InterArrival Time metrics
 alpha1 = data_dict["interArrivalTime"]["alpha"][0]
@@ -300,11 +294,27 @@ packetNo1 = (metricDf["No. Of Occurences"].sum()) - np.sum(compute1)
 packetNo2 = (metricDf["No. Of Occurences"].sum()) - np.sum(compute2)
 packetNo3 = (metricDf["No. Of Occurences"].sum()) - np.sum(compute3)
 
-
-print("There are " + str(packetNo1) + " data packets that lie inside the range of (mode +/- alpha*mode) when alpha is: " + str(alpha1) + ", " + str(packetNo2) + " when alpha is: " + str(alpha2) + " , and " + str(packetNo3) + " when alpha is: " + str(alpha3))
+N0Percent1 = round(N0metric1*100,2)
+N0Percent2 = round(N0metric2*100,2)
+N0Percent3 = round(N0metric3*100,2)
 
 
 # In[1607]:
+
+#print statements
+
+print(str(len(df)-len(df1)) + " duplicate rows have been dropped.")
+print("The shape of the dataframe is now: " + str(df1.shape))
+print("The average inter-arrival time for all the sensors including outliers is: " + str(round(overallAvg.values[0],3)) + " seconds.")
+print("The standard deviation of the inter-arrival time for all the sensors including outliers is: " + str(round(overallStd.values[0],3)) + " seconds.")
+print("\n")
+print("The average inter-arrival time for all the sensors excluding outliers is: " + str(round(avgArrIn,2)) + " seconds.")
+print("The standard deviation of all the inter-arrival times excluding outliers is: " + str(round(stdArrIn,2)) + " seconds.")
+print("The mode of the inter-arrival times for the sensors is: " + str(round(mode,3)) + " seconds.")
+
+print("########################################################################\n")
+print("There are " + str(N0Percent1) + "% data packets that lie inside the range of (mode +/- alpha*mode) when alpha is: " + str(alpha1) + ", " + str(N0Percent2) + "% when alpha is: " + str(alpha2) + " , and " + str(N0Percent3) + "% when alpha is: " + str(alpha3) + ".\n")
+print("##########################################################################")
 
 
 #Appending to existing json output file
@@ -319,7 +329,7 @@ outputParamIAT = {
         "mode": mode,
         "type": "number",    
         "metricLabel": "InterArrival Time Mode Spread",
-        "metricMessage": "There are " + str(packetNo1) + " data packets that lie inside the range of (mode +/- alpha*mode) when alpha is: " + str(alpha1) + ", " + str(packetNo2) + " when alpha is: " + str(alpha2) + " , and " + str(packetNo3) + " when alpha is: " + str(alpha3),
+        "metricMessage": "There are " + str(N0Percent1) + "% data packets that lie inside the range of (mode +/- alpha*mode) when alpha is: " + str(alpha1) + ", " + str(N0Percent2) + "% when alpha is: " + str(alpha2) + " , and " + str(N0Percent3) + "% when alpha is: " + str(alpha3),
         "description": "The metric is rated on a scale between 0 & 1; Computes the ratio of packets inside the range to the total number of packets."
     }
 }
@@ -331,4 +341,5 @@ jsonpath = os.path.join("../outputReports/", filename)
 with open(jsonpath, "a+") as jsonfile:
     jsonfile.write(myJSON)
     print("Output file successfully created.")
+print("Plot saved as .pdf to outputReports folder")
 
