@@ -66,9 +66,9 @@ Present in the Config folder is a config.json with the name of the dataset prepe
 Present in the *data* folder in the repository is a sample dataset of ITMS data from Surat, as well as a sample of AQM data from Pune. Inside the Schemas folder are the corresponding schemas for these datasets. In order to assess the quality of these datasets, the scripts can be run in the order below with included system arguments:
 
 ```console
-python3 DuplicationDetection.py <../config/config.json>
-python3 InterArrivalTime.py <../config/config.json>
-python3 FormatValidation.py <../config/config.json>
+python3 DuplicationDetection.py ../config/<config file name>
+python3 InterArrivalTime.py ../config/<config file name>
+python3 FormatValidation.py ../config/<config file name>
 ```
 
 Ensure that the datasets are in *.csv* format and are located in the *data* folder.
