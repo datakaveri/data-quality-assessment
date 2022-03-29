@@ -1,14 +1,16 @@
 {
-    "fileName": "PuneAWM_30days.csv",
+    "fileName": "puneAQM.csv",
+    "dataFileNameJSON": "puneAQM.json",
+    "schemaFileName": "schema_EnvAQM.json",
     "duplicateDetection": {
         "inputFields": [
-            "trip_id",
+            "id",
             "observationDateTime"
         ]
     },
     "interArrivalTime": {
         "inputFields": [
-            "trip_id",
+            "id",
             "observationDateTime"
             ],
         "alpha": [0.1, 0.3, 0.5]
