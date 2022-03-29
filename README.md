@@ -54,19 +54,23 @@ Clone the repo from:
 ``` console
 https://github.com/novoneel-iudx/data-quality-assessment.git
 ```
+Once inside the directory where the repo was cloned, run:
+```console
+pip install .
+```
 
-Present in the Config folder is a config.json file that requires you to input the name of the data file as well as select the attributes that you would like to check for duplicates. A recommended selection are the following columns: 
+Present in the Config folder is a config.json with the name of the dataset prepended to it to aid in identification. This file requires you to input the name of the datafile as well as select the attributes that you would like to check for duplicates. In this case, the name of the datafile and the appropriate attributes for selection are already included in the file as below: 
 - *observationDateTime*
 - *id* for AQM data & *trip_id* for ITMS data
 
-Present in the *data* folder in the repository is a sample dataset of ITMS data from Surat, as well as a couple of others. Inside the Schemas folder are the corresponding schemas for these datasets. In order to assess the quality of these datasets, the scripts can be run in the order below with included system arguments:
+Present in the *data* folder in the repository is a sample dataset of ITMS data from Surat, as well as a sample of AQM data from Pune. Inside the Schemas folder are the corresponding schemas for these datasets. In order to assess the quality of these datasets, the scripts can be run in the order below with included system arguments:
 
 ```console
 python3 DuplicationDetection.py <../config/config.json>
 python3 InterArrivalTime.py <../config/config.json>
-python3 FormatValidation.py <test_data> <test_schema>
+python3 FormatValidation.py <../config/config.json>
 ```
 
 Ensure that the datasets are in *.csv* format and are located in the *data* folder.
 
-The output report file will be generated in a *.json* format and and a *.pdf* format and will be located in the Reports folder. All the scripts will append their results to the same output file.
+The output report file will be generated in a *.json* format and and a *.pdf* format and will be located in the outputReports folder. All the scripts will append their results to the same output file.
