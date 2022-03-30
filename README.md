@@ -72,4 +72,4 @@ python3 FormatValidation.py <config file name>
 
 Ensure that the datasets are in *.csv* and *JSON* format and are located in the *data* folder.
 
-The output report file will be generated in a *JSON* format and and a *.pdf* format and will be located in the outputReports folder. All the scripts will append their results to the same output file.
+The output report file will be generated in a *JSON* format and and a *.pdf* format and will be saved in the outputReports folder. All the scripts will append their results to the same output file.
