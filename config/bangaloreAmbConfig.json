@@ -2,6 +2,7 @@
     "fileName": "bangaloreAmb.csv",
     "dataFileNameJSON": "bangaloreAmb.json",
     "schemaFileName": "schema_EmergencyVehicle.json",
+    "outageFlag": "True",
     "duplicateDetection": {
         "inputFields": [
             "license_plate",

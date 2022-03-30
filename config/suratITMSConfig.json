@@ -2,6 +2,7 @@
     "fileName": "suratITMS.csv",
     "dataFileNameJSON": "suratITMS.json",
     "schemaFileName": "schema_TransitManagement.json",
+    "outageFlag": "False",
     "duplicateDetection": {
         "inputFields": [
             "trip_id",

@@ -167,7 +167,11 @@ twiceMode = 2*mode
 outliers = []
 i = 0
 
-bool = input("Would you like to compute the total outage time of all the sensors? [y/n] ")
+if data_dict["outageFlag"] == "True":
+	bool = input("Would you like to compute the total outage time of all the sensors? [y/n] ")
+else:
+	bool = 'n'
+
 if bool == 'y':
     while i < len(plotArrDf):
         if (plotArrDf['TimeDelta'][i]) > twiceMode:

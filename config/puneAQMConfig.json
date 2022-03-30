@@ -2,6 +2,7 @@
     "fileName": "puneAQM.csv",
     "dataFileNameJSON": "puneAQM.json",
     "schemaFileName": "schema_EnvAQM.json",
+    "outageFlag": "True",
     "duplicateDetection": {
         "inputFields": [
             "id",
