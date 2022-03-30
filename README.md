@@ -34,6 +34,21 @@ This metric serves to check two columns that are input by the user for any dupli
 This metric calculates the difference between the data packet timestamps and plots a histogram of these time deltas for all sensors in a particular time period. The output report shows the metric score, which is a score from 0 to 1, 1 being the highest possible score. This indicates that there are no data packets that are sending data with a time delta of lesser than or greater than the (*mode +/- alpha x mode*). Here, alpha is a user-defined constant - appropriate alpha selection will enable the user to understand the spread of the inter-arrival times from the mode. Along with the metric score, the script also outputs a plot of the time deltas in a '.pdf' format, as well as the the mean, standard deviation, and mode of the time deltas of any dataset.
 
 ## How to Run the Tool
+Prior to running the tool, ensure that the IUDX SDK is installed on your computer using the following command.
+
+```console
+pip install git+https://github.com/datakaveri/iudx-python-sdk
+```
+### Running the tool
+Clone the repo from:
+
+``` console
+git clone https://github.com/novoneel-iudx/data-quality-assessment.git
+```
+Once inside the directory where the repo was cloned, run:
+```console
+pip install .
+```
 
 ### Required libraries and packages
 Once in the scripts folder, run the following command to install the package and library dependencies:
@@ -42,22 +57,6 @@ Once in the scripts folder, run the following command to install the package and
 pip install -r requirements.txt
 ```
 
-Prior to running the tool, ensure that the IUDX SDK is installed on your computer using the following command.
-
-```console
-pip install git+https://github.com/datakaveri/iudx-python-sdk
-```
-
-### Running the tool
-Clone the repo from:
-
-``` console
-https://github.com/novoneel-iudx/data-quality-assessment.git
-```
-Once inside the directory where the repo was cloned, run:
-```console
-pip install .
-```
 Present in the *config* folder is a config file in *JSON* format with the name of the dataset prepended to it. This file requires one to input the name of the datafile as well as select the attributes that one would like to check for duplicates. In this case, the name of the datafile and the appropriate attributes for selection are already included in the file as below: 
 - *observationDateTime*
 - *id* for AQM data & *trip_id* for ITMS data
