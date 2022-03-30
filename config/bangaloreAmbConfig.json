@@ -1,0 +1,18 @@
+{
+    "fileName": "bangaloreAmb.csv",
+    "dataFileNameJSON": "bangaloreAmb.json",
+    "schemaFileName": "schema_EmergencyVehicle.json",
+    "duplicateDetection": {
+        "inputFields": [
+            "license_plate",
+            "observationDateTime"
+        ]
+    },
+    "interArrivalTime": {
+        "inputFields": [
+            "license_plate",
+            "observationDateTime"
+            ],
+        "alpha": [0.25, 0.5, 0.75]
+    }
+}
