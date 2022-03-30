@@ -65,7 +65,11 @@ Present in the *data* folder in the repository is a sample dataset of ITMS data 
 
 ```console
 python3 DuplicationDetection.py <config file name>
+```
+```console
 python3 InterArrivalTime.py <config file name>
+```
+```console
 python3 FormatValidation.py <config file name>
 ```
 
