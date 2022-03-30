@@ -37,17 +37,17 @@ This metric calculates the difference between the data packet timestamps and plo
 Prior to running the tool, ensure that the IUDX SDK is installed on your computer using the following command.
 
 ```console
-pip install git+https://github.com/datakaveri/iudx-python-sdk
+git clone https://github.com/datakaveri/iudx-python-sdk
+```
+Once inside the directory where the repo was cloned, run:
+```console
+pip install .
 ```
 ### Running the tool
 Clone the repo from:
 
 ``` console
 git clone https://github.com/novoneel-iudx/data-quality-assessment.git
-```
-Once inside the directory where the repo was cloned, run:
-```console
-pip install .
 ```
 
 ### Required libraries and packages
@@ -61,7 +61,8 @@ Present in the *config* folder is a config file in *JSON* format with the name o
 - *observationDateTime*
 - *id* for AQM data & *trip_id* for ITMS data
 
-Present in the *data* folder in the repository is a sample dataset of ITMS data from Surat, as well as a sample dataset of AQM data from Pune. Inside the *schemas* folder are the corresponding schemas for these datasets. In order to assess the quality of these datasets, the scripts can be run in the order below with included system arguments:
+Present in the *data* folder in the repository is a sample dataset of ITMS data from Surat, as well as a sample dataset of AQM data from Pune. Inside the *schemas* folder are the corresponding schemas for these datasets. 
+In order to run the scripts that assess the data quality, make sure your current directory is the *scripts* folder. The scripts can then be run as below with included system arguments. Note that the system arguments 
 
 ```console
 python3 DuplicationDetection.py <config file name>
