@@ -1,16 +1,16 @@
 {
-    "fileName": "suratITMS.csv",
-    "dataFileNameJSON": "suratITMS.json",
-    "schemaFileName": "schema_TransitManagement.json",
+    "fileName": "puneAQM.csv",
+    "dataFileNameJSON": "puneAQM.json",
+    "schemaFileName": "schema_EnvAQM.json",
     "duplicateDetection": {
         "inputFields": [
-            "trip_id",
+            "id",
             "observationDateTime"
         ]
     },
     "interArrivalTime": {
         "inputFields": [
-            "trip_id",
+            "id",
             "observationDateTime"
             ],
         "alpha": [0.25, 0.5, 0.75]
