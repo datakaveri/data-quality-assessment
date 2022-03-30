@@ -1,0 +1,37 @@
+{
+	"$id": "https://voc.iudx.org.in/EmergencyVehicle.jsonld",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "object",
+	"properties": {
+		"id": {
+			"type": "string"
+		},
+		"emergencyVehicleType": {
+			"type": "string"
+		},
+		"license_plate": {
+			"type": "string"
+		},
+		"serviceOnDuty": {
+			"type": "string"
+		},
+		"observationDateTime": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"location": {
+			"type": "object",
+			"properties": {
+				"coordinates": {
+					"type": "array",
+					"items": {
+						"type": "number"
+					}
+				}
+			}
+		}
+	},
+	"additionalProperties": false,
+	"required": ["id","emergencyVehicleType", "license_plate", "serviceOnDuty", "observationDateTime", "location"],
+	"description": "Json Schema for ambulance vehicle details in Bengaluru city."
+}
