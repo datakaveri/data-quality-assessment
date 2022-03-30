@@ -23,7 +23,7 @@ if len(sys.argv) < 2:
 
 #Get the data file
 #configFile = "config.json"
-configFile = sys.argv[1]
+configFile = "../config/" +  sys.argv[1]
 #dataFile = sys.argv[2]
 
 

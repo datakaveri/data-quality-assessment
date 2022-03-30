@@ -85,7 +85,7 @@ if len(sys.argv) < 2:
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 #Get Config File
-configFile = sys.argv[1]
+configFile = "../config/" + sys.argv[1]
 with open(configFile, "r") as cf:
     config = json.load(cf)
 

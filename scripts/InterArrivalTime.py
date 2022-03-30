@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[40]:
+
+
+#!/usr/bin/env python
+# coding: utf-8
+
 # In[1597]:
 
 
@@ -17,6 +23,7 @@ import statistics
 import os
 import math
 import warnings
+import matplotlib.ticker as mtick
 
 warnings.filterwarnings("ignore")
 
@@ -28,8 +35,8 @@ if len(sys.argv) < 2:
     sys.exit()
 
 #Get the data file
-#configFile = "config.json"
-configFile = sys.argv[1]
+#configFile = "../config/PuneAQMConfig.json"
+configFile ="../config/" +  sys.argv[1]
 #dataFile = sys.argv[2]
 
 #reading from json config file
@@ -147,7 +154,7 @@ plotArrDf.columns = ["TimeDelta", "No. Of Occurences"]
 
 mode_index = plotArrDf["No. Of Occurences"].idxmax()
 mode = plotArrDf["TimeDelta"][mode_index]
-
+#print(mode)
 
 # In[1603]:
 
@@ -156,7 +163,7 @@ mode = plotArrDf["TimeDelta"][mode_index]
 #detecting and summing all timedelta values greater than 2*mode to 
 #compute total outage time
 
-twiceMode = 5*mode
+twiceMode = 2*mode
 outliers = []
 i = 0
 
@@ -171,7 +178,7 @@ if bool == 'y':
     totalOutage = (sum(outliers)/(3600))
     print("The total outage time of all the sensors combined is: " + str(round(totalOutage, 2)) + " hours, or " + str(round(totalOutage*60,2)) + " minutes.")
 else:
-    print("Outliers of a value greater than 5*mode will be removed for a legible output plot.")
+    print("Outliers of a value greater than 2*mode will be removed for a legible output plot.")
 
 
 # In[1604]:
@@ -179,11 +186,9 @@ else:
 
 #Outlier Removal
 i = 0
-#print(twiceMode)
-#print(plotArrDf)
+
 plotArrDfIn = plotArrDf[plotArrDf.TimeDelta < (twiceMode)]
-#print(plotArrDfIn)
-plotArrDfIn.to_csv('plotArrDfIn.csv')
+
 avgArrIn = []
 stdArrIn = []
 i = 0
@@ -217,17 +222,15 @@ while i < len(plotArrDfIn):
     ylabels = ((plotArrDfIn["No. Of Occurences"]/(plotArrDfIn["No. Of Occurences"].sum()),3))
     i+=1
 
-ax = plotArrDfIn['No. Of Occurences'].plot.line()
-vals = ax.get_yticks()
-ax.set_yticklabels([round(x/(plotArrDfIn["No. Of Occurences"].sum()),3) for x in vals])
-
-
-xlabels = plotArrDfIn.TimeDelta
-plt.xticks(xlabels, rotation = 45, ha="right")
-plt.setp(ax.get_xticklabels()[::2], visible=False)
+ax = plt.plot(plotArrDfIn['TimeDelta'],plotArrDfIn['No. Of Occurences'])
+vals = plt.gca().get_yticks()
+plt.gca().set_yticklabels([round(x/(plotArrDfIn["No. Of Occurences"].sum()),3) for x in vals])
 plt.xlabel("Inter-Arrival Time (in seconds)")
 plt.ylabel("Ratio of No. of Occurences to Total Data Packets")
-ax.figure.savefig('../outputReports/InterArrivalTimeFrequency.pdf', bbox_inches='tight')  
+plt.savefig('../outputReports/InterArrivalTimeFrequency.pdf', bbox_inches='tight')  
+
+
+################################################################################################################
 
 #InterArrival Time metrics
 alpha1 = data_dict["interArrivalTime"]["alpha"][0]
@@ -238,7 +241,7 @@ metricOut1 = []
 metricOut2 = []
 metricOut3 = []
 
-#1. No. of data packets within alpha*std +/- mode
+#1. No. of data packets within mode +/- alpha*mode
 metricDf = plotArrDf
 
 #alpha1
