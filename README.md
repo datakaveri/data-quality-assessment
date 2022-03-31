@@ -29,7 +29,7 @@ This metric assesses the level of duplicate rows in the dataset. A value/row/pac
 
 ### Regularity of Data Packet Arrivals
 
-This metric calculates the difference between the data packet timestamps and plots a histogram of these time deltas for all sensors in a particular time period. The output report shows the metric score, which is a score from 0 to 1, 1 being the highest possible score. This indicates that there are no data packets that are sending data with a time delta of lesser than or greater than the (*mode +/- alpha x mode*). Here, alpha is a user-defined constant - appropriate alpha selection will enable the user to understand the spread of the inter-arrival times from the mode. Along with the metric score, the script also outputs a plot of the time deltas in a '.pdf' format, as well as the the mean, standard deviation, and mode of the time deltas of any dataset.
+This metric assesses the regularity of arrivals of data for a temporal data source. This metric analyses the historgram of interarrival times of data for a given stream and computes the fraction of packets that lie within (1+/- alpha)*Mode. Here, alpha is a user-defined constant - appropriate alpha selection will enable the user to understand the spread of the inter-arrival times from the mode. The output score, which is between 0 to 1, 1 being the highest possible score indicating all the inter-arrival times are within [(1-alpha)*Mode, (1+alpha)*Mode]. Along with the metric score, the script also outputs a plot of the time deltas in a '.pdf' format, as well as the the mean, standard deviation, and mode of the time deltas of any dataset.
 
 ## How to Run the Tool
 Clone the repo from:
