@@ -58,7 +58,7 @@ python3 DuplicationDetection.py <config file name>
 python3 InterArrivalTime.py <config file name>
 ```
 ```console
-python3 FormatValidation.py <config file name>
+python3 validate_format.py <config file name>
 ```
 
 Ensure that the datasets are in *.csv* and *JSON* format and are located in the *data* folder.
