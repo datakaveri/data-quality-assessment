@@ -16,11 +16,11 @@ import math
 import warnings
 import panel as pn
 
-configFile = "../config/puneAQMConfig.json"
+configFile = "../config/" + sys.argv[1]
 with open(configFile, "r") as file:
     dataDict = json.load(file)
 
-dataFile = dataDict["dataFileNameJSON"]
+dataFile = "../data/" + dataDict["dataFileNameJSON"]
 with open(dataFile, "r") as jfile:
     jsonDataDict = json.load(jfile)
 #print(jsonDataDict)
@@ -57,17 +57,18 @@ df1 = dropDupes(df)
 # sorting by unique id and then by oDT
 
 dfCut = df1[[dataDict['interArrivalTime']['inputFields'][0], dataDict['interArrivalTime']['inputFields'][1]]].copy()
-dfCut.sort_values(by = ['id','observationDateTime'], inplace = True, ascending = [True,True])
+dfCut.sort_values(by = [dataDict['interArrivalTime']['inputFields'][0], dataDict['interArrivalTime']['inputFields'][1]], inplace = True, ascending = [True, True])
+#dfCut.sort_values(by = ['id','observationDateTime'], inplace = True, ascending = [True,True])
 dfCut['observationDateTime'] =  pd.to_datetime(dfCut['observationDateTime'])
-dfCut.groupby(by = ['id'])
+dfCut.groupby(by = dataDict['interArrivalTime']['inputFields'][0])
 dfCut['IAT'] = dfCut['observationDateTime'].diff()
 dfCut = dfCut.reset_index(drop = True)
-dfID = (dfCut['id'].unique())
+dfID = (dfCut[dataDict['interArrivalTime']['inputFields'][0]].unique())
 
 
 # grouping the df by ID and deleting the first row of each group at the same time
 
-dfGroupID = dfCut.groupby('id').apply(lambda group: group.iloc[1:])
+dfGroupID = dfCut.groupby(dataDict['interArrivalTime']['inputFields'][0]).apply(lambda group: group.iloc[1:])
 dfGroupID = dfGroupID['IAT'].dt.total_seconds()
 dfGrouped = dfCut.apply(lambda group: group.iloc[1:])
 dfGrouped = dfGrouped['IAT'].dt.total_seconds()
@@ -196,7 +197,7 @@ while i < len(metricPercent):
     i+=1
 
 
-print(N0)
+#print(N0)
 
 
 # In[46]:
@@ -223,7 +224,7 @@ print("\n#######################################################################
 print(str(round(metricPercent[0],3)) + "% of data packets lie within the range of (mode +/- alpha*mode) when alpha is: " + str(alpha[0]))
 print(str(round(metricPercent[1],3)) + "% of data packets lie within the range of (mode +/- alpha*mode) when alpha is: " + str(alpha[1]))
 print(str(round(metricPercent[2],3)) + "% of data packets lie within the range of (mode +/- alpha*mode) when alpha is: " + str(alpha[2]))
-print("\n#########################################################https://github.com/datakaveri/data-quality-assessment#################")
+print("\n########################################################################")
 
 
 # In[47]:
