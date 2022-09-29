@@ -75,9 +75,7 @@ Once in the scripts folder, run the following command to install the package and
 pip install -r requirements.txt
 ```
 
-Present in the *config* folder is a config file in *JSON* format with the name of the dataset prepended to it. This file requires one to input the name of the datafile as well as select the attributes that one would like to check for duplicates. In this case, the name of the datafile and the appropriate attributes for selection are already included in the file as below: 
-- *observationDateTime*
-- *id* for AQM data & *trip_id* for ITMS data
+Present in the *config* folder is a config file in *JSON* format with the name of the dataset prepended to it. This file requires one to input the name of the datafile as well as select the attributes that one would like to check for duplicates. Ensure that the parameters folderName, dataFileNameJSON, schemaFileName are correctly filled according to the dataset to be analyzed. Additional parameters can also be changed, such as inputFields for 'duplicateDetection' as well as the value of 'alpha' - used to identify outliers. Ensure that all these parameters are appropriately set prior to running the main script.
 
 Present in the *data* folder in the repository is a sample dataset of ITMS data from Surat, as well as a sample dataset of AQM data from Pune. Inside the *schemas* folder are the corresponding schemas for these datasets. In order to generate the report, simply run the following command:
 
