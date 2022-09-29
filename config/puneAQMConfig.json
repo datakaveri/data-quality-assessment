@@ -2,7 +2,7 @@
   "datasetName": "Pune Air Quality Monitoring Sensors",
   "URL": "https://catalogue.iudx.org.in/dataset/datakaveri.org-04a15c9960ffda227e9546f3f46e629e1fe4132b-rs.iudx.org.in-pune-env-aqm",
   "folderName": "PuneAQM_Data_2022",
-  "dataFileNameJSON": "PuneAQMMay22.json",
+  "dataFileNameJSON": "puneAQM.json",
   "schemaFileName": "schema_EnvAQM.json",
   "duplicateDetection": {
     "inputFields": [
