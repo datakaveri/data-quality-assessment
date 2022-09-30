@@ -1,8 +1,9 @@
 {
-    "fileName": "suratITMS.csv",
-    "dataFileNameJSON": "suratITMS.json",
-    "schemaFileName": "schema_TransitManagement.json",
-    "outageFlag": "False",
+  "datasetName": "Surat Public Transit Bus Realtime Info",
+  "URL": "https://surat.catalogue.iudx.org.in/dataset/suratmunicipal.org-6db486cb4f720e8585ba1f45a931c63c25dbbbda-rs.iudx.org.in-surat-itms-realtime-info",
+  "folderName": "SuratITMS_Data_2022",
+  "dataFileNameJSON": "suratITMS.json",
+  "schemaFileName": "schema_TransitManagement.json",
     "duplicateDetection": {
         "inputFields": [
             "trip_id",
