@@ -45,6 +45,16 @@ def readFile(configFile):
     schema = '../schemas/' + dataDict['schemaFileName']
     URL = dataDict['URL']
     reportName = dataDict['dataFileNameJSON']
+    
+    # print(df)
+    if "Amb" in fileName:
+        # df = pd.json_normalize(df['location.coordinates'])   
+        df.drop('location.coordinates', axis=1, inplace = True)
+        # df[['type', 'coordinates']] = df['location'].apply(','.join).str.split(expand=True)
+        # df[['longitude', 'latitude']] = df['coordinates'].apply(','.join).str.split(expand = True)
+    else:
+        df = df
+    print(df)
     print('The loaded dataset is: ' + datasetName)
     return df, input1, input2, datasetName, fileName, URL, alpha, schema
 
@@ -110,7 +120,7 @@ def outRemove(df, dataFile, input1):
     print(Q1, Q3, IQR)
     print('Percentiles: 25th:' + str(round(Q1)) + ', 75th:' + str(round(Q3)))
     cutOff = IQR*k
-    lower, upper = Q1 - cutOff, Q3 + cutOff
+    lower, upper = round((Q1 - cutOff),3), round((Q3 + cutOff),3)
     # print(lower, upper)
     outliers = [x for x in dfInliers['IAT'] if x < lower or x > upper]
     print(str(len(outliers)) + ' outliers have been identified within the inter quartile.')
@@ -211,7 +221,7 @@ def plotDupesID(df, df1, input1):
     i = 0
     sensorDupePlot = pd.DataFrame(columns = [input1, 'valueDupe', 'valueClean'])
     
-    #removinf duplicates
+    #removing duplicates
     while i < len(sensorClean['valueDupe']): 
         if sensorClean['valueDupe'][i] > sensorClean['valueClean'][i]:
             sensorDupePlot = sensorDupePlot.append({input1 : sensorClean[input1][i], 'valueDupe' : sensorClean['valueDupe'][i], 'valueClean' : sensorClean['valueClean'][i]}, ignore_index = True)
@@ -219,7 +229,7 @@ def plotDupesID(df, df1, input1):
     else:
         i+=1
         
-        sensorDupePlot[input1] = sensorDupePlot['id'].str[-4:]
+        sensorDupePlot[input1] = sensorDupePlot[input1].str[-4:]
     #plotting the values
     bar_chart = pygal.Bar(style = custom_style, 
                           x_title = 'Truncated Sensor ID', 
@@ -230,7 +240,7 @@ def plotDupesID(df, df1, input1):
                           x_label_rotation = 45,
                           print_values = False)
     bar_chart.title = 'Deduplication Result per Unique ID'
-    bar_chart.x_labels = sensorDupePlot['id']
+    bar_chart.x_labels = sensorDupePlot[input1]
     bar_chart.add('Pre Deduplication', sensorDupePlot['valueDupe'])
     bar_chart.add('Post Deduplication', sensorDupePlot['valueClean'])
     bar_chart.render_to_png('../plots/dupePlotID.png')
@@ -259,15 +269,18 @@ def plotDupes(dataframe):
     return
 
 def IAThist(df):
-    # counts, bins = np.histogram(df['IAT'].dropna())
-    
-#     min_val = np.min(df['IAT'])
-#     max_val = np.max(df['IAT'])
-#     desired_bin_size = 10
-#     min_boundary = -1.0 * (min_val % desired_bin_size - min_val)
-#     max_boundary = max_val - max_val % desired_bin_size + desired_bin_size
-#     n_bins = int((max_boundary - min_boundary) / desired_bin_size) + 1
-#     bins = np.linspace(min_boundary, max_boundary, n_bins)
+
+
+#	def compute_histogram_bins(data, desired_bin_size):
+#	    min_val = np.min(data)
+#	    max_val = np.max(data)
+#	    min_boundary = -1.0 * (min_val % desired_bin_size - min_val)
+#	    max_boundary = max_val - max_val % desired_bin_size + desired_bin_size
+#	    n_bins = int((max_boundary - min_boundary) / desired_bin_size) + 1
+#	    bins = np.linspace(min_boundary, max_boundary, n_bins)
+#	    return bins
+
+#	bins = compute_histogram_bins(dfClean['IAT'], 10)
 
     bins = np.linspace(min(df['IAT'].dropna())-0.05*min(df['IAT'].dropna()), max(df['IAT'].dropna())+0.05*max(df['IAT'].dropna()), 10)
     # bins = 100
@@ -549,13 +562,13 @@ def dupeMetric(df, input1, input2):
     # print(str(dupeMetricPercent) + '% of the data packets are non duplicates, as defined by the parameters ' + str(input1) ' &' + str(input2))
     return round(dupeMetricScore,3)
 
-def outageMetric(dfClean, dfRaw, meanStat):
+def outageMetric(dfClean, dfRaw, meanStat, input1):
     #upper bound to define  sensor outage
     upperBound = 2*meanStat
     #creating a dataframe with IAT values greater than upperbound
     sensorOutage = dfClean.loc[dfClean['IAT'] > upperBound]
     #finding the sum of the outages for each sensor
-    sensorOutage = sensorOutage.groupby(['id'])[['IAT']].agg('sum').reset_index()    
+    sensorOutage = sensorOutage.groupby([input1])[['IAT']].agg('sum').reset_index()    
     #calculating average of the outage for all the sensors
     avgOutageTime = sensorOutage['IAT'].mean()
     
