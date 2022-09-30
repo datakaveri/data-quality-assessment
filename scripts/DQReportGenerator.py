@@ -1,34 +1,11 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
-
-# %load_ext autoreload
-# %autoreload 2
-# %aimport PreProcessing
-# # %aimport validate_format
-
-
-# In[3]:
-
-
 import PreProcessing as pp
 
 
 # In[4]:
 
 
-# configFile = "../config/puneAQMConfig.json"
 configFile = '../config/'+input('Enter the name of the configuration file: ')
 
-# with open(configFile, 'r') as file:
-#     dataDict = json.load(file)
-
-# dataFile = dataDict['dataFileNameJSON']
-# schemaFile = dataDict['schemaFileName']
-# dataFile = "../data/PuneAQM_Data_2022/PuneAQMJan22.json"
-# schemaFile = "../schemas/schema_EnvAQM.json"
 
 dfRaw, input1, input2, datasetName, fileName, URL, alpha, schema = pp.readFile(configFile)
 
@@ -38,7 +15,6 @@ dfRaw, input1, input2, datasetName, fileName, URL, alpha, schema = pp.readFile(c
 
 print(fileName)
 print(datasetName)
-# print(os.path.splitext(os.path.basename(fileName))[0])
 
 
 # In[6]:
@@ -275,7 +251,7 @@ dfInliers, lowerOutliers, upperOutliers = pp.outRemove(dfClean, datasetName, inp
 #running functions that are used to calcalate the metric scores
 regularityMetricScore, regularityValues, lowerRegularity, upperRegularity = pp.iatMetricRegularity(dfClean, alpha)
 outliersMetricScore = pp.iatMetricOutliers(dfClean)
-sensorUptimeMetricScore = pp.outageMetric(dfClean, dfRaw, meanStatIn)
+sensorUptimeMetricScore = pp.outageMetric(dfClean, dfRaw, meanStatIn, input1)
 dupeMetricScore = pp.dupeMetric(dfRaw, input1, input2)
 compMetricScore = round(completeness_metric, 3)
 formatMetricScore = round(format_adherence_metric, 3)
@@ -347,28 +323,6 @@ pp.radarChart(regularityMetricScore,
               )
 
 
-# In[60]:
-
-
-def compute_histogram_bins(data, desired_bin_size):
-    min_val = np.min(data)
-    max_val = np.max(data)
-    min_boundary = -1.0 * (min_val % desired_bin_size - min_val)
-    max_boundary = max_val - max_val % desired_bin_size + desired_bin_size
-    n_bins = int((max_boundary - min_boundary) / desired_bin_size) + 1
-    bins = np.linspace(min_boundary, max_boundary, n_bins)
-    return bins
-
-bins = compute_histogram_bins(dfClean['IAT'], 10)
-
-
-# In[17]:
-
-
-import numpy as np
-# a = (dfInliers['IAT'].min())
-# b = (dfInliers['IAT'].max())
-# print(np.linspace(a,b,10))
 # #interarrival time boxplots and histogram
 pp.IAThist(dfClean)
 pp.boxPlot(dfClean, fileName, input1)
@@ -398,7 +352,8 @@ pp.piePlot(dfRaw, dfClean, 'dupe')
 
 #data statistics plots
 #correlation
-pp.corr_heatmap(dfDropped)
+if 'AQM' in fileName:
+	pp.corr_heatmap(dfDropped)
 
 #skewness and kurtosis calculated for inlier values only
 muFitIn, stdFitIn = pp.normalFitPlot(dfInliers)
@@ -410,7 +365,8 @@ muFitOut, stdFitOut = pp.normalFitPlot(dfClean)
 pp.density_plot(dfDropped)
 
 #cardinality
-pp.cardinal_plot(dfDropped)
+if 'AQM' in fileName:
+	pp.cardinal_plot(dfDropped)
 
 
 # In[46]:
@@ -777,25 +733,29 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
     
     
     '''Seventh Page'''
-    pdf.add_page()    
     
-    create_heading('Additional Information about the Data', pdf)
-    pdf.ln(5)
-    pdf.write(5, 'In this section are some useful visualizations that describe certain data statistics that can be used by the end user to determine the usability of the data. These subheadings may not explicitly fall under the umbrella of data quality and so are not counted as part of the overall score.')
-    create_heading('Correlation', pdf)
-    pdf.ln(5)
-    pdf.write(5, "Correlation here refers to a causal relationship between different attributes found in the dataset. This relationship might be either directly or inversely proportional.")
-    pdf.ln(5)
-    pdf.write(5, "This relationship is shown in the heat map below, with darker colors referring to a stronger direct relationship, and lighter colors referring to a stronger inverse relationship.")
-    pdf.image("../plots/corrPlot.jpg",x = 20, y = 80, w = 160)
-    pdf.ln(80)
+    if 'AQM' in fileName:
+	    pdf.add_page()    
+	    
+	    create_heading('Additional Information about the Data', pdf)
+	    pdf.ln(5)
+	    pdf.write(5, 'In this section are some useful visualizations that describe certain data statistics that can be used by the end user to determine the usability of the data. These subheadings may not explicitly fall under the umbrella of data quality and so are not counted as part of the overall score.')
+	    
+
+	    create_heading('Correlation', pdf)
+	    pdf.ln(5)
+	    pdf.write(5, "Correlation here refers to a causal relationship between different attributes found in the dataset. This relationship might be either directly or inversely proportional.")
+	    pdf.ln(5)
+	    pdf.write(5, "This relationship is shown in the heat map below, with darker colors referring to a stronger direct relationship, and lighter colors referring to a stronger inverse relationship.")
+	    pdf.image("../plots/corrPlot.jpg",x = 20, y = 80, w = 160)
+	    pdf.ln(80)
 
 
-    create_heading('Cardinality', pdf)
-    pdf.ln(5)
-    pdf.write(5, 'Cardinality of a dataset is defined here as the number of unique values of in that dataset. A higher value of cardinality indicates a higher proportion of unique values.')
-    pdf.ln(5)
-    pdf.image("../plots/cardPlot.png",x = 35, y = 180, w = 140)
+	    create_heading('Cardinality', pdf)
+	    pdf.ln(5)
+	    pdf.write(5, 'Cardinality of a dataset is defined here as the number of unique values of in that dataset. A higher value of cardinality indicates a higher proportion of unique values.')
+	    pdf.ln(5)
+	    pdf.image("../plots/cardPlot.png",x = 35, y = 180, w = 140)
     
     pdf.output('../outputReport/' + filename, 'F')
     # pdf.output(fileName, 'F')
@@ -876,4 +836,3 @@ jsonpath = os.path.join("../outputReport/", filename)
 with open(jsonpath, "w+") as jsonfile:
     jsonfile.write(myJSON)
     print("Output file successfully created.")
-
