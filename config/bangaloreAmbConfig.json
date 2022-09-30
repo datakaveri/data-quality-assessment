@@ -1,8 +1,9 @@
 {
-    "fileName": "bangaloreAmb.csv",
-    "dataFileNameJSON": "bangaloreAmb.json",
+    "datasetName": "Realtime Info of Ambulances in Bengaluru City",
+    "URL": "https://catalogue.iudx.org.in/dataset/datakaveri.org-fb0924bef803e220e0d0bc8ceaf0a1f999442f32-rs.iudx.org.in-bengaluru-emergency-vehicles",
+    "folderName": "BengaluruAmb_Data_2022",
+    "dataFileNameJSON": "bengaluruAmb.json",
     "schemaFileName": "schema_EmergencyVehicle.json",
-    "outageFlag": "True",
     "duplicateDetection": {
         "inputFields": [
             "license_plate",
