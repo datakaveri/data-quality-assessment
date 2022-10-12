@@ -1,0 +1,62 @@
+{
+    "fileName": "Pune Air Quality Monitoring Sensors",
+    "startTime": "2022-01-01 10:01:08",
+    "endTime": "2022-01-01 23:46:24",
+    "No. of data packets": 2463,
+    "IATRegularity": {
+        "value": [
+            0.99448,
+            0.99448,
+            0.99448
+        ],
+        "valueAlpha": [
+            0.25,
+            0.5,
+            0.75
+        ],
+        "overallValue": 0.994,
+        "type": "number",
+        "metricLabel": "IAT Regularity Metric",
+        "metricMessage": "For this dataset, the inter-arrival time regularity metric values are: 0.99448, 0.99448,  and 0.99448 for the corresponding alpha values of 0.25, 0.5, and 0.75. The overall score for this metric is 0.994",
+        "description": "This metric is rated on a scale between 0 & 1; computes the output of the equation (1 - ((No.of data packets outside the bounds)/(Total no. of data packets)). These bounds are defined by the value of alpha and the formula (mode +/- (alpha*mode)). The overall metric score is formed from an average of the three scores obtained from three values of alpha."
+    },
+    "Sensor Uptime": {
+        "value": 0.871,
+        "type": "number",
+        "metricLabel": "Sensor Uptime Metric",
+        "metricMessage": "For this dataset, the sensor uptime metric score is 0.871.",
+        "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per sensor/total query time))."
+    },
+    "Absence of Duplicate Values": {
+        "value": 0.883,
+        "deduplicationAttributes": [
+            "id",
+            "observationDateTime"
+        ],
+        "type": "number",
+        "metricLabel": "Duplicate Value Metric",
+        "metricMessage": "For this dataset, the duplicate value metric score is: 0.883.",
+        "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (No. of duplicate data packets/total no. of data packets)."
+    },
+    "Adherence to Attribute Format": {
+        "value": 0.9062119366626066,
+        "type": "number",
+        "metricLabel": "Format Adherence Metric",
+        "metricMessage": "For this dataset, 0.9062119366626066 is the format adherence",
+        "description": "The metric is rated on a scale between 0 & 1; computed using the formula (1 - (no. of format validity errors/total no. of data packets))."
+    },
+    "Absence of Unknown Attributes": {
+        "value": 1.0,
+        "type": "number",
+        "metricLabel": "Unknown Attributes Metric",
+        "metricMessage": "For this dataset, 1.0 is the value of the  additional fields absent metric.",
+        "description": "The metric is rated on a scale between 0 & 1; computed as (1 - r) where r is the ratio of packets with unknown attributes to the total number of packets."
+    },
+    "Adherence to Mandatory Attributes": {
+        "value": 1.0,
+        "type": "number",
+        "metricLabel": "Completeness Metric",
+        "metricMessage": "For this dataset, 1.0 is the value of the adherence to mandatory attributes metric.",
+        "description": "The metric is rated on a scale between 0 & 1; It is computed as follows: For each mandatory attribute, i, compute r(i) as the ratio of packets in which attribute i is missing. Then output 1 - average(r(i)) where the average is taken over all mandatory attributes."
+    }
+}
