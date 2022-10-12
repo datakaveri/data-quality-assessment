@@ -54,7 +54,7 @@ def readFile(configFile):
         # df[['longitude', 'latitude']] = df['coordinates'].apply(','.join).str.split(expand = True)
     else:
         df = df
-    print(df)
+    # print(df)
     print('The loaded dataset is: ' + datasetName)
     return df, input1, input2, datasetName, fileName, URL, alpha, schema
 
@@ -117,13 +117,13 @@ def outRemove(df, dataFile, input1):
     Q1 = percentile(dfInliers['IAT'].dropna(),25)
     Q3 = percentile(dfInliers['IAT'].dropna(),75)
     IQR = Q3 - Q1
-    print(Q1, Q3, IQR)
-    print('Percentiles: 25th:' + str(round(Q1)) + ', 75th:' + str(round(Q3)))
+    # print(Q1, Q3, IQR)
+    # print('Percentiles: 25th:' + str(round(Q1)) + ', 75th:' + str(round(Q3)))
     cutOff = IQR*k
     lower, upper = round((Q1 - cutOff),3), round((Q3 + cutOff),3)
     # print(lower, upper)
     outliers = [x for x in dfInliers['IAT'] if x < lower or x > upper]
-    print(str(len(outliers)) + ' outliers have been identified within the inter quartile.')
+    # print(str(len(outliers)) + ' outliers have been identified within the inter quartile.')
     dfInliers.drop(dfInliers[(dfInliers['IAT'] < lower)].index, inplace = True)
     dfInliers.drop(dfInliers[(dfInliers['IAT'] > upper)].index, inplace = True)
     # print(len(df))
@@ -164,7 +164,7 @@ def dataStats(df):
 #####################################################################################
 #####################################################################################
 
-def radarChart(regularityScore, outlierScore, sensorUptimeScore, dupeScore, formatScore, completeScore, addnlScore):
+def radarChart(regularityScore, sensorUptimeScore, dupeScore, formatScore, completeScore, addnlScore):
 
     custom_style = Style(
       background='transparent',
@@ -179,9 +179,9 @@ def radarChart(regularityScore, outlierScore, sensorUptimeScore, dupeScore, form
                               style = custom_style, 
                               show_legend = False,
                               show_title = False)
-    radar_chart.x_labels = ['Regularity', 'Outliers', 'Sensor Uptime','Duplicate Detection', 'Format Adherence', 'Completeness', 'Additional Attributes']
-    radar_chart.add('Metric Scores', [regularityScore, outlierScore, sensorUptimeScore, dupeScore, formatScore, completeScore, addnlScore])
-    radar_chart.add('Full Score', [1,1,1,1,1,1,1])
+    radar_chart.x_labels = ['Regularity', 'Sensor Uptime','Duplicate Detection', 'Format Adherence', 'Completeness', 'Additional Attributes']
+    radar_chart.add('Metric Scores', [regularityScore, sensorUptimeScore, dupeScore, formatScore, completeScore, addnlScore])
+    radar_chart.add('Full Score', [1,1,1,1,1,1])
     radar_chart.render_to_png('../plots/radarPlot.png')
     return 
 
@@ -308,7 +308,8 @@ def boxPlot(df, fileName, input1):
         df['idTrunc'] = df[input1]
 # print(dfI[input1])
     figure(figsize = (15, 6))
-    a = sns.boxplot(x = 'idTrunc', y = df['IAT'], data = df, color = 'seagreen')
+    # df.sort_values(by='IAT', ascending=False, na_position='first')
+    a = sns.boxplot(x = 'idTrunc', y = df['IAT'], data = df.sort_values(by='IAT', ascending=False, na_position='first'), color = 'seagreen')
     plt.xlabel('Truncated Sensor ID')
     plt.xticks(rotation = 90)
     plt.savefig('../plots/'+ df.name + 'BoxPlot.png', bbox_inches = 'tight', transparent = True)
@@ -475,15 +476,17 @@ def outagePlot(df, meanStat, stdStat):
     outageTime.drop(['index'], axis = 1, inplace = True)
     outageTotal = outageTime['IAT'].sum()
     outageAverage = outageTime['IAT'].mean()
+    
     bar_chart = pygal.Bar(show_legend = False, 
                           x_label_rotation = 45, 
                           x_title = 'Truncated Sensor ID',  
-                          y_title = 'Cumulative Outage Time in Minutes',
+                          y_title = 'Total Outage Time in Minutes',
                           style = custom_style)
     bar_chart.title = 'Outage Time per Sensor'
     bar_chart.add('Outage Time per Sensor', outageTime['IAT']/60)
     bar_chart.x_labels = outageTime['idTrunc']
     bar_chart.render_to_png('../plots/sensorOutagePlot.png')
+    
     return outageAverage
 
 #####################################################################################
