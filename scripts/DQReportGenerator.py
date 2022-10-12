@@ -1,11 +1,6 @@
 import PreProcessing as pp
 
-
-# In[4]:
-
-
 configFile = '../config/'+input('Enter the name of the configuration file: ')
-
 
 dfRaw, input1, input2, datasetName, fileName, URL, alpha, schema = pp.readFile(configFile)
 
@@ -15,6 +10,7 @@ dfRaw, input1, input2, datasetName, fileName, URL, alpha, schema = pp.readFile(c
 
 print(fileName)
 print(datasetName)
+# print(os.path.splitext(os.path.basename(fileName))[0])
 
 
 # In[6]:
@@ -28,10 +24,6 @@ numPackets = dfRaw.shape[0]
 
 # In[21]:
 
-
-# This function is expected to run at a rate of 235 data packets per second
-
-# print(f'Format Validation will take about: {(numPackets/235)/60} minutes')
 
 import ijson
 import jsonschema
@@ -239,7 +231,7 @@ meanStatIn, medianStatIn, modeStatIn, stdStatIn, varianceStatIn, skewStatIn, kur
 # In[13]:
 
 
-dfInliers, lowerOutliers, upperOutliers = pp.outRemove(dfClean, datasetName, input1)
+# dfInliers, lowerOutliers, upperOutliers = pp.outRemove(dfClean, datasetName, input1)
 # print(lowerOutliers, upperOutliers)
 # dfInliers.to_csv('dfInlierstest.csv')
 # print(datasetName)
@@ -250,7 +242,7 @@ dfInliers, lowerOutliers, upperOutliers = pp.outRemove(dfClean, datasetName, inp
 
 #running functions that are used to calcalate the metric scores
 regularityMetricScore, regularityValues, lowerRegularity, upperRegularity = pp.iatMetricRegularity(dfClean, alpha)
-outliersMetricScore = pp.iatMetricOutliers(dfClean)
+# outliersMetricScore = pp.iatMetricOutliers(dfClean)
 sensorUptimeMetricScore = pp.outageMetric(dfClean, dfRaw, meanStatIn, input1)
 dupeMetricScore = pp.dupeMetric(dfRaw, input1, input2)
 compMetricScore = round(completeness_metric, 3)
@@ -260,8 +252,6 @@ addnlAttrMetricScore = round(unknown_fields_absent_metric, 3)
 logging.info('################## Final Metrics #########################################')
 logging.info('#')
 logging.info("Regularity of Inter-Arrival Time Metric: " + str(regularityMetricScore))
-logging.info('#')
-logging.info("Outlier Presence in Inter-Arrival Time Metric: " + str(outliersMetricScore))
 logging.info('#')
 logging.info("Sensor Uptime Metric: " + str(sensorUptimeMetricScore))
 logging.info('#')
@@ -293,7 +283,7 @@ dfInliers.name = 'inliers'
 
 #DQ overview horizontal bars
 pp.bars(regularityMetricScore, 'regularity')
-pp.bars(outliersMetricScore, 'outliers')
+# pp.bars(outliersMetricScore, 'outliers')
 pp.bars(dupeMetricScore, 'dupe')
 pp.bars(compMetricScore, 'comp')
 pp.bars(formatMetricScore, 'format')
@@ -306,7 +296,7 @@ pp.bars(sensorUptimeMetricScore, 'sensorUptime')
 
 #half pie charts
 pp.gaugePlot(regularityMetricScore, 'regularityMetricScore')
-pp.gaugePlot(outliersMetricScore, 'outliersMetricScore')
+# pp.gaugePlot(outliersMetricScore, 'outliersMetricScore')
 pp.gaugePlot(dupeMetricScore, 'dupeMetricScore')
 pp.gaugePlot(compMetricScore, 'compMetricScore')
 pp.gaugePlot(formatMetricScore, 'formatMetricScore')
@@ -314,7 +304,7 @@ pp.gaugePlot(addnlAttrMetricScore, 'addnlAttrMetricScore')
 pp.gaugePlot(sensorUptimeMetricScore, 'sensorUptimeMetricScore')
 #radar chart
 pp.radarChart(regularityMetricScore, 
-              outliersMetricScore, 
+              # outliersMetricScore, 
               sensorUptimeMetricScore,
               dupeMetricScore, 
               compMetricScore, 
@@ -453,7 +443,7 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
     data = [
             ['Metric','Score','Bar'],
             ['Regularity of Inter-Arrival Time',f'{regularityMetricScore}', ''],
-            ['Outlier Presence in Inter-Arrival Time', f'{outliersMetricScore}', ''],
+            # ['Outlier Presence in Inter-Arrival Time', f'{outliersMetricScore}', ''],
             ['Sensor Uptime', f'{sensorUptimeMetricScore}',''],
             ['Absence of Duplicate Values',f'{dupeMetricScore}', ''],
             ['Adherence to Attribute Format',f'{formatMetricScore}', ''],
@@ -492,18 +482,18 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
         pdf.ln(4*th)
  
     #adding bars to the table
-    pdf.image("../plots/bars/regularitybar.png", 107, 71, 95)
-    pdf.image("../plots/bars/outliersbar.png", 107, 88, 95)
-    pdf.image("../plots/bars/sensorUptimebar.png", 107, 105, 95)
-    pdf.image("../plots/bars/dupebar.png", 107, 122, 95)
-    pdf.image("../plots/bars/formatbar.png", 107, 139, 95)
-    pdf.image("../plots/bars/addnlbar.png", 107, 156, 95)
-    pdf.image("../plots/bars/compbar.png", 107, 173, 95)
+    pdf.image("../plots/bars/regularitybar.png", 107, 70, 95)
+    # pdf.image("../plots/bars/outliersbar.png", 107, 88, 95)
+    pdf.image("../plots/bars/sensorUptimebar.png", 107, 87, 95)
+    pdf.image("../plots/bars/dupebar.png", 107, 104, 95)
+    pdf.image("../plots/bars/formatbar.png", 107, 121, 95)
+    pdf.image("../plots/bars/addnlbar.png", 107, 138, 95)
+    pdf.image("../plots/bars/compbar.png", 107, 155, 95)
     
     pdf.ln(30)  
     
     #radar chart
-    pdf.image("../plots/radarPlot.png", 110, 200, 95)
+    pdf.image("../plots/radarPlot.png", 110, 180, 95)
     
     
     pdf.write(5, 'This data quality assessment report shows the score for')
@@ -523,31 +513,30 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
     pdf.add_page()
     # pdf.image("plots/pretty/IUDXlogo.png", 0, 0, w = 60)
     pdf.ln(5)
-    create_heading('Inter-Arrival Time (IAT)', pdf)
+    create_heading('Regularity of Inter-Arrival Time ', pdf)
     pdf.ln(5)
     pdf.write(5, 'Inter-arrival time is defined as the time elapsed after the receipt of a data packet and until the receipt of the next packet. For sensor data, this is an important factor to evaluate as sensors are often configured to send data at specific time intervals.')
     pdf.ln(5)
-    pdf.write(5, 'In this section, we will be analysing the regularity, outliers, and anomalous values of the inter-arrival times of this dataset.')
-    pdf.ln(10)
-    create_heading('IAT Regularity', pdf)
-    pdf.image("../plots/donuts/regularityMetricScorePiePlot.png", x = 150, y = 50, w = 60)
+    pdf.write(5, 'In this section, we will be analysing the regularity and anomalous values of the inter-arrival times of this dataset.')
+    # create_heading('IAT Regularity', pdf)
+    pdf.image("../plots/donuts/regularityMetricScorePiePlot.png", x = 150, y = -5, w = 60)
     pdf.ln(10)    
     pdf.write(5, 'The regularity metric of the inter-arrival time conveys how uniform this time interval is for a dataset in relation to the expected behaviour.')
     pdf.ln(5)
     pdf.write(5, 'Considering the mode of the inter-arrival times to be the expected value (as per the specification), this metric measures the proximity of the spread of the normal distribution to the mode. The spread of the inter-arrival time values from the mode is computed using the formula:')
-    pdf.image('../plots/equations/modeAlpha.png', x = 80, y = 120, w = 40)
+    pdf.image('../plots/equations/modeAlpha.png', x = 80, y = 95, w = 40)
     pdf.ln(20)
     pdf.write(5, f'where alpha is a constant from 0 to 1. In this case, 3 values have been considered: {alpha[0]}, {alpha[1]}, {alpha[2]}.')
     pdf.ln(10)
     pdf.write(5, 'Considering the minimum and maximum values of this formula to be the lower and upper bounds, we compute the number of inter-arrival time values outside these bounds and divide by the total number of data packets using this formula:')
-    pdf.image('../plots/equations/regularityMetric.png', x = 60, y = 155, w = 85)
+    pdf.image('../plots/equations/regularityMetric.png', x = 60, y = 130, w = 85)
     pdf.ln(20)
     pdf.write(5, 'This value is computed for each alpha, and then averaged to give the overall metric score. The score is on a scale from 0 to 1, where 1 indicates the highest possible proximity to the mode and 0 indicates the opposite. The average of these three scores are taken to form the overall metric score.')
     pdf.ln(10)
     #creating table for alpha values 
     
-    pdf.image('../plots/equations/modeAlphaNeg.png', x = 64, y = 189, w = 30)
-    pdf.image('../plots/equations/modeAlphaPos.png', x = 112, y = 190, w = 30)
+    pdf.image('../plots/equations/modeAlphaNeg.png', x = 64, y = 164, w = 30)
+    pdf.image('../plots/equations/modeAlphaPos.png', x = 112, y = 165, w = 30)
     
     dataAlpha = [
                 ['Alpha', '', '', 'Regularity Score'],
@@ -577,80 +566,82 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
         pdf.ln(2*th)
     pdf.ln(10)
     pdf.write(5, 'A high score for the inter-arrival time metric means that the data packets are received at regular intervals which is important for time-critical applications.')
-    pdf.ln(40)
-    pdf.write(5, 'The table below shows a comparison of the statistics of the inter-arrival times of the dataset before and after outlier treatment using the Inter-Quartile Range method.')
-    pdf.ln(10)
-    #creating a table for the inter arrival time statistics
-    dataStats = [
-                ['','Before Outlier Removal', 'After Removal of Outliers'],
-                ['Mean', f'{meanStatOut}', f'{meanStatIn}'],
-                ['Median', f'{medianStatOut}', f'{medianStatIn}'],
-                ['Mode', f'{modeStatOut}', f'{modeStatIn}'],
-                ['Standard Deviation', f'{stdStatOut}', f'{stdStatIn}'],
-                ['Variance', f'{varianceStatOut}', f'{varianceStatIn}'],
-                ['Skewness', f'{skewStatOut}', f'{skewStatIn}']
-                ]
+    # pdf.ln(100)
+    # pdf.write(5, 'The table below shows a comparison of the statistics of the inter-arrival times of the dataset before and after outlier treatment using the Inter-Quartile Range method.')
+    # pdf.ln(20)
     
-    col_width = epw/3
-    #logic included to bold only titles
-    for row in dataStats:
-        for index, datum in enumerate(row):
-            if datum == 'Before Outlier Removal' or datum == 'After Removal of Outliers' or datum == 'Mean' or datum == 'Median' or datum == 'Mode' or datum == 'Standard Deviation' or datum == 'Variance' or datum == 'Skewness':
-                pdf.set_font('times', 'b', 13)
-                pdf.cell(col_width, 2*th, str(datum), border = 1, align = 'C')
-            else:
-                pdf.set_font('times', '', 12)
-                pdf.cell((col_width), 2*th, str(datum), border = 1, align = 'C')
-        pdf.ln(2*th)
+#     #creating a table for the inter arrival time statistics
+#     dataStats = [
+#                 ['','Before Outlier Removal', 'After Removal of Outliers'],
+#                 ['Mean', f'{meanStatOut}', f'{meanStatIn}'],
+#                 ['Median', f'{medianStatOut}', f'{medianStatIn}'],
+#                 ['Mode', f'{modeStatOut}', f'{modeStatIn}'],
+#                 ['Standard Deviation', f'{stdStatOut}', f'{stdStatIn}'],
+#                 ['Variance', f'{varianceStatOut}', f'{varianceStatIn}'],
+#                 ['Skewness', f'{skewStatOut}', f'{skewStatIn}']
+#                 ]
     
-    pdf.ln(49)
-    pdf.write(5, 'The histogram of the inter-arrival times of the ')
-    pdf.ln(5)
-    pdf.write(5, 'dataset prior to removal of outliers is on the right.')
-    pdf.image("../plots/cleanIAThistPlot.png", x = 100, y = 105, w = 100)
-    pdf.ln(105)
-    pdf.write(5, 'The histogram of the inter-arrival times of the ')
-    pdf.ln(5)
-    pdf.write(5, 'dataset after removal of outliers using the ')
-    pdf.ln(5)
-    pdf.write(5, 'inter-quartile range method is on the right.')
-    pdf.image("../plots/inliersIAThistPlot.png", x = 100, y = 215, w = 100)
-    pdf.ln(5)
+#     col_width = epw/3
+#     #logic included to bold only titles
+#     for row in dataStats:
+#         for index, datum in enumerate(row):
+#             if datum == 'Before Outlier Removal' or datum == 'After Removal of Outliers' or datum == 'Mean' or datum == 'Median' or datum == 'Mode' or datum == 'Standard Deviation' or datum == 'Variance' or datum == 'Skewness':
+#                 pdf.set_font('times', 'b', 13)
+#                 pdf.cell(col_width, 2*th, str(datum), border = 1, align = 'C')
+#             else:
+#                 pdf.set_font('times', '', 12)
+#                 pdf.cell((col_width), 2*th, str(datum), border = 1, align = 'C')
+#         pdf.ln(2*th)
+    
+    # pdf.ln(49)
+    # pdf.write(5, 'The histogram of the inter-arrival times of the ')
+    # pdf.ln(5)
+    # pdf.write(5, 'dataset prior to removal of outliers is on the right.')
+    # pdf.image("../plots/cleanIAThistPlot.png", x = 100, y = 105, w = 100)
+    # pdf.ln(105)
+    # pdf.write(5, 'The histogram of the inter-arrival times of the ')
+    # pdf.ln(5)
+    # pdf.write(5, 'dataset after removal of outliers using the ')
+    # pdf.ln(5)
+    # pdf.write(5, 'inter-quartile range method is on the right.')
+    # pdf.image("../plots/inliersIAThistPlot.png", x = 100, y = 215, w = 100)
+    # pdf.ln(5)
     
     
-    ''' Third Page'''
-    pdf.add_page()
-    create_heading('IAT Outliers', pdf)
-    pdf.image("../plots/donuts/outliersMetricScorePiePlot.png", x = 150, y = -5, w = 60)
-    pdf.ln(5)    
-    pdf.write(5, 'The outliers of the inter-arrival time is defined as the number of data packets which are received outside the bounds specified by the inter-quartile method.')
-    pdf.ln(10)
-    pdf.write(5, 'The Inter-Quartile Range of a dataset is defined by dividing the dataset into quartiles and selecting the middle two quartiles (50%) of values when ordered from lowest to highest.')
-    pdf.ln(10)
-    pdf.write(5, 'Quartiles are three percentiles that separate an ordered dataset into four parts. In this case, our quartiles are: 25, 50, 75')
-    pdf.ln(10)
-    pdf.write(5, 'The metric score is computed as below:')
+#     ''' Third Page'''
+#     pdf.add_page()
+#     create_heading('IAT Outliers', pdf)
+#     pdf.image("../plots/donuts/outliersMetricScorePiePlot.png", x = 150, y = -5, w = 60)
+#     pdf.ln(5)    
+#     pdf.write(5, 'The outliers of the inter-arrival time is defined as the number of data packets which are received outside the bounds specified by the inter-quartile method.')
+#     pdf.ln(10)
+#     pdf.write(5, 'The Inter-Quartile Range of a dataset is defined by dividing the dataset into quartiles and selecting the middle two quartiles (50%) of values when ordered from lowest to highest.')
+#     pdf.ln(10)
+#     pdf.write(5, 'Quartiles are three percentiles that separate an ordered dataset into four parts. In this case, our quartiles are: 25, 50, 75')
+#     pdf.ln(10)
+#     pdf.write(5, 'The metric score is computed as below:')
 
-    pdf.image("../plots/equations/outliersMetric.png", x = 70, y = 80, w = 60)
+#     pdf.image("../plots/equations/outliersMetric.png", x = 70, y = 80, w = 60)
     
-    pdf.ln(20)
-    pdf.write(5,'This score is computed on a scale from 0 to 1, with 0 being the lowest possible score, indicating that there are no data packets within the inter-quartile range, and 1 being the highest possible score indicating that all the data packets are within the inter-quartile range.')
-    pdf.ln(5)
-    pdf.write(5, 'Before applying the interquartile method, a boxplot of the dataset is given below:')
-    pdf.ln(5)
-    pdf.image("../plots/cleanBoxPlot.png", x =15, y = 115, w = WIDTH-40)
-    pdf.ln(80)
-    pdf.write(5, 'After the interquartile method is applied to remove the outliers, a boxplot of the dataset is given below:')
-    pdf.ln(5)
-    pdf.write(5, f'The value of the lower bound is: {lowerOutliers}')
-    pdf.ln(5)
-    pdf.write(5, f'The value of the upper bound is: {upperOutliers}')
-    pdf.ln(5)
-    pdf.image("../plots/inliersBoxPlot.png", x = 15, y = 215, w = WIDTH-40)
+#     pdf.ln(20)
+#     pdf.write(5,'This score is computed on a scale from 0 to 1, with 0 being the lowest possible score, indicating that there are no data packets within the inter-quartile range, and 1 being the highest possible score indicating that all the data packets are within the inter-quartile range.')
+#     pdf.ln(5)
+#     pdf.write(5, 'Before applying the interquartile method, a boxplot of the dataset is given below:')
+#     pdf.ln(5)
+#     pdf.image("../plots/cleanBoxPlot.png", x =15, y = 115, w = WIDTH-40)
+#     pdf.ln(80)
+#     pdf.write(5, 'After the interquartile method is applied to remove the outliers, a boxplot of the dataset is given below:')
+#     pdf.ln(5)
+#     pdf.write(5, f'The value of the lower bound is: {lowerOutliers}')
+#     pdf.ln(5)
+#     pdf.write(5, f'The value of the upper bound is: {upperOutliers}')
+#     pdf.ln(5)
+#     pdf.image("../plots/inliersBoxPlot.png", x = 15, y = 215, w = WIDTH-40)
     
     
     ''' Fourth Page '''   
     pdf.add_page()
+    pdf.ln(5)
     create_heading('Sensor Uptime', pdf)
     pdf.image("../plots/donuts/sensorUptimeMetricScorePiePlot.png", x = 150, y = -5, w = 60)
     pdf.ln(5)
@@ -661,14 +652,16 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
     pdf.write(5,'Total query time is the time for which the dataset is queried, i.e. the difference between the timestamps of the first and last data packets in the dataset.')
     pdf.ln(10)
     pdf.write(5, 'The metric score is computed as below:')
-    pdf.image("../plots/equations/sensorUptimeMetric.png", x = 60, y = 85, w = 75)
+    pdf.image("../plots/equations/sensorUptimeMetric.png", x = 60, y = 90, w = 75)
     pdf.ln(20)
     pdf.write(5, 'Assuming that a high value for the inter-arrival time means that the sensor is not sending data packets at the expected intervals and is assumed to be "down". Sensor uptime can be understood as the time during which the sensor is not undergoing an outage and is functioning as expected.')
     pdf.ln(10)
     pdf.write(5, 'The metric is calculated on a scale from 0 to 1, with 0 being the lowest score indicating that there is a high degree of sensor outage in the dataset, and 1 being the highest score indicating that there are no inter-arrival times greater than twice the mean.')
+    
+    # pdf.add_page()
     pdf.ln(10)
-    pdf.write(5, 'The chart below shows the outages in the dataset on a "per sensor" basis.')
-    pdf.image("../plots/sensorOutagePlot.png", x = 20, y = 150, w = 160)
+    pdf.write(5, 'The chart below shows the sensor downtime - time when the sensor is not actively sending data packets at the expected intervals on a "per sensor" basis. This chart only shows the downtime if the sensor has experienced downtime that is greater than twice the mean of the inter-arrival time.')
+    pdf.image("../plots/sensorOutagePlot.png", x = 20, y = 160, w = WIDTH - 60)
 
     ''' Fifth Page '''   
     pdf.add_page()
@@ -785,13 +778,13 @@ outputParamFV = {
         "metricMessage": f"For this dataset, the inter-arrival time regularity metric values are: {regularityValues[0]}, {regularityValues[1]},  and {regularityValues[2]} for the corresponding alpha values of {alpha[0]}, {alpha[1]}, and {alpha[2]}. The overall score for this metric is {regularityMetricScore}",
         "description": "This metric is rated on a scale between 0 & 1; computes the output of the equation (1 - ((No.of data packets outside the bounds)/(Total no. of data packets)). These bounds are defined by the value of alpha and the formula (mode +/- (alpha*mode)). The overall metric score is formed from an average of the three scores obtained from three values of alpha."
     },
-    "IATOutliers":{
-        "value": outliersMetricScore,
-        "type": "number",
-        "metricLabel": "IAT Outlier Metric",
-        "metricMessage": f"For this dataset, the inter-arrival time outliers metric score is {outliersMetricScore}.",
-        "description": "This metric is rated on a scale between 0 & 1; it is computed using the inter-quartile range method and is calculated as (1-(No. of outliers/No. of data packets))"  
-    },
+    # "IATOutliers":{
+    #     "value": outliersMetricScore,
+    #     "type": "number",
+    #     "metricLabel": "IAT Outlier Metric",
+    #     "metricMessage": f"For this dataset, the inter-arrival time outliers metric score is {outliersMetricScore}.",
+    #     "description": "This metric is rated on a scale between 0 & 1; it is computed using the inter-quartile range method and is calculated as (1-(No. of outliers/No. of data packets))"  
+    # },
     "Sensor Uptime":{
         "value": sensorUptimeMetricScore,
         "type": "number",
