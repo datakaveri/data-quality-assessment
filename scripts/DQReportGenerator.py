@@ -248,6 +248,7 @@ dupeMetricScore = pp.dupeMetric(dfRaw, input1, input2)
 compMetricScore = round(completeness_metric, 3)
 formatMetricScore = round(format_adherence_metric, 3)
 addnlAttrMetricScore = round(unknown_fields_absent_metric, 3)
+avgDataQualityScore = round((regularityMetricScore + sensorUptimeMetricScore + dupeMetricScore + compMetricScore + formatMetricScore + addnlAttrMetricScore)/6, 3)
 
 logging.info('################## Final Metrics #########################################')
 logging.info('#')
@@ -261,7 +262,9 @@ logging.info("Adherence to Attribute Format Metric: " + str(formatMetricScore))
 logging.info('#')
 logging.info("Absence of Unknown Attributes Metric: " + str(addnlAttrMetricScore))
 logging.info('#')
-logging.info("Adherence to Mandatory Attributes Metric: "+str(compMetricScore))
+logging.info("Adherence to Mandatory Attributes Metric: " + str(compMetricScore))
+logging.info('###########################################################################')
+logging.info("Average Data Quality Score: " + str(avgDataQualityScore))
 logging.info('#')
 logging.info('###########################################################################')
 
@@ -490,15 +493,19 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
     pdf.image("../plots/bars/addnlbar.png", 107, 138, 95)
     pdf.image("../plots/bars/compbar.png", 107, 155, 95)
     
-    pdf.ln(30)  
+    pdf.ln(10)
+    pdf.write(5, 'The Overall Data Quality Score of the dataset, computed by calculating an average of each of the above scores is:') 
+    pdf.ln(5)
+    pdf.write(5, f'{avgDataQualityScore}')
+    pdf.ln(35)  
     
     #radar chart
-    pdf.image("../plots/radarPlot.png", 110, 180, 95)
+    pdf.image("../plots/radarPlot.png", 110, 195, 95)
     
     
     pdf.write(5, 'This data quality assessment report shows the score for')
     pdf.ln(5)
-    pdf.write(5, 'seven metrics that contribute to data quality.')
+    pdf.write(5, 'six metrics that contribute to data quality.')
     pdf.ln(10)
     pdf.write(5, 'The chart on the right shows an overview of the data') 
     pdf.ln(5)              
@@ -769,7 +776,8 @@ outputParamFV = {
     "startTime": str(startTime),
     "endTime": str(endTime),
     "No. of data packets": numPackets,
-    "IATRegularity":{
+    "avgDataQualityScore": avgDataQualityScore,
+    "IAT Regularity":{
         "value": [regularityValues[0], regularityValues[1], regularityValues[2]],
         "valueAlpha": [alpha[0], alpha[1], alpha[2]],
         "overallValue": regularityMetricScore,
