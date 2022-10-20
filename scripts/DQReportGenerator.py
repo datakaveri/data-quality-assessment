@@ -797,12 +797,12 @@ outputParamFV = {
     #     "metricMessage": f"For this dataset, the inter-arrival time outliers metric score is {outliersMetricScore}.",
     #     "description": "This metric is rated on a scale between 0 & 1; it is computed using the inter-quartile range method and is calculated as (1-(No. of outliers/No. of data packets))"  
     # },
-    "Sensor Uptime":{
+    "Device Uptime":{
         "value": sensorUptimeMetricScore,
         "type": "number",
-        "metricLabel": "Sensor Uptime Metric",
-        "metricMessage": f"For this dataset, the sensor uptime metric score is {sensorUptimeMetricScore}.",
-        "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per sensor/total query time))."
+        "metricLabel": "Device Uptime Metric",
+        "metricMessage": f"For this dataset, the device uptime metric score is {sensorUptimeMetricScore}.",
+        "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per device/total query time))."
     },
     "Absence of Duplicate Values":{
         "value": dupeMetricScore,
