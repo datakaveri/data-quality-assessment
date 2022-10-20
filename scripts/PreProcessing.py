@@ -479,11 +479,11 @@ def outagePlot(df, meanStat, stdStat):
     
     bar_chart = pygal.Bar(show_legend = False, 
                           x_label_rotation = 45, 
-                          x_title = 'Truncated Sensor ID',  
+                          x_title = 'Truncated Device ID',  
                           y_title = 'Total Outage Time in Minutes',
                           style = custom_style)
-    bar_chart.title = 'Outage Time per Sensor'
-    bar_chart.add('Outage Time per Sensor', outageTime['IAT']/60)
+    bar_chart.title = 'Outage Time per Device'
+    bar_chart.add('Outage Time per Device', outageTime['IAT']/60)
     bar_chart.x_labels = outageTime['idTrunc']
     bar_chart.render_to_png('../plots/sensorOutagePlot.png')
     
