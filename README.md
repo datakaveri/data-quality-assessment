@@ -8,7 +8,7 @@ For each of the metrics that are used to quantify the quality of a dataset, the 
 Currently, the tool is able to assess six parameters, namely:
 
 - Regularity of Inter-Arrival Time
-- Sensor Uptime
+- Data Source Uptime
 - Absence of Duplicate Values
 - Adherence to Attribute Format
 - Absence of Unknown Attributes
@@ -23,9 +23,9 @@ The regularity metric of the inter-arrival time conveys how uniform this time in
 relation to the expected behaviour. This metric measures the proximity of the spread of the normal distribution to the mode.
 
 
-### Sensor Uptime
+### Data Source Uptime
 
-Sensor uptime is defined as the duration in which the sensor is actively sending data packets at the expected time intervals. This includes an analysis of the downtime of the sensors.
+Data Source uptime is defined as the duration in which the sensor is actively sending data packets at the expected time intervals. This includes an analysis of the downtime of the sensors.
 
 ### Duplicate Presence
 
