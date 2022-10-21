@@ -255,7 +255,7 @@ logging.info('################## Final Metrics #################################
 logging.info('#')
 logging.info("Regularity of Inter-Arrival Time Metric: " + str(regularityMetricScore))
 logging.info('#')
-logging.info("Device Uptime Metric: " + str(sensorUptimeMetricScore))
+logging.info("Data Source Uptime Metric: " + str(sensorUptimeMetricScore))
 logging.info('#')
 logging.info("Absence of Duplicate Values Metric: " + str(dupeMetricScore))
 logging.info('#')
@@ -449,7 +449,7 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
             ['Metric','Score','Bar'],
             ['Regularity of Inter-Arrival Time',f'{regularityMetricScore}', ''],
             # ['Outlier Presence in Inter-Arrival Time', f'{outliersMetricScore}', ''],
-            ['Device Uptime', f'{sensorUptimeMetricScore}',''],
+            ['Data Source Uptime', f'{sensorUptimeMetricScore}',''],
             ['Absence of Duplicate Values',f'{dupeMetricScore}', ''],
             ['Adherence to Attribute Format',f'{formatMetricScore}', ''],
             ['Absence of Unknown Attributes',f'{addnlAttrMetricScore}', ''],
@@ -653,23 +653,21 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
     ''' Fourth Page '''   
     pdf.add_page()
     pdf.ln(5)
-    create_heading('Device Uptime', pdf)
+    create_heading('Data Stream Uptime', pdf)
     pdf.image("../plots/donuts/sensorUptimeMetricScorePiePlot.png", x = 150, y = -5, w = 60)
     pdf.ln(5)
-    pdf.write(5, 'Device uptime is defined as the duration in which the device is actively sending data packets at the expected time intervals.')
+    pdf.write(5, 'Data Stream uptime is defined as the duration in which the device or sensor is actively sending data packets at the expected time intervals.')
     pdf.ln(10)
-    pdf.write(5, 'This metric is calculated by performing an analysis of the inter-arrival time of the devices. Each value of the inter-arrival time that is greater than twice the mean is selected and sorted by device. These values are then summed for each device and an overall average is taken. This overall average value is then divided by the total query time of the dataset.')
+    pdf.write(5, 'This metric is calculated by performing an analysis of the inter-arrival time of the devices or sensors. Each value of the inter-arrival time that is greater than twice the mean is selected and sorted by device. These values are then summed for each device and an overall average is taken. This overall average value is then divided by the total query time of the dataset.')
     pdf.ln(5)
     pdf.write(5,'Total query time is the time for which the dataset is queried, i.e. the difference between the timestamps of the first and last data packets in the dataset.')
     pdf.ln(10)
     pdf.write(5, 'The metric score is computed as below:')
     pdf.image("../plots/equations/sensorUptimeMetric.png", x = 60, y = 90, w = 75)
     pdf.ln(20)
-    pdf.write(5, 'Assuming that a high value for the inter-arrival time means that the device is not sending data packets at the expected intervals and is assumed to be "down". Device uptime can be understood as the time during which the device is not undergoing an outage and is functioning as expected.')
+    pdf.write(5, 'Assuming that a high value for the inter-arrival time means that the device is not sending data packets at the expected intervals and is assumed to be "down". Data stream uptime can be understood as the time during which the device is not undergoing an outage and is functioning as expected.')
     pdf.ln(10)
     pdf.write(5, 'The metric is calculated on a scale from 0 to 1, with 0 being the lowest score indicating that there is a high degree of device outage in the dataset, and 1 being the highest score indicating that there are no inter-arrival times greater than twice the mean.')
-    
-    # pdf.add_page()
     pdf.ln(10)
     pdf.write(5, 'The chart below shows the device downtime - time when the device is not actively sending data packets at the expected intervals on a "per device" basis. This chart only shows the downtime if the device has experienced downtime that is greater than twice the mean of the inter-arrival time.')
     pdf.image("../plots/sensorOutagePlot.png", x = 20, y = 160, w = WIDTH - 60)
@@ -683,7 +681,7 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
     pdf.ln(10)
     pdf.write(5, 'The duplicates in a dataset are identified using the timestamp and any one unique identifier for each data packet. For example: AQM Sensor ID, Vehicle ID, etc. may be used as unique identifiers for a dataset.')
     pdf.ln(5)
-    pdf.write(5, 'If any unique identifier sends two data packets with the same timestamp, then one of the two data packets is counted as a duplicate. This is because it is assumed that any one sensor may not send two data packets with a single timestamp.')
+    pdf.write(5, 'If any unique identifier sends two data packets with the same timestamp, then one of the two data packets is counted as a duplicate. This is because it is assumed that any one device or sensor may not send two data packets with a single timestamp.')
     pdf.ln(10)
     pdf.write(5, 'For this dataset, the attributes chosen for deduplication are: ')
     pdf.ln(10)
@@ -797,12 +795,12 @@ outputParamFV = {
     #     "metricMessage": f"For this dataset, the inter-arrival time outliers metric score is {outliersMetricScore}.",
     #     "description": "This metric is rated on a scale between 0 & 1; it is computed using the inter-quartile range method and is calculated as (1-(No. of outliers/No. of data packets))"  
     # },
-    "Device Uptime":{
+    "Data Stream Uptime":{
         "value": sensorUptimeMetricScore,
         "type": "number",
-        "metricLabel": "Device Uptime Metric",
-        "metricMessage": f"For this dataset, the device uptime metric score is {sensorUptimeMetricScore}.",
-        "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per device/total query time))."
+        "metricLabel": "Data Stream Uptime Metric",
+        "metricMessage": f"For this dataset, the data stream uptime metric score is {sensorUptimeMetricScore}.",
+        "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per sensor/total query time))."
     },
     "Absence of Duplicate Values":{
         "value": dupeMetricScore,
