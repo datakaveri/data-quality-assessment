@@ -653,10 +653,10 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
     ''' Fourth Page '''   
     pdf.add_page()
     pdf.ln(5)
-    create_heading('Data Stream Uptime', pdf)
+    create_heading('Data Source Uptime', pdf)
     pdf.image("../plots/donuts/sensorUptimeMetricScorePiePlot.png", x = 150, y = -5, w = 60)
     pdf.ln(5)
-    pdf.write(5, 'Data Stream uptime is defined as the duration in which the device or sensor is actively sending data packets at the expected time intervals.')
+    pdf.write(5, 'Data Source Uptime is defined as the duration in which the device or sensor is actively sending data packets at the expected time intervals.')
     pdf.ln(10)
     pdf.write(5, 'This metric is calculated by performing an analysis of the inter-arrival time of the devices or sensors. Each value of the inter-arrival time that is greater than twice the mean is selected and sorted by device. These values are then summed for each device and an overall average is taken. This overall average value is then divided by the total query time of the dataset.')
     pdf.ln(5)
@@ -665,7 +665,7 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
     pdf.write(5, 'The metric score is computed as below:')
     pdf.image("../plots/equations/sensorUptimeMetric.png", x = 60, y = 90, w = 75)
     pdf.ln(20)
-    pdf.write(5, 'Assuming that a high value for the inter-arrival time means that the device is not sending data packets at the expected intervals and is assumed to be "down". Data stream uptime can be understood as the time during which the device is not undergoing an outage and is functioning as expected.')
+    pdf.write(5, 'Assuming that a high value for the inter-arrival time means that the device is not sending data packets at the expected intervals and is assumed to be "down". Data Source uptime can be understood as the time during which the device is not undergoing an outage and is functioning as expected.')
     pdf.ln(10)
     pdf.write(5, 'The metric is calculated on a scale from 0 to 1, with 0 being the lowest score indicating that there is a high degree of device outage in the dataset, and 1 being the highest score indicating that there are no inter-arrival times greater than twice the mean.')
     pdf.ln(10)
@@ -795,11 +795,11 @@ outputParamFV = {
     #     "metricMessage": f"For this dataset, the inter-arrival time outliers metric score is {outliersMetricScore}.",
     #     "description": "This metric is rated on a scale between 0 & 1; it is computed using the inter-quartile range method and is calculated as (1-(No. of outliers/No. of data packets))"  
     # },
-    "Data Stream Uptime":{
+    "Data Source Uptime":{
         "value": sensorUptimeMetricScore,
         "type": "number",
-        "metricLabel": "Data Stream Uptime Metric",
-        "metricMessage": f"For this dataset, the data stream uptime metric score is {sensorUptimeMetricScore}.",
+        "metricLabel": "Data Source Uptime Metric",
+        "metricMessage": f"For this dataset, the data source uptime metric score is {sensorUptimeMetricScore}.",
         "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per sensor/total query time))."
     },
     "Absence of Duplicate Values":{
