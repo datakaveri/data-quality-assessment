@@ -21,11 +21,11 @@
         "metricMessage": "For this dataset, the inter-arrival time regularity metric values are: 0.99448, 0.99448,  and 0.99448 for the corresponding alpha values of 0.25, 0.5, and 0.75. The overall score for this metric is 0.994",
         "description": "This metric is rated on a scale between 0 & 1; computes the output of the equation (1 - ((No.of data packets outside the bounds)/(Total no. of data packets)). These bounds are defined by the value of alpha and the formula (mode +/- (alpha*mode)). The overall metric score is formed from an average of the three scores obtained from three values of alpha."
     },
-    "Device Uptime": {
+    "Data Source Uptime": {
         "value": 0.871,
         "type": "number",
-        "metricLabel": "Device Uptime Metric",
-        "metricMessage": "For this dataset, the device uptime metric score is 0.871.",
+        "metricLabel": "Data Source Uptime Metric",
+        "metricMessage": "For this dataset, the data source uptime metric score is 0.871.",
         "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per sensor/total query time))."
     },
     "Absence of Duplicate Values": {
