@@ -179,7 +179,7 @@ def radarChart(regularityScore, sensorUptimeScore, dupeScore, formatScore, compl
                               style = custom_style, 
                               show_legend = False,
                               show_title = False)
-    radar_chart.x_labels = ['Regularity', 'Sensor Uptime','Duplicate Detection', 'Format Adherence', 'Completeness', 'Additional Attributes']
+    radar_chart.x_labels = ['Regularity of InterArrival Time', 'Device Uptime','Absence of Duplicates', 'Attribute Format Adherence', 'Mandatory Attribute Adherence', 'Unknown Attribute Absence']
     radar_chart.add('Metric Scores', [regularityScore, sensorUptimeScore, dupeScore, formatScore, completeScore, addnlScore])
     radar_chart.add('Full Score', [1,1,1,1,1,1])
     radar_chart.render_to_png('../plots/radarPlot.png')
