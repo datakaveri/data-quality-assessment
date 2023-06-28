@@ -84,19 +84,21 @@ def iatViolinMultiSensors(dataframe):
 
 # iatViolinMultiSensors(dataframe)
 
+
+# computing a new metric for regularity
 # mode deviation of dispersion
-def compute_mode_deviation(dataframe):
-    mode_value = sps.mode(dataframe)[0][0]
-    deviations = abs(dataframe - mode_value)
-    mode_deviation = deviations.sum() / len(dataframe)
-    return mode_deviation
+def computeModeDeviation(dataframe):
+    modeValue = sps.mode(dataframe)[0][0]
+    deviations = abs(dataframe - modeValue)
+    modeDeviation = deviations.sum() / len(dataframe)
+    return modeDeviation
 
 def newRegularityMetric(dataframe):
     dataframe['id'] = dataframe['id'].str[-4:]
 
     grouped = dataframe.groupby('id')
     # print(grouped)
-    result = grouped['IAT'].apply(compute_mode_deviation).reset_index()
+    result = grouped['IAT'].apply(computeModeDeviation).reset_index()
     result.columns = ['id', 'mode_deviation']
 
     # Normalize the mode deviation values between 0 and 1
@@ -107,4 +109,63 @@ def newRegularityMetric(dataframe):
     print(metricScore)
     return(newRegularityMetric)
 
-newRegularityMetric(dataframe)
+def iatOutliersMetricIQR(dataframe):
+    print('combination of IQR and modified z-score method')
+    df = dataframe
+    data = df['IAT'].dropna()
+    Q1 = np.percentile(data, 25)
+    Q3 = np.percentile(data, 75)
+
+    # adaptive threshold using regular z-score
+    median = np.median(data)
+    mad = np.median(np.abs(data - median))
+
+    modified_z_scores = (0.6745 * (data - median)) / mad # applicable to normal symmetric distribution
+
+    # threshold_z_score = np.mean(modified_z_scores)
+    threshold_z_score = np.percentile(np.abs(modified_z_scores), 95)
+
+    IQR = Q3 - Q1
+    cutOff = IQR*threshold_z_score
+    # cutOff = IQR*k
+    lower, upper = Q1 - cutOff, Q3 + cutOff
+    print(lower,upper)
+    outliers = [x for x in df['IAT'] if x < lower or x > upper] 
+    outlierNumber = len(outliers)
+    totalDataPackets = len(df)
+    print(outlierNumber, totalDataPackets)
+    iatMetricOutlierScore = 1 - (outlierNumber/totalDataPackets)
+    print(iatMetricOutlierScore)
+    return iatMetricOutlierScore
+
+# iglewicz and hoaglin
+def iatOutliersMetricZscore(dataframe):
+    print('modified z-score method proposed by iglewicz and hoaglin')
+    data = dataframe['IAT'].dropna()
+    median = np.median(data)
+    mad = np.median(np.abs(data - median))
+    modified_z_scores = (0.6745 * (data - median)) / mad  # Calculate modified Z-scores
+    threshold = np.percentile(np.abs(modified_z_scores), 95)
+    print(threshold)
+    outliers_z = [x for x in modified_z_scores if x > threshold] # can also be changed to 3.5 as per recommendation of iglewicz and hoaglin
+    # outliers_z = [x for x in modified_z_scores if x > 3.5]
+    outlierNumber = len(outliers_z)
+    totalDataPackets = len(data)
+    print(outlierNumber, totalDataPackets)
+    iatMetricOutlierScore = 1 - (outlierNumber/totalDataPackets)
+    print(iatMetricOutlierScore)
+    return iatMetricOutlierScore
+
+
+sns.boxplot(x = 'id', y = dataframe['IAT'], data = dataframe.sort_values(by='IAT', ascending=False, na_position='first'), color = 'seagreen')
+plt.xlabel('Truncated Sensor ID')
+plt.xticks(rotation = 90)
+# plt.show()
+
+
+
+# newRegularityMetric(dataframe)
+iatOutliersMetricIQR(dataframe)
+iatOutliersMetricZscore(dataframe)
+
+
