@@ -109,6 +109,51 @@ def newRegularityMetric(dataframe):
     print(metricScore)
     return(newRegularityMetric)
 
+def modeRegularityMetric(dataframe):
+    data = dataframe['IAT'].dropna()
+    modeValue = sps.mode(data)[0][0]
+    # grouped = dataframe.groupby('id')
+    lower = modeValue - (modeValue/2)
+    upper = modeValue + (modeValue/2)
+    print(lower,upper)
+    outliers = [x for x in data if x < lower or x > upper] 
+    outlierNumber = len(outliers)
+    totalDataPackets = len(data)
+    print(outlierNumber, totalDataPackets)
+    iatMetricOutlierScore = 1 - (outlierNumber/totalDataPackets)
+    print(iatMetricOutlierScore)
+    return
+
+def RAERegularityMetric(dataframe):
+
+    dataframe = dataframe.drop_duplicates(['id', 'observationDateTime'])
+    dataframe = dataframe[(dataframe['IAT'] < 901) & (dataframe['IAT'] > 899)]
+    data = dataframe['IAT'].dropna()
+    modeValue = sps.mode(data)[0][0]
+    RAE = np.absolute((data - modeValue)/modeValue)
+    lower = modeValue - (modeValue/2)
+    upper = modeValue + (modeValue/2)
+    print(RAE.max(), RAE.min())
+    goodCount = 0
+    badCount = 0
+    count = 0
+    for iat in data:
+        RAE = np.absolute((iat - modeValue)/modeValue)
+        if RAE <= 0.5:
+            goodCount += 1 - (2*RAE)
+            count += 1
+        else:
+            badCount += 2*RAE
+            print(iat)
+        totalCount = count + badCount
+    
+    print(totalCount, count, goodCount, badCount)
+    RAERegularityMetric = np.round(goodCount/totalCount, 3) 
+    print(RAERegularityMetric)
+    return
+
+RAERegularityMetric(dataframe)
+
 def iatOutliersMetricIQR(dataframe):
     print('combination of IQR and modified z-score method')
     df = dataframe
@@ -124,7 +169,7 @@ def iatOutliersMetricIQR(dataframe):
 
     # threshold_z_score = np.mean(modified_z_scores)
     threshold_z_score = np.percentile(np.abs(modified_z_scores), 95)
-
+    # k = 1.5
     IQR = Q3 - Q1
     cutOff = IQR*threshold_z_score
     # cutOff = IQR*k
@@ -136,7 +181,41 @@ def iatOutliersMetricIQR(dataframe):
     print(outlierNumber, totalDataPackets)
     iatMetricOutlierScore = 1 - (outlierNumber/totalDataPackets)
     print(iatMetricOutlierScore)
+
+    # visualisations
+    # normally distributed having removed outliers
+    data = pd.DataFrame(data)
+    modeValue = sps.mode(data)[0][0]
+    # dataNorm = data[~data.IAT.isin(outliers)]
+    dataNorm = data - modeValue
+    dataNorm = dataNorm[(dataNorm > 0).all(1)]
+    print(dataNorm)
+    print(modeValue)
+    # plt.hist(dataNorm['IAT'], alpha = 0.5, edgecolor = 'k')
+    sns.histplot(data=dataNorm['IAT'], element = "step", kde=True, log_scale = True)
+    # plt.plot(dataNorm['IAT'], linestyle = 'dotted')
+    plt.xlabel('IAT')
+    plt.ylabel('Count')
+    plt.title('Exponentially Distributed IAT Values')
+    plt.legend()
+    plt.show()
+
+    #outlier viz with thresholds (UF, LF)
+    # visualising the outliers 
+    plt.figure(figsize=(8, 6))
+    # plt.scatter(data.index, data, color='b', label='Data')
+    plt.scatter(data['IAT'].index, data['IAT'], color = 'b', label='IAT',linewidths=0.1)
+    # plt.scatter(outliers_z.index, outliers_z, color='r', label='Outliers')
+    plt.plot(data['IAT'].index, [lower] * len(data['IAT']), color='r', linestyle='--', label='Lower Fence', linewidth=1)
+    plt.plot(data['IAT'].index, [upper] * len(data['IAT']), color='r', linestyle='--', label='Upper Fence', linewidth=1)
+    plt.xlabel('Count')
+    plt.ylabel('IAT')
+    plt.title('Outliers Detection Visualization')
+    # plt.legend()
+    # plt.show()
+
     return iatMetricOutlierScore
+
 
 # iglewicz and hoaglin
 def iatOutliersMetricZscore(dataframe):
@@ -149,6 +228,26 @@ def iatOutliersMetricZscore(dataframe):
     print(threshold)
     outliers_z = [x for x in modified_z_scores if x > threshold] # can also be changed to 3.5 as per recommendation of iglewicz and hoaglin
     # outliers_z = [x for x in modified_z_scores if x > 3.5]
+    # showing normal fit plot
+    # print(modified_z_scores)
+    data = pd.DataFrame(data)
+    data['modzscores'] = modified_z_scores
+    dataNorm = data[~data.modzscores.isin(outliers_z)]
+
+    plt.hist(dataNorm['IAT'], alpha = 0.5, edgecolor = 'k')
+
+    # visualising the outliers 
+    plt.figure(figsize=(8, 6))
+    # plt.scatter(data.index, data, color='b', label='Data')
+    plt.scatter(modified_z_scores.index, modified_z_scores, color = 'b', label='ModZScores',linewidths=0.1)
+    # plt.scatter(outliers_z.index, outliers_z, color='r', label='Outliers')
+    plt.plot(modified_z_scores.index, [threshold] * len(modified_z_scores), color='r', linestyle='--', label='Threshold', linewidth=1)
+    plt.xlabel('Index')
+    plt.ylabel('Values')
+    plt.title('Outliers Visualization')
+    plt.legend()
+    # plt.show()
+
     outlierNumber = len(outliers_z)
     totalDataPackets = len(data)
     print(outlierNumber, totalDataPackets)
@@ -157,15 +256,20 @@ def iatOutliersMetricZscore(dataframe):
     return iatMetricOutlierScore
 
 
-sns.boxplot(x = 'id', y = dataframe['IAT'], data = dataframe.sort_values(by='IAT', ascending=False, na_position='first'), color = 'seagreen')
-plt.xlabel('Truncated Sensor ID')
-plt.xticks(rotation = 90)
-# plt.show()
+# duplicate detection metrics
+def duplicatesMetric(df):
+    totalDataPackets = len(df)
+    dfDupes = df.duplicated(keep='first')
+    dupeCount = dfDupes.value_counts()[True]
+    duplicatesMetricScore = 1 - dupeCount/totalDataPackets
+    # print(str(dupeMetricPercent) + '% of the data packets are non duplicates, as defined by the parameters ' + str(input1) ' &' + str(input2))
+    print(duplicatesMetricScore)
+    return round(duplicatesMetricScore,3)
 
+newRegularityMetric(dataframe)
+# iatOutliersMetricIQR(dataframe)
+# modeRegularityMetric(dataframe)
+# iatOutliersMetricZscore(dataframe)
 
-
-# newRegularityMetric(dataframe)
-iatOutliersMetricIQR(dataframe)
-iatOutliersMetricZscore(dataframe)
-
-
+# duplicatesMetric(dataframe1)
+# pp.normalFitPlot(dataframe)

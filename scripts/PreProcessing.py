@@ -106,7 +106,7 @@ def preProcess(df, input1, input2):
     df = df.reset_index(drop = True) 
     return(df)
 
-#IQR Outliers are identified and removed
+#IQR Outliers are identified and removed for visualization purposes only
 def outRemove(df, dataFile, input1):
     dfInliers = df.copy(deep = True)
     dataName = dataFile
@@ -289,9 +289,9 @@ def IAThist(df):
     plt.xticks(rotation = 90)
     plt.xlabel('Inter Arrival Time [in seconds]')
     plt.ylabel('Normalized Frequency Of Occurence')
-    plt.savefig('../plots/'+ df.name + 'IAThistPlot.png', bbox_inches = 'tight', transparent = True)
-    # plt.show()
-    plt.close()
+    # plt.savefig('../plots/'+ df.name + 'IAThistPlot.png', bbox_inches = 'tight', transparent = True)
+    plt.show()
+    # plt.close()
     return
 
 def outScatterPlot(df):
@@ -332,10 +332,10 @@ def normalFitPlot(df):
     plt.xlabel('Inter-Arrival Time')
     plt.ylabel('Frequency')
     # plt.savefig('../plots/'+ df.name + 'IATFitPlot.png', bbox_inches = 'tight', transparent = True)  
-    # plt.show()
     df[df['IAT'] != 0]
     df['IAT'].plot.kde()
-    plt.close()
+    plt.show()
+    # plt.close()
     return mu, std
 
 #CARDINALITY
