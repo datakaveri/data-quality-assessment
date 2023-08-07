@@ -1,30 +1,5 @@
 import PreProcessing as pp
-
-configFile = '../config/'+input('Enter the name of the configuration file: ')
-
-dfRaw, input1, input2, datasetName, fileName, URL, alpha, schema = pp.readFile(configFile)
-
-
-# In[5]:
-
-
-print(fileName)
-print(datasetName)
-# print(os.path.splitext(os.path.basename(fileName))[0])
-
-
-# In[6]:
-
-
-startTime, endTime, startMonth, endMonth, startYear, endYear = pp.timeRange(dfRaw)
-numPackets = dfRaw.shape[0]
-
-
-# ### Validating Data against Schema
-
-# In[21]:
-
-
+import metricModules as mm
 import ijson
 import jsonschema
 import fastjsonschema
@@ -34,182 +9,127 @@ import requests
 import re
 import logging
 import os
-
-#Expecting 'data' to be a list
-def validate_data_with_schema(dataF, schema):
-    num_samples = 0
-    err_count = 0
-    additional_prop_err_count = 0
-    req_prop_err_count = 0
-    err_data_arr = []
-
-    with open(dataF, "r") as f:
-        for record in ijson.items(f, "item"):
-            num_samples = num_samples+1
-            data_packet = record
-            try:
-                fastjsonschema.validate(schema, data_packet)
-
-            except fastjsonschema.exceptions.JsonSchemaValueException as errV:
-                logging.debug ("Validation Error Occured")
-               #v = jsonschema.Draft7Validator(schema, types=(), format_checker=None)
-                v = jsonschema.Draft7Validator(schema)
-                errors = list(v.iter_errors(data_packet))
-                # errors = sorted(v.iter_errors(data_packet), key=lambda e: e.path)
-                if len(errors) > 0:
-                    err_count = err_count + 1
-                
-               #err_data_arr.append(data_packet)
-               #To track if 'Additional Properties' error occured
-                flag_0 = 0
-               #To track if 'Required Properties' error occured
-                flag_1 = 0
-                for error in errors:
-                    logging.debug (error.message)
-                    z = re.match("(Additional properties)", error.message)
-                    if z:
-                      #logging.debug(z.groups())
-                        flag_0 = 1
-
-                    z =  error.message.split(' ')
-                    if z[-1] == 'property' and z[-2] == 'required' :
-                        flag_1 = flag_1+1
-
-                additional_prop_err_count = additional_prop_err_count + flag_0
-                req_prop_err_count = req_prop_err_count + flag_1
-            except jsonschema.exceptions.SchemaError as errS:
-                logging.debug ("Schema Error Occured")
-                logging.debug (errS.message)
         
-    return num_samples, err_count, err_data_arr, additional_prop_err_count, req_prop_err_count
+configFile = '../config/' + input('Enter the name of the configuration file: ')
 
-def validate_requiredFields(dataF, setReqd):
-    num_samples = 0
-    num_missing_prop = 0
-    with open(dataF, "r") as f:
-       #Read each record instead of reading all at a time
-       for record in ijson.items(f, "item"):
-            num_samples = num_samples+1
-           #setRecd = record.keys()
-            setRecd = []
-           #Null value detection. Null values are considered as not received attribute
-            for attr in record.keys():
-                if record[attr] is None:
-                    logging.debug("Received a Null Value for attribute: " + attr)
-                else:
-                    setRecd.append(attr)
-            diffSet = set(setReqd) - set(setRecd)
-            logging.debug("Difference from Required Fields for this packet: "+str(diffSet))
-            num_missing_prop = num_missing_prop + len(diffSet)
-    return num_samples, num_missing_prop
-
-#Main program
-# if len(sys.argv) < 2:
-#     print('###########################################################################')
-#     print("Not enough arguments")
-#     print("Usage: python3 validate_format <ConfigFilePath>")
-#     print('###########################################################################')
-#     sys.exit()
-
-#logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
-logging.basicConfig(stream=sys.stderr, level=logging.INFO)
-
-schemaFile = schema
-dataFile = fileName
-#Load the data file
-with open(dataFile, "r") as f:
-    data = json.load(f)
-
-#Load the schema file
-with open(schemaFile, "r") as f1:
-    schema = json.load(f1)
+configDict, dfRaw, input1, input2, datasetName, fileName, URL, alpha, schema = pp.readFile(configFile)
 
 
-#####################################################################
-# Format Validity for attributes for which data formats are provided
-# in the Schema
-# For this metric we will ignore
-#   1. errors that occur because "required" fields are not there
-#   2. errors that occur because additional fields are present
-#
-#####################################################################
-
-# Remove Required properties and Additional Properties from Schema
-
-schema['additionalProperties'] = False
-
-# del schema['additionalProperties']
-# del schema['required']
-
-num_samples, err_count, err_data_arr, add_err_count, req_err_cnt = validate_data_with_schema(dataFile, schema)
-
-format_adherence_metric = (1 - (err_count-add_err_count-req_err_cnt)/num_samples)
-#logging.debug(err_data_arr)
-logging.debug('###########################################################################')
-logging.debug("Total Samples: " + str(num_samples))
-logging.debug("Total Format Errors: " + str(err_count))
-logging.debug("Format Adherence Metric: " + str(format_adherence_metric))
-logging.debug('###########################################################################')
+print(fileName)
+print(datasetName)
+# print(os.path.splitext(os.path.basename(fileName))[0])
 
 
-#######################################################################
-# Unknown data attribute metric: Fraction of data points for
-# which contain only known fields:(1 - fraction(datapoints that contain
-# unknown attribtues))
-# in the Schema
-# For this metric we will ignore
-#   1. errors that occur because of format issues
-#   2. errors that occur because of required fields not present
-#
-#######################################################################
-
-logging.debug(err_data_arr)
-unknown_fields_absent_metric = 1 - add_err_count/num_samples
-logging.debug("Total samples: " + str(num_samples))
-logging.debug("Total Additional Fields Error Count: " + str(add_err_count))
-logging.debug("Unknown_Attributes_Absent_Metric: " + str(unknown_fields_absent_metric))
-
-#######################################################################
-# One by one check the required properties are present in packets or
-# not  
-#######################################################################
-
-with open(schemaFile, "r") as f1:
-    schema = json.load(f1)
-
-del schema['additionalProperties']
-req = schema['required']
-logging.debug(len(req))
-missing_attr = {}
-completeness_metric = 0
-num_samples, total_missing_count = validate_requiredFields(dataFile, req)
-
-logging.debug("Total missing count: " + str(total_missing_count))
+startTime, endTime, startMonth, endMonth, startYear, endYear = pp.timeRange(dfRaw)
+numPackets = dfRaw.shape[0]
 
 
-completeness_metric = 1 - total_missing_count/(num_samples*len(req))
+# ### Validating Data against Schema
+schemaProvision = input("Do you have a schema to validate the data against? [y/n]")
+schemaInputValidity = 0
+while schemaInputValidity == 0:
+    if schemaProvision == 'y':
+        #logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
+        logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
-logging.debug('###########################################################################')
-logging.debug('##### Total Missing Fields Count for Required fields #######')
-logging.debug("Total samples: " + str(num_samples))
-logging.debug("Attribute_Completeness_Metric: "+str(completeness_metric))
-logging.debug('###########################################################################')
+        schemaFile = '../schemas/' + configDict['schemaFileName']
+        print(schemaFile)
+        dataFile = fileName
+        #Load the data file
+        with open(dataFile, "r") as f:
+            data = json.load(f)
+
+        # Load the schema file
+        with open(schemaFile, "r") as f1:
+            schema = json.load(f1)
+
+
+        #####################################################################
+        # Format Validity for attributes for which data formats are provided
+        # in the Schema
+        # For this metric we will ignore
+        #   1. errors that occur because "required" fields are not there
+        #   2. errors that occur because additional fields are present
+        #
+        #####################################################################
+
+        # Remove Required properties and Additional Properties from Schema
+
+        schema['additionalProperties'] = False
+
+        # del schema['additionalProperties']
+        # del schema['required']
+
+        num_samples, err_count, err_data_arr, add_err_count, req_err_cnt = mm.validate_data_with_schema(dataFile, schema)
+
+        format_adherence_metric = (1 - (err_count-add_err_count-req_err_cnt)/num_samples)
+        #logging.debug(err_data_arr)
+        logging.debug('###########################################################################')
+        logging.debug("Total Samples: " + str(num_samples))
+        logging.debug("Total Format Errors: " + str(err_count))
+        logging.debug("Format Adherence Metric: " + str(format_adherence_metric))
+        logging.debug('###########################################################################')
+
+
+        #######################################################################
+        # Unknown data attribute metric: Fraction of data points for
+        # which contain only known fields:(1 - fraction(datapoints that contain
+        # unknown attribtues))
+        # in the Schema
+        # For this metric we will ignore
+        #   1. errors that occur because of format issues
+        #   2. errors that occur because of required fields not present
+        #
+        #######################################################################
+
+        logging.debug(err_data_arr)
+        unknown_fields_absent_metric = 1 - add_err_count/num_samples
+        logging.debug("Total samples: " + str(num_samples))
+        logging.debug("Total Additional Fields Error Count: " + str(add_err_count))
+        logging.debug("Unknown_Attributes_Absent_Metric: " + str(unknown_fields_absent_metric))
+
+        #######################################################################
+        # One by one check the required properties are present in packets or
+        # not  
+        #######################################################################
+
+        with open(schemaFile, "r") as f1:
+            schema = json.load(f1)
+
+        del schema['additionalProperties']
+        req = schema['required']
+        logging.debug(len(req))
+        missing_attr = {}
+        completeness_metric = 0
+        num_samples, total_missing_count = mm.validate_requiredFields(dataFile, req)
+
+        logging.debug("Total missing count: " + str(total_missing_count))
+
+
+        completeness_metric = 1 - total_missing_count/(num_samples*len(req))
+
+        logging.debug('###########################################################################')
+        logging.debug('##### Total Missing Fields Count for Required fields #######')
+        logging.debug("Total samples: " + str(num_samples))
+        logging.debug("Attribute_Completeness_Metric: "+str(completeness_metric))
+        logging.debug('###########################################################################')
+        schemaInputValidity = 1
+    elif schemaProvision == 'n':
+        format_adherence_metric = 0
+        unknown_fields_absent_metric = 0
+        completeness_metric = 0
+        schemaInputValidity = 1
+    else:
+        print("Please provide a valid input [y/n]: ")
+        schemaProvision = input("Do you have a schema to validate the data against? [y/n]")
 
 
 # ### Running data preprocessing functions
-
-# In[7]:
-
-
 #dropping duplicates
 dfDropped, dupeCount = pp.dropDupes(dfRaw, input1, input2)
-# print(dfDropped['observationDateTime'])
 #cleaning dataframe
 dfClean = pp.preProcess(dfDropped, input1, input2)
-# print(dfClean['IAT'].tail())
-# from numpy import percentile
-# print(percentile(dfClean['IAT'].dropna(),100))
-# print(dfClean['IAT'].head())
+
 
 
 #removing outliers
@@ -220,24 +140,14 @@ dfInliers, lowerOutliers, upperOutliers = pp.outRemove(dfClean, datasetName, inp
 meanStatOut, medianStatOut, modeStatOut, stdStatOut, varianceStatOut, skewStatOut, kurtosisStatOut = pp.dataStats(dfClean)
 meanStatIn, medianStatIn, modeStatIn, stdStatIn, varianceStatIn, skewStatIn, kurtosisStatIn = pp.dataStats(dfInliers)
 
-
-# In[8]:
-
-
 # print(dfClean['IAT'])
 # dfClean.to_csv('dfCleantest.csv')
-
-
-# In[13]:
 
 
 # dfInliers, lowerOutliers, upperOutliers = pp.outRemove(dfClean, datasetName, input1)
 # print(lowerOutliers, upperOutliers)
 # dfInliers.to_csv('dfInlierstest.csv')
 # print(datasetName)
-
-
-# In[38]:
 
 
 #running functions that are used to calcalate the metric scores
@@ -271,9 +181,6 @@ logging.info('#')
 logging.info('###########################################################################')
 
 
-# In[16]:
-
-
 #naming dataframes for plot file naming
 dfRaw.name = 'raw'
 dfDropped.name = 'dropped'
@@ -282,10 +189,6 @@ dfInliers.name = 'inliers'
 
 
 # ### Generating visualizations for the PDF in order of appearance in the report
-
-# In[37]:
-
-
 #DQ overview horizontal bars
 pp.bars(regularityMetricScore, 'regularity')
 # pp.bars(outliersMetricScore, 'outliers')
@@ -294,9 +197,6 @@ pp.bars(compMetricScore, 'comp')
 pp.bars(formatMetricScore, 'format')
 pp.bars(addnlAttrMetricScore, 'addnl')
 pp.bars(sensorUptimeMetricScore, 'sensorUptime')
-
-
-# In[38]:
 
 
 #half pie charts
@@ -309,13 +209,13 @@ pp.gaugePlot(addnlAttrMetricScore, 'addnlAttrMetricScore')
 pp.gaugePlot(sensorUptimeMetricScore, 'sensorUptimeMetricScore')
 #radar chart
 pp.radarChart(regularityMetricScore, 
-              # outliersMetricScore, 
-              sensorUptimeMetricScore,
-              dupeMetricScore, 
-              compMetricScore, 
-              formatMetricScore, 
-              addnlAttrMetricScore
-              )
+            # outliersMetricScore, 
+            sensorUptimeMetricScore,
+            dupeMetricScore, 
+            compMetricScore, 
+            formatMetricScore, 
+            addnlAttrMetricScore
+            )
 
 
 # #interarrival time boxplots and histogram
@@ -325,16 +225,7 @@ pp.boxPlot(dfClean, fileName, input1)
 #without outliers boxplots and histograms
 pp.IAThist(dfInliers)
 pp.boxPlot(dfInliers, fileName, input1)
-
-
-# In[40]:
-
-
 pp.normalFitPlot(dfClean)
-
-
-# In[44]:
-
 
 #duplicates bar chart
 pp.plotDupesID(dfRaw, dfDropped, input1)
@@ -342,13 +233,11 @@ pp.plotDupesID(dfRaw, dfDropped, input1)
 pp.piePlot(dfRaw, dfClean, 'dupe')
 
 
-# In[45]:
-
 
 #data statistics plots
 #correlation
 if 'AQM' in fileName:
-	pp.corr_heatmap(dfDropped)
+    pp.corr_heatmap(dfDropped)
 
 #skewness and kurtosis calculated for inlier values only
 muFitIn, stdFitIn = pp.normalFitPlot(dfInliers)
@@ -361,17 +250,10 @@ pp.density_plot(dfDropped)
 
 #cardinality
 if 'AQM' in fileName:
-	pp.cardinal_plot(dfDropped)
-
-
-# In[46]:
+    pp.cardinal_plot(dfDropped)
 
 
 outageAverage = pp.outagePlot(dfClean, meanStatOut, stdStatOut)
-
-
-# In[91]:
-
 
 from fpdf import FPDF
 from fpdf import *
@@ -424,21 +306,21 @@ class pdf(FPDF):
         FPDF.add_page(self, same= same, orientation=orientation)
 
     def footer(self):
-        	# Page number with condition isCover
+            # Page number with condition isCover
             self.set_y(-15) # Position at 1.5 cm from bottom
             self.set_font('times', 'I', 8)
             self.cell(0, 10, 'Page  ' + str(self.page_no) + '  |  {nb}', 0, 0, 'C') 
         
         
 # def create_analytics_report(filename=f"{fileName}_{startMonth}{startYear}{endMonth}{endYear}_DQReport.pdf"):
-def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
+def create_analytics_report_schema(filename=f"{fileNameNoExt}_DQReport.pdf"):
     
     pdf = FPDF() # A4 (210 by 297 mm)
 
     ''' First Page '''
     pdf.add_page()
     #adding the banner/letterhead  
-     
+    
     create_title_card(pdf)
     create_heading('Overview', pdf)
     pdf.ln(5)
@@ -454,7 +336,7 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
             ['Adherence to Attribute Format',f'{formatMetricScore}', ''],
             ['Absence of Unknown Attributes',f'{addnlAttrMetricScore}', ''],
             ['Adherence to Mandatory Attributes', f'{compMetricScore}','']
-           ]
+        ]
     
     # Text height is the same as current font size
     # Effective page width, or just epw
@@ -485,7 +367,7 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
                 else:
                     pdf.cell(col_width+10, 4*th, str(datum), border=1, align = 'C')
         pdf.ln(4*th)
- 
+
     #adding bars to the table
     pdf.image("../plots/bars/regularitybar.png", 107, 70, 95)
     # pdf.image("../plots/bars/outliersbar.png", 107, 88, 95)
@@ -737,38 +619,36 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
     '''Seventh Page'''
     
     if 'AQM' in fileName:
-	    pdf.add_page()    
-	    
-	    create_heading('Additional Information about the Data', pdf)
-	    pdf.ln(5)
-	    pdf.write(5, 'In this section are some useful visualizations that describe certain data statistics that can be used by the end user to determine the usability of the data. These subheadings may not explicitly fall under the umbrella of data quality and so are not counted as part of the overall score.')
-	    
+        pdf.add_page()    
+        
+        create_heading('Additional Information about the Data', pdf)
+        pdf.ln(5)
+        pdf.write(5, 'In this section are some useful visualizations that describe certain data statistics that can be used by the end user to determine the usability of the data. These subheadings may not explicitly fall under the umbrella of data quality and so are not counted as part of the overall score.')
+        
 
-	    create_heading('Correlation', pdf)
-	    pdf.ln(5)
-	    pdf.write(5, "Correlation here refers to a causal relationship between different attributes found in the dataset. This relationship might be either directly or inversely proportional.")
-	    pdf.ln(5)
-	    pdf.write(5, "This relationship is shown in the heat map below, with darker colors referring to a stronger direct relationship, and lighter colors referring to a stronger inverse relationship.")
-	    pdf.image("../plots/corrPlot.jpg",x = 20, y = 80, w = 160)
-	    pdf.ln(80)
+        create_heading('Correlation', pdf)
+        pdf.ln(5)
+        pdf.write(5, "Correlation here refers to a causal relationship between different attributes found in the dataset. This relationship might be either directly or inversely proportional.")
+        pdf.ln(5)
+        pdf.write(5, "This relationship is shown in the heat map below, with darker colors referring to a stronger direct relationship, and lighter colors referring to a stronger inverse relationship.")
+        pdf.image("../plots/corrPlot.jpg",x = 20, y = 80, w = 160)
+        pdf.ln(80)
 
 
-	    create_heading('Cardinality', pdf)
-	    pdf.ln(5)
-	    pdf.write(5, 'Cardinality of a dataset is defined here as the number of unique values of in that dataset. A higher value of cardinality indicates a higher proportion of unique values.')
-	    pdf.ln(5)
-	    pdf.image("../plots/cardPlot.png",x = 35, y = 180, w = 140)
+        create_heading('Cardinality', pdf)
+        pdf.ln(5)
+        pdf.write(5, 'Cardinality of a dataset is defined here as the number of unique values of in that dataset. A higher value of cardinality indicates a higher proportion of unique values.')
+        pdf.ln(5)
+        pdf.image("../plots/cardPlot.png",x = 35, y = 180, w = 140)
     
-    pdf.output('../outputReport/' + filename, 'F')
+    pdf.output('../outputReports/' + filename, 'F')
     # pdf.output(fileName, 'F')
 # if __name__ == '__main__':
 #     yesterday = (datetime.today() - timedelta(days=1)).strftime("%m/%d/%y").replace("/0","/").lstrip("0")
 #     # yesterday = "10/10/20" # Uncomment line for testing
 
-create_analytics_report()
+create_analytics_report_schema()
 
-
-# In[63]:
 
 
 #Output Report as JSON
@@ -834,7 +714,7 @@ outputParamFV = {
 }
 myJSON = json.dumps(outputParamFV, indent = 4)
 filename = fileNameNoExt + "_Report.json"
-jsonpath = os.path.join("../outputReport/", filename)
+jsonpath = os.path.join("../outputReports/", filename)
 
 with open(jsonpath, "w+") as jsonfile:
     jsonfile.write(myJSON)

@@ -24,27 +24,27 @@ custom_style = Style(background = 'transparent',
 #reading the config file
 def readFile(configFile):
     with open(configFile, "r") as file:
-        dataDict = json.load(file)
+        configDict = json.load(file)
     
-    folderName = dataDict['folderName']
-    dataFile = '../data/' + folderName + '/' + dataDict['dataFileNameJSON']    
+    folderName = configDict['folderName']
+    dataFile = '../data/' + folderName + '/' + configDict['dataFileNameJSON']    
     
     with open(dataFile, "r") as jfile:
         jsonDataDict = json.load(jfile)
 
     df = pd.json_normalize(jsonDataDict)
     pd.set_option('mode.chained_assignment', None)
-    alpha1 = dataDict['interArrivalTime']['alpha'][0]
-    alpha2 = dataDict['interArrivalTime']['alpha'][1]
-    alpha3 = dataDict['interArrivalTime']['alpha'][2]
+    alpha1 = configDict['interArrivalTime']['alpha'][0]
+    alpha2 = configDict['interArrivalTime']['alpha'][1]
+    alpha3 = configDict['interArrivalTime']['alpha'][2]
     alpha = [alpha1, alpha2, alpha3]
-    input1 = dataDict['interArrivalTime']['inputFields'][0]
-    input2 = dataDict['interArrivalTime']['inputFields'][1]
-    datasetName = dataDict['datasetName']
-    fileName = '../data/' + folderName + '/' + dataDict['dataFileNameJSON']
-    schema = '../schemas/' + dataDict['schemaFileName']
-    URL = dataDict['URL']
-    reportName = dataDict['dataFileNameJSON']
+    input1 = configDict['interArrivalTime']['inputFields'][0]
+    input2 = configDict['interArrivalTime']['inputFields'][1]
+    datasetName = configDict['datasetName']
+    fileName = '../data/' + folderName + '/' + configDict['dataFileNameJSON']
+    schema = '../schemas/' + configDict['schemaFileName']
+    URL = configDict['URL']
+    reportName = configDict['dataFileNameJSON']
     
     # print(df)
     if "Amb" in fileName:
@@ -56,7 +56,7 @@ def readFile(configFile):
         df = df
     # print(df)
     print('The loaded dataset is: ' + datasetName)
-    return df, input1, input2, datasetName, fileName, URL, alpha, schema
+    return configDict, df, input1, input2, datasetName, fileName, URL, alpha, schema
 
 
 ####data preprocessing
@@ -246,7 +246,7 @@ def plotDupesID(df, df1, input1):
     bar_chart.render_to_png('../plots/dupePlotID.png')
     return 
 
-def plotDupes(dataframe):
+def plotDupes(dataframe, input1, input2):
     preDedupe = len(dataframe)
     dfDrop = dataframe.drop_duplicates(subset = [input1, input2], inplace = False, ignore_index = True)
     postDedupe = len(dfDrop)
