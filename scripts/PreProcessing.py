@@ -2,14 +2,14 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
-import matplotlib
-import sys
+# import matplotlib
+# import sys
 import json
-from pandas.io.json import json_normalize
-import os
-import math
+from pandas import json_normalize
+# import os
+# import math
 # import panel as pn
-import hvplot.pandas
+# import hvplot.pandas
 from scipy.stats import norm
 import seaborn as sns
 from numpy import percentile
@@ -103,7 +103,8 @@ def preProcess(df, input1, input2):
     df['IAT'] = df['IAT'][(df['IAT']>=0)]
     # mode = df['IAT'].mode()
     # df.sort_values(by = 'IAT', inplace = True, ascending = True)
-    df = df.reset_index(drop = True) 
+    df = df.reset_index(drop = True)
+    df.dropna(inplace = True)
     return(df)
 
 #IQR Outliers are identified and removed
@@ -164,7 +165,7 @@ def dataStats(df):
 #####################################################################################
 #####################################################################################
 
-def radarChart(regularityScore, sensorUptimeScore, dupeScore, formatScore, completeScore, addnlScore):
+def radarChart(regularityScore, outliersScore, dupeScore, formatScore, completeScore, addnlScore):
 
     custom_style = Style(
       background='transparent',
@@ -179,8 +180,8 @@ def radarChart(regularityScore, sensorUptimeScore, dupeScore, formatScore, compl
                               style = custom_style, 
                               show_legend = False,
                               show_title = False)
-    radar_chart.x_labels = ['Regularity of InterArrival Time', 'Device Uptime','Absence of Duplicates', 'Attribute Format Adherence', 'Mandatory Attribute Adherence', 'Unknown Attribute Absence']
-    radar_chart.add('Metric Scores', [regularityScore, sensorUptimeScore, dupeScore, formatScore, completeScore, addnlScore])
+    radar_chart.x_labels = ['Regularity of InterArrival Time', 'Outliers of Inter-Arrival Time','Absence of Duplicates', 'Attribute Format Adherence', 'Mandatory Attribute Adherence', 'Unknown Attribute Absence']
+    radar_chart.add('Metric Scores', [regularityScore, outliersScore, dupeScore, formatScore, completeScore, addnlScore])
     radar_chart.add('Full Score', [1,1,1,1,1,1])
     radar_chart.render_to_png('../plots/radarPlot.png')
     return 
@@ -218,18 +219,18 @@ def plotDupesID(df, df1, input1):
     sensorClean = sensorClean.to_frame().reset_index()
     sensorClean['valueDupe'] = sensorDupe[0]
     sensorClean.columns = [input1, 'valueClean', 'valueDupe']
-    i = 0
-    sensorDupePlot = pd.DataFrame(columns = [input1, 'valueDupe', 'valueClean'])
-    
-    #removing duplicates
-    while i < len(sensorClean['valueDupe']): 
-        if sensorClean['valueDupe'][i] > sensorClean['valueClean'][i]:
-            sensorDupePlot = sensorDupePlot.append({input1 : sensorClean[input1][i], 'valueDupe' : sensorClean['valueDupe'][i], 'valueClean' : sensorClean['valueClean'][i]}, ignore_index = True)
-        i+=1
-    else:
-        i+=1
-        
-        sensorDupePlot[input1] = sensorDupePlot[input1].str[-4:]
+    index_names = sensorClean[ (sensorClean['valueClean'] == sensorClean['valueDupe'])].index
+    sensorClean.drop(index_names, inplace = True)
+    # sensorDupePlot = pd.DataFrame(columns = [input1, 'valueDupe', 'valueClean'])
+    # print(sensorDupePlot)
+    # #removing duplicates
+    # while i < len(sensorClean['valueDupe']): 
+    #     if sensorClean['valueDupe'][i] > sensorClean['valueClean'][i]:
+    #         sensorDupePlot = sensorDupePlot.append({input1 : sensorClean[input1][i], 'valueDupe' : sensorClean['valueDupe'][i], 'valueClean' : sensorClean['valueClean'][i]}, ignore_index = True)
+    #     i+=1
+    # else:
+    #     i+=1
+        # sensorDupePlot[input1] = sensorDupePlot[input1].str[-4:]
     #plotting the values
     bar_chart = pygal.Bar(style = custom_style, 
                           x_title = 'Truncated Sensor ID', 
@@ -240,9 +241,9 @@ def plotDupesID(df, df1, input1):
                           x_label_rotation = 45,
                           print_values = False)
     bar_chart.title = 'Deduplication Result per Unique ID'
-    bar_chart.x_labels = sensorDupePlot[input1]
-    bar_chart.add('Pre Deduplication', sensorDupePlot['valueDupe'])
-    bar_chart.add('Post Deduplication', sensorDupePlot['valueClean'])
+    bar_chart.x_labels = sensorClean[input1]
+    bar_chart.add('Pre Deduplication', sensorClean['valueDupe'])
+    bar_chart.add('Post Deduplication', sensorClean['valueClean'])
     bar_chart.render_to_png('../plots/dupePlotID.png')
     return 
 
@@ -269,8 +270,6 @@ def plotDupes(dataframe, input1, input2):
     return
 
 def IAThist(df):
-
-
 #	def compute_histogram_bins(data, desired_bin_size):
 #	    min_val = np.min(data)
 #	    max_val = np.max(data)
@@ -338,103 +337,6 @@ def normalFitPlot(df):
     plt.close()
     return mu, std
 
-#CARDINALITY
-#method to reframe list as dataframe in the case of location.coordinates in data as [latitude,longitude]
-#function to check for the presence of location coordinates in dataframe
-def check_col(col, df):
-    if col in df:
-        return True
-    else:
-        return False
-
-    #splitting location coordinates into two new columns to preserve dataframe dtype if present in dataframe
-    if check_col('location.coordinates',df) == True:
-        # new df from the column of lists
-        split_df = pd.DataFrame(df['location.coordinates'].tolist(), columns=['latitude','longitude'])
-        # concat df and split_df
-        df = pd.concat([df, split_df], axis=1)
-        # display df
-        df = df.drop('location.coordinates', axis=1)
-    else:
-        df = df
-
-#function that returns the cardinality of the dataframe
-def cardinal(df):
-    cardinal = df.nunique()
-    cardinality = cardinal.sum()/len(cardinal)
-    return round(cardinality,4)
-
-
-#function that plots the cardinality of the dataframe on a per column basis
-def cardinal_plot(df):
-    cardinal = df.nunique()
-    # cardinal = cardinal.plot(kind = 'bar', figsize = (15,6))
-    # plt.ylabel('Cardinality')
-    # plt.xlabel('Column Names')
-    # plt.xticks(rotation = 90)
-    # plt.savefig('plots/'+'cardPlot.jpg', bbox_inches = 'tight', transparent = True)  
-    # plt.close()
-    bar_chart = pygal.Bar(style = custom_style, 
-                          x_label_rotation=45, 
-                          show_legend = False, 
-                          print_values = False, 
-                          print_values_position = 'top',
-                          y_title = 'No. of unique data packets')
-    bar_chart.x_labels = df.columns
-    bar_chart.add('Cardinality', cardinal)
-    bar_chart.render_to_png('../plots/cardPlot.png')
-    plt.close()
-    return
-
-#SPARSITY or DENSITY
-# Density or sparsity describe how many null values or NAN values are present in a dataset. The higher the value of the metric, the
-# more dense the data is.
-
-#function that returns the density of non-null values in the dataset
-def density(df):
-    nullVal = df.isnull().sum()
-    count = df.count().sum()
-    density = 1 - (nullVal/count).sum()
-    return round(density,4)
-    
-#function that plots the density of the dataframe on a per column basis
-def density_plot(df):
-    nullVal = df.isnull().sum()
-    count = df.count().sum()
-    density = 1 - (nullVal/count).sum()
-    # densePlot = nullVal.hvplot(kind = 'bar').opts(xrotation = 45)
-    # densePlot = nullVal.plot(kind = 'bar', figsize = (15,6))
-    # plt.xlabel('Column Name')
-    # plt.ylabel('Density')
-    # plt.xticks(rotation = 90)
-    # plt.savefig('plots/'+'densPlot.jpg', bbox_inches = 'tight', transparent = True)  
-    bar_chart = pygal.Bar(style = custom_style, 
-                          x_label_rotation=45, 
-                          show_legend = False, 
-                          print_values = False, 
-                          print_values_position = 'top', 
-                          x_title = 'Column Name', 
-                          y_title = 'No. of Non-Null Value Data Packets')
-    bar_chart.title = 'Density of the Data'
-    bar_chart.x_labels = df.columns
-    bar_chart.add('Density', nullVal)
-    bar_chart.render_to_png('../plots/densPlot.png')
-    plt.close()
-    return
-
-#CORRELATION
-def correlation(df):
-    corr = df.corr()
-    return corr
-
-def corr_heatmap(df):
-    # corr = correlation(df).hvplot.heatmap().opts(xrotation = 45)
-    figure(figsize = (15, 6))
-    corr = sns.heatmap(correlation(df), annot=False, cmap="YlGnBu")
-    plt.savefig('../plots/'+'corrPlot.jpg', bbox_inches = 'tight', transparent = True) 
-    plt.close()
-    return
-
 def piePlot(df, df1, name):
     custom_style = Style(background = 'transparent', 
                      plot_background = 'transparent',
@@ -486,101 +388,31 @@ def outagePlot(df, meanStat, stdStat):
     bar_chart.add('Outage Time per Device', outageTime['IAT']/60)
     bar_chart.x_labels = outageTime['idTrunc']
     bar_chart.render_to_png('../plots/sensorOutagePlot.png')
-    
     return outageAverage
 
+def outliersPlot(dataframe):
+    df = dataframe
+    data = df['IAT'].dropna()
+
+    median = np.median(data)
+    mad = np.median(np.abs(data - median))
+    modified_z_scores = (0.6745 * (data - median)) / mad
+    threshold_mod_z_score = 3.5
+
+    # Identify outliers based on modified z-score threshold
+    outliers = df['IAT'][modified_z_scores > threshold_mod_z_score]
+
+    # Plotting the data with outliers highlighted
+    plt.figure(figsize=(8, 6))
+    plt.scatter(df.index, df['IAT'], color='b', label='Data', alpha=0.5)  # Use alpha to control transparency
+    plt.scatter(outliers.index, outliers, color='r', label='Outliers', marker='x')
+    plt.axhline(y=(threshold_mod_z_score * mad)/0.6745 + median, color='g', linestyle='--', label='Threshold')
+    plt.xlabel('Index')
+    plt.ylabel('IAT Values')
+    plt.title('IAT Outliers Visualization')
+    plt.grid()
+    plt.legend()
+    plt.savefig("../plots/outliersPlot.png")
+    return
 #####################################################################################
 #####################################################################################
-
-#METRIC CALCULATIONS
-
-#####################################################################################
-#####################################################################################
-
-#Here we are calculating the penalty on the outliers for each interarrival time
-def iatMetricOutliers(df):
-    Q1 = percentile(df['IAT'].dropna(), 25)
-    Q3 = percentile(df['IAT'].dropna(), 75)
-    k = 1.5
-    IQR = Q3 - Q1
-    cutOff = IQR*k
-    lower, upper = Q1 - cutOff, Q3 + cutOff
-    outliers = [x for x in df['IAT'] if x < lower or x > upper] 
-    outlierNumber = len(outliers)
-    totalDataPackets = len(df)
-    iatMetricScore = 1 - (outlierNumber/totalDataPackets)
-    iatMetricPercent = round(iatMetricScore*100, 3)
-    # print(str(iatMetricPercent) + '% of the data packets lie within the range of the lower and upper bounds defined by the Inter-Quartile Range and the choice of alpha.')
-    return round(iatMetricScore,3)
-
-#Here we are calculating the regularity of the interarrival times
-def iatMetricRegularity(df, alpha): 
-    #user defined input alpha
-    # alpha1 = alpha[0]
-    # alpha2 = alpha[1]
-    # alpha3 = alpha[2]
-    # alpha = [alpha1, alpha2, alpha3]
-    mode = df['IAT'].mode()[0]
-    
-    #creating two arrays with upper and lower bounds for each alpha in mode +/- alpha*mode
-    i = 0
-    floor = []
-    ceil = []
-    while i < len(alpha):
-        floor.append(mode - alpha[i]*mode)
-        ceil.append(mode + alpha[i]*mode)
-        # print(floor[i])
-        # print(ceil[i])
-        i+=1
-    
-    #calculating number of values that are outside the desired range for each value of alpha
-    outliersA1 = [x for x in df['IAT'] if x < floor[0] or x > ceil[0]]
-    outliersA2 = [x for x in df['IAT'] if x < floor[1] or x > ceil[1]]
-    outliersA3 = [x for x in df['IAT'] if x < floor[2] or x > ceil[2]]
-    
-    numOutliersA1 = len(outliersA1)
-    numOutliersA2 = len(outliersA2)
-    numOutliersA3 = len(outliersA3)
-    numOutliers = [numOutliersA1, numOutliersA2, numOutliersA3]
-    # print(numOutliers)
-    
-    #calculating the value of the regularity metric
-    regularityMetricScore = [0,0,0]
-    i = 0
-    while i < len(alpha):
-        regularityMetricScore[i] = round(1 - (numOutliers[i]/len(df)), 6)
-        i += 1
-    
-    #taking the average of the three values for overall score
-    regularityMetricScoreAvg = sum(regularityMetricScore)/len(regularityMetricScore)
-    return round(regularityMetricScoreAvg, 3), regularityMetricScore, floor, ceil
-
-
-def dupeMetric(df, input1, input2):
-    # dupeCount = len(df)-len(df.drop_duplicates(subset = [data_dict['duplicateDetection']["inputFields"][0], data_dict['duplicateDetection']['inputFields'][1]]))
-    dupeCount = len(df) - len(df.drop_duplicates(subset = [input1, input2]))
-    totalDataPackets = len(df)
-    dupeMetricScore = 1 - dupeCount/totalDataPackets
-    dupeMetricPercent = round(dupeMetricScore*100, 4)
-    # print(str(dupeMetricPercent) + '% of the data packets are non duplicates, as defined by the parameters ' + str(input1) ' &' + str(input2))
-    return round(dupeMetricScore,3)
-
-def outageMetric(dfClean, dfRaw, meanStat, input1):
-    #upper bound to define  sensor outage
-    upperBound = 2*meanStat
-    #creating a dataframe with IAT values greater than upperbound
-    sensorOutage = dfClean.loc[dfClean['IAT'] > upperBound]
-    #finding the sum of the outages for each sensor
-    sensorOutage = sensorOutage.groupby([input1])[['IAT']].agg('sum').reset_index()    
-    #calculating average of the outage for all the sensors
-    avgOutageTime = sensorOutage['IAT'].mean()
-    
-    #finding total query time
-    dfRaw['observationDateTime'] = pd.to_datetime(dfRaw['observationDateTime'])
-    startTime = min(dfRaw['observationDateTime'])
-    startTime = pd.to_datetime(startTime, unit='s') 
-    endTime = max(dfRaw['observationDateTime'])
-    endTime = pd.to_datetime(endTime, unit = 's')
-    queryTime = ((endTime - startTime).total_seconds())
-    outageMetric = round((1 - avgOutageTime/(queryTime)),3)
-    return outageMetric

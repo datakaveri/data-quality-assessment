@@ -4,15 +4,14 @@ from sklearn.preprocessing import MinMaxScaler
 import ijson
 import jsonschema
 import fastjsonschema
-import json
-import sys
+# import json
+# import sys
 import logging
 import pandas as pd
 import re
 # import os
 
 # data handling functions
-
 #interarrival time creation
 def preProcess(df, uniqueID):
     # df['observationDateTime'] =  pd.to_datetime(df['observationDateTime'], origin = 'unix', unit = 'ms')
@@ -24,6 +23,7 @@ def preProcess(df, uniqueID):
     # df.sort_values(by = 'IAT', inplace = True, ascending = True)
     df = df.drop(['observationDateTime'], axis = 1)
     df = df.reset_index(drop = True) 
+    df.dropna()
     return(df)
 
 # metric computation functions
@@ -51,32 +51,40 @@ def iatRegularityMetricOld(dataframe):
     # print(iatRegularityMetricScore)
     return round(iatRegularityMetricScore, 3)
 
-# def iatRegularityMetric(dataframe):
-#     modePerSensor = 
+def iatRegularityMetric(dataframe):
+    modeValue = dataframe['IAT'].mode()[0]
+    goodCount = 0
+    badCount = 0
+    count = 0
+    for iat in dataframe['IAT']:
+        RAE_i = (np.abs(iat - modeValue))/modeValue 
+        if RAE_i <= 0.5:
+            goodCount += 1 - 2*RAE_i
+            count += 1
+        else:
+            # print(badCount, iat, RAE_i)
+            badCount += 2*RAE_i
+        totalCount = count + badCount
+    iatRegularityMetricScore = goodCount/totalCount
+    # print(goodCount, badCount, count, totalCount, iatRegularityMetricScore)
+    return round(iatRegularityMetricScore, 3)
 
 # interarrival time outliers metric
 def iatOutliersMetric(dataframe):
-    # combination of IQR tukey fences and modified z-score method
     df = dataframe
     data = df['IAT'].dropna()
-    Q1 = np.percentile(data, 25)
-    Q3 = np.percentile(data, 75)
     # print(Q1, Q3)
     # adaptive threshold using regular z-score
-    median = np.median(data)
-    mad = np.median(np.abs(data - median))
-    modified_z_scores = (0.6745 * (data - median)) / mad # applicable to normal symmetric distribution
-    threshold_z_score = np.percentile(np.abs(modified_z_scores), 95)
-    IQR = Q3 - Q1
-    cutOff = IQR*threshold_z_score
-
+    mode = sps.mode(data)[0]
+    mad = np.median(np.abs(data - mode))
+    print(mode)
+    modified_z_scores = (0.6745 * (data - mode)) / mad # applicable to normal symmetric distribution
+    threshold_mod_z_score = 3.5 # as recommended by Iglewicz and Hoaglin
     #defining fences
-    lower, upper = Q1 - cutOff, Q3 + cutOff
-    # print(lower,upper)
-    outliers = [x for x in df['IAT'] if x < lower or x > upper] 
+    outliers = [x for x in df['IAT'] if ((0.6745 * (x - mode)) / mad) > threshold_mod_z_score] 
     outlierNumber = len(outliers)
     totalDataPackets = len(df)
-    print(outlierNumber, totalDataPackets)
+    # print(outlierNumber, totalDataPackets)
     iatMetricOutlierScore = 1 - (outlierNumber/totalDataPackets)
     # print(iatMetricOutlierScore)
     # return outlierNumber      
@@ -84,10 +92,9 @@ def iatOutliersMetric(dataframe):
 
 # duplicate detection metric
 # must be called before inter-arrival time creation
-def duplicatesMetric(df):
+def duplicatesMetric(df, input1, input2):
+    dupeCount = len(df) - len(df.drop_duplicates(subset = [input1, input2]))
     totalDataPackets = len(df)
-    dfDupes = df.duplicated(keep='first')
-    dupeCount = totalDataPackets - dfDupes.value_counts()[False]
     duplicatesMetricScore = 1 - dupeCount/totalDataPackets
     return round(duplicatesMetricScore,3)
 

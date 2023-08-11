@@ -1,11 +1,11 @@
 import PreProcessing as pp
 import metricModules as mm
-import ijson
-import jsonschema
-import fastjsonschema
+# import ijson
+# import jsonschema
+# import fastjsonschema
 import json
 import sys
-import requests
+# import requests
 import re
 import logging
 import os
@@ -151,21 +151,21 @@ meanStatIn, medianStatIn, modeStatIn, stdStatIn, varianceStatIn, skewStatIn, kur
 
 
 #running functions that are used to calcalate the metric scores
-regularityMetricScore, regularityValues, lowerRegularity, upperRegularity = pp.iatMetricRegularity(dfClean, alpha)
-# outliersMetricScore = pp.iatMetricOutliers(dfClean)
-sensorUptimeMetricScore = pp.outageMetric(dfClean, dfRaw, meanStatIn, input1)
-dupeMetricScore = pp.dupeMetric(dfRaw, input1, input2)
+# regularityMetricScore, regularityValues, lowerRegularity, upperRegularity = pp.iatMetricRegularity(dfClean, alpha)
+regularityMetricScore = mm.iatRegularityMetric(dfClean)
+outliersMetricScore = mm.iatOutliersMetric(dfClean)
+dupeMetricScore = mm.duplicatesMetric(dfRaw, input1, input2)
 compMetricScore = round(completeness_metric, 3)
 formatMetricScore = round(format_adherence_metric, 3)
 addnlAttrMetricScore = round(unknown_fields_absent_metric, 3)
-avgDataQualityScore = round((regularityMetricScore + sensorUptimeMetricScore + dupeMetricScore + compMetricScore + formatMetricScore + addnlAttrMetricScore)/6, 3)
+avgDataQualityScore = round((regularityMetricScore + outliersMetricScore + dupeMetricScore + compMetricScore + formatMetricScore + addnlAttrMetricScore)/6, 3)
 avgDataQualityPercent = round(avgDataQualityScore*100,3)
 
 logging.info('################## Final Metrics #########################################')
 logging.info('#')
-logging.info("Regularity of Inter-Arrival Time Metric: " + str(regularityMetricScore))
+logging.info("Inter-Arrival Time Regularity: " + str(regularityMetricScore))
 logging.info('#')
-logging.info("Data Source Uptime Metric: " + str(sensorUptimeMetricScore))
+logging.info("Inter-Arrival Time Outliers Metric: " + str(outliersMetricScore))
 logging.info('#')
 logging.info("Absence of Duplicate Values Metric: " + str(dupeMetricScore))
 logging.info('#')
@@ -191,26 +191,23 @@ dfInliers.name = 'inliers'
 # ### Generating visualizations for the PDF in order of appearance in the report
 #DQ overview horizontal bars
 pp.bars(regularityMetricScore, 'regularity')
-# pp.bars(outliersMetricScore, 'outliers')
+pp.bars(outliersMetricScore, 'outliers')
 pp.bars(dupeMetricScore, 'dupe')
 pp.bars(compMetricScore, 'comp')
 pp.bars(formatMetricScore, 'format')
 pp.bars(addnlAttrMetricScore, 'addnl')
-pp.bars(sensorUptimeMetricScore, 'sensorUptime')
-
 
 #half pie charts
 pp.gaugePlot(regularityMetricScore, 'regularityMetricScore')
-# pp.gaugePlot(outliersMetricScore, 'outliersMetricScore')
+pp.gaugePlot(outliersMetricScore, 'outliersMetricScore')
 pp.gaugePlot(dupeMetricScore, 'dupeMetricScore')
 pp.gaugePlot(compMetricScore, 'compMetricScore')
 pp.gaugePlot(formatMetricScore, 'formatMetricScore')
 pp.gaugePlot(addnlAttrMetricScore, 'addnlAttrMetricScore')
-pp.gaugePlot(sensorUptimeMetricScore, 'sensorUptimeMetricScore')
+
 #radar chart
 pp.radarChart(regularityMetricScore, 
-            # outliersMetricScore, 
-            sensorUptimeMetricScore,
+            outliersMetricScore, 
             dupeMetricScore, 
             compMetricScore, 
             formatMetricScore, 
@@ -227,6 +224,9 @@ pp.IAThist(dfInliers)
 pp.boxPlot(dfInliers, fileName, input1)
 pp.normalFitPlot(dfClean)
 
+#outliers boxplot
+pp.outliersPlot(dfClean)
+
 #duplicates bar chart
 pp.plotDupesID(dfRaw, dfDropped, input1)
 # pp.plotDupes(dfRaw)
@@ -236,24 +236,14 @@ pp.piePlot(dfRaw, dfClean, 'dupe')
 
 #data statistics plots
 #correlation
-if 'AQM' in fileName:
-    pp.corr_heatmap(dfDropped)
+# if 'AQM' in fileName:
+#     pp.corr_heatmap(dfDropped)
 
 #skewness and kurtosis calculated for inlier values only
 muFitIn, stdFitIn = pp.normalFitPlot(dfInliers)
 
 #skewness and kurtosis calculated for outlier values included
 muFitOut, stdFitOut = pp.normalFitPlot(dfClean)
-
-#density/sparseness
-pp.density_plot(dfDropped)
-
-#cardinality
-if 'AQM' in fileName:
-    pp.cardinal_plot(dfDropped)
-
-
-outageAverage = pp.outagePlot(dfClean, meanStatOut, stdStatOut)
 
 from fpdf import FPDF
 from fpdf import *
@@ -329,10 +319,9 @@ def create_analytics_report_schema(filename=f"{fileNameNoExt}_DQReport.pdf"):
     # todo add outliers/regularity differentiation
     data = [
             ['Metric','Score','Bar'],
-            ['Regularity of Inter-Arrival Time',f'{regularityMetricScore}', ''],
-            # ['Outlier Presence in Inter-Arrival Time', f'{outliersMetricScore}', ''],
-            ['Data Source Uptime', f'{sensorUptimeMetricScore}',''],
-            ['Absence of Duplicate Values',f'{dupeMetricScore}', ''],
+            ['Inter-Arrival Time Regularity',f'{regularityMetricScore}', ''],
+            ['Inter-Arrival Time Outliers', f'{outliersMetricScore}', ''],
+            ['Duplicate Presence',f'{dupeMetricScore}', ''],
             ['Adherence to Attribute Format',f'{formatMetricScore}', ''],
             ['Absence of Unknown Attributes',f'{addnlAttrMetricScore}', ''],
             ['Adherence to Mandatory Attributes', f'{compMetricScore}','']
@@ -370,8 +359,7 @@ def create_analytics_report_schema(filename=f"{fileNameNoExt}_DQReport.pdf"):
 
     #adding bars to the table
     pdf.image("../plots/bars/regularitybar.png", 107, 70, 95)
-    # pdf.image("../plots/bars/outliersbar.png", 107, 88, 95)
-    pdf.image("../plots/bars/sensorUptimebar.png", 107, 87, 95)
+    pdf.image("../plots/bars/outliersbar.png", 107, 88, 95)
     pdf.image("../plots/bars/dupebar.png", 107, 104, 95)
     pdf.image("../plots/bars/formatbar.png", 107, 121, 95)
     pdf.image("../plots/bars/addnlbar.png", 107, 138, 95)
@@ -406,85 +394,52 @@ def create_analytics_report_schema(filename=f"{fileNameNoExt}_DQReport.pdf"):
     pdf.add_page()
     # pdf.image("plots/pretty/IUDXlogo.png", 0, 0, w = 60)
     pdf.ln(5)
-    create_heading('Regularity of Inter-Arrival Time ', pdf)
+    create_heading('Inter-Arrival Time Regularity', pdf)
     pdf.ln(5)
     pdf.write(5, 'Inter-arrival time is defined as the time elapsed after the receipt of a data packet and until the receipt of the next packet. For sensor data, this is an important factor to evaluate as sensors are often configured to send data at specific time intervals.')
     pdf.ln(5)
-    pdf.write(5, 'In this section, we will be analysing the regularity and anomalous values of the inter-arrival times of this dataset.')
     # create_heading('IAT Regularity', pdf)
     pdf.image("../plots/donuts/regularityMetricScorePiePlot.png", x = 150, y = -5, w = 60)
     pdf.ln(10)    
-    pdf.write(5, 'The regularity metric of the inter-arrival time conveys how uniform this time interval is for a dataset in relation to the expected behaviour.')
+    pdf.write(5, 'In order to compute this metric we analyse the deviation of each inter-arrival time from the mode. The assumption here is if most of the sensors are operating nominally most of the time, then the mode of the inter-arrival times will represent the expected nominal behaviour of the sensors. To compute this deviation, we define:')
     pdf.ln(5)
-    pdf.write(5, 'Considering the mode of the inter-arrival times to be the expected value (as per the specification), this metric measures the proximity of the spread of the normal distribution to the mode. The spread of the inter-arrival time values from the mode is computed using the formula:')
-    pdf.image('../plots/equations/modeAlpha.png', x = 80, y = 95, w = 40)
+    pdf.image('../plots/equations/RAE_regularityMetric.png', x = 65, y = 80, w = 80)
     pdf.ln(20)
-    pdf.write(5, f'where alpha is a constant from 0 to 1. In this case, 3 values have been considered: {alpha[0]}, {alpha[1]}, {alpha[2]}.')
-    pdf.ln(10)
-    pdf.write(5, 'Considering the minimum and maximum values of this formula to be the lower and upper bounds, we compute the number of inter-arrival time values outside these bounds and divide by the total number of data packets using this formula:')
-    pdf.image('../plots/equations/regularityMetric.png', x = 60, y = 130, w = 85)
+    pdf.write(5, 'Here, xi is the inter-arrival time, and x is the mode of the inter-arrival time. We consider an RAE value of 0.5 to be the crossover point between good and poor values of inter-arrival time, i.e. RAE > 0.5 is poor. We also want to penalise the score proportionately to the RAE value, meaning the greater the RAE value, the greater the penalty. RAE is thus bound as RAE belongs to [0, inf).')
+    pdf.ln(5)
+    pdf.write(5, 'The metric computation can also be represented as an equation:')
+    pdf.ln(5)
+    pdf.image('../plots/equations/regularityMetric.png', x = 60, y = 130, w = 80)
+    pdf.ln(40)
+    pdf.write(5, 'This represents the "badness" of the inter-arrival time when compared to the modal value. The further the inter-arrival time is from the mode, the greater the penalty contribution to the regularity score for that inter-arrival time. A value of 0.5 for RAE is chosen as the crossover point between "goodness" and "badness" of inter-arrival time as it represents a window of values corresponding to:')
+    # pdf.ln(10)
+    pdf.image('../plots/equations/mode_regularityMetric.png', x = 90, y = 190, w = 20)
     pdf.ln(20)
-    pdf.write(5, 'This value is computed for each alpha, and then averaged to give the overall metric score. The score is on a scale from 0 to 1, where 1 indicates the highest possible proximity to the mode and 0 indicates the opposite. The average of these three scores are taken to form the overall metric score.')
+    pdf.write(5, 'A higher IAT Regularity score indicates lower dispersion of IAT values around the mode, and vice versa. A higher score indicates that there is a higher clustering of IAT values close to the mode of the sensor. This regularity is particularly important for time-critical applications where a consistent and predictable arrival pattern is desired. By evaluating the IAT Regularity metric, researchers can gain insights into the reliability and efficiency of the data transmission process in IoT networks, contributing to the optimization of various IoT applications and services.')
     pdf.ln(10)
-    #creating table for alpha values 
     
-    pdf.image('../plots/equations/modeAlphaNeg.png', x = 64, y = 164, w = 30)
-    pdf.image('../plots/equations/modeAlphaPos.png', x = 112, y = 165, w = 30)
+    #creating a table for the inter arrival time statistics
+    # dataStats = [
+    #             ['','Before Outlier Removal', 'After Removal of Outliers'],
+    #             ['Mean', f'{meanStatOut}', f'{meanStatIn}'],
+    #             ['Median', f'{medianStatOut}', f'{medianStatIn}'],
+    #             ['Mode', f'{modeStatOut}', f'{modeStatIn}'],
+    #             ['Standard Deviation', f'{stdStatOut}', f'{stdStatIn}'],
+    #             ['Variance', f'{varianceStatOut}', f'{varianceStatIn}'],
+    #             ['Skewness', f'{skewStatOut}', f'{skewStatIn}']
+    #             ]
     
-    dataAlpha = [
-                ['Alpha', '', '', 'Regularity Score'],
-                [f'{alpha[0]}', f'{lowerRegularity[0]}', f'{upperRegularity[0]}', f'{regularityValues[0]}'],
-                [f'{alpha[1]}', f'{lowerRegularity[1]}', f'{upperRegularity[1]}', f'{regularityValues[1]}'],
-                [f'{alpha[2]}', f'{lowerRegularity[2]}', f'{upperRegularity[2]}', f'{regularityValues[2]}']
-                ]
-
-    # Text height is the same as current font size
-    # Effective page width, or just epw
-    epw = pdf.w - 2*pdf.l_margin
-
-    # Set column width to 1/3 of effective page width to distribute content 
-    # evenly across table and page
-    col_width = epw/4
-    th = pdf.font_size
-    
-    #logic included to bold only titles
-    for row in dataAlpha:
-        for index, datum in enumerate(row):
-            if datum == 'Alpha' or datum == 'Regularity Score':
-                pdf.set_font('times', 'b', 13)
-                pdf.cell(col_width, 2*th, str(datum), border = 1, align = 'C')
-            else: 
-                pdf.set_font('times', '', 12)
-                pdf.cell(col_width, 2*th, str(datum), border = 1, align = 'C')
-        pdf.ln(2*th)
-    pdf.ln(10)
-    pdf.write(5, 'A high score for the inter-arrival time metric means that the data packets are received at regular intervals which is important for time-critical applications.')
-    # pdf.ln(100)
-    # pdf.write(5, 'The table below shows a comparison of the statistics of the inter-arrival times of the dataset before and after outlier treatment using the Inter-Quartile Range method.')
-    # pdf.ln(20)
-    
-#     #creating a table for the inter arrival time statistics
-#     dataStats = [
-#                 ['','Before Outlier Removal', 'After Removal of Outliers'],
-#                 ['Mean', f'{meanStatOut}', f'{meanStatIn}'],
-#                 ['Median', f'{medianStatOut}', f'{medianStatIn}'],
-#                 ['Mode', f'{modeStatOut}', f'{modeStatIn}'],
-#                 ['Standard Deviation', f'{stdStatOut}', f'{stdStatIn}'],
-#                 ['Variance', f'{varianceStatOut}', f'{varianceStatIn}'],
-#                 ['Skewness', f'{skewStatOut}', f'{skewStatIn}']
-#                 ]
-    
-#     col_width = epw/3
-#     #logic included to bold only titles
-#     for row in dataStats:
-#         for index, datum in enumerate(row):
-#             if datum == 'Before Outlier Removal' or datum == 'After Removal of Outliers' or datum == 'Mean' or datum == 'Median' or datum == 'Mode' or datum == 'Standard Deviation' or datum == 'Variance' or datum == 'Skewness':
-#                 pdf.set_font('times', 'b', 13)
-#                 pdf.cell(col_width, 2*th, str(datum), border = 1, align = 'C')
-#             else:
-#                 pdf.set_font('times', '', 12)
-#                 pdf.cell((col_width), 2*th, str(datum), border = 1, align = 'C')
-#         pdf.ln(2*th)
+    # col_width = epw/3
+    # #logic included to bold only titles
+    # for row in dataStats:
+    #     for index, datum in enumerate(row):
+    #         if datum == 'Before Outlier Removal' or datum == 'After Removal of Outliers' or datum == 'Mean' or datum == 'Median' or datum == 'Mode' or datum == 'Standard Deviation' or datum == 'Variance' or datum == 'Skewness':
+    #             pdf.set_font('times', 'b', 13)
+    #             pdf.cell(col_width, 2*th, str(datum), border = 1, align = 'C')
+    #         else:
+    #             pdf.set_font('times', '', 12)
+    #             pdf.cell((col_width), 2*th, str(datum), border = 1, align = 'C')
+    #     pdf.ln(2*th)
     
     # pdf.ln(49)
     # pdf.write(5, 'The histogram of the inter-arrival times of the ')
@@ -535,24 +490,24 @@ def create_analytics_report_schema(filename=f"{fileNameNoExt}_DQReport.pdf"):
     ''' Fourth Page '''   
     pdf.add_page()
     pdf.ln(5)
-    create_heading('Data Source Uptime', pdf)
-    pdf.image("../plots/donuts/sensorUptimeMetricScorePiePlot.png", x = 150, y = -5, w = 60)
+    create_heading('Inter-Arrival Time Outliers', pdf)
+    pdf.image("../plots/donuts/outliersMetricScorePiePlot.png", x = 150, y = -5, w = 60)
     pdf.ln(5)
-    pdf.write(5, 'Data Source Uptime is defined as the duration in which the device or sensor is actively sending data packets at the expected time intervals.')
+    pdf.write(5, 'The outlier metric of the inter-arrival time is an evaluation of the number of IAT values that show a significant deviation from the expected behaviour.')
     pdf.ln(10)
-    pdf.write(5, 'This metric is calculated by performing an analysis of the inter-arrival time of the devices or sensors. Each value of the inter-arrival time that is greater than twice the mean is selected and sorted by device. These values are then summed for each device and an overall average is taken. This overall average value is then divided by the total query time of the dataset.')
+    pdf.write(5, 'There are multiple ways to identify outliers in a dataset, and the choice of method is dependent on the independent characteristics of the dataset. In our case, we apply the modified z-score method proposed by Iglewiscz and Hoaglin.')
     pdf.ln(5)
-    pdf.write(5,'Total query time is the time for which the dataset is queried, i.e. the difference between the timestamps of the first and last data packets in the dataset.')
+    pdf.write(5,'Let the Median Absolute Deviation of the data be defined as: ')
     pdf.ln(10)
-    pdf.write(5, 'The metric score is computed as below:')
-    pdf.image("../plots/equations/sensorUptimeMetric.png", x = 60, y = 90, w = 75)
+    pdf.image("../plots/equations/median_OutliersMetric.png", x = 60, y = 75, w = 55)
     pdf.ln(20)
-    pdf.write(5, 'Assuming that a high value for the inter-arrival time means that the device is not sending data packets at the expected intervals and is assumed to be "down". Data Source uptime can be understood as the time during which the device is not undergoing an outage and is functioning as expected.')
+    pdf.write(5, 'where xi is the observation for which the MAD is being computed and x is the mode of the data. We use the mode in place of the median as used by Iglewiscz and Hoaglin because we want to evaluate the deviation of the inter-arrival times from the mode, and we consider the mode to represent the expected behaviour of the dataset. Then the modified Z-score Mi is: ')
     pdf.ln(10)
-    pdf.write(5, 'The metric is calculated on a scale from 0 to 1, with 0 being the lowest score indicating that there is a high degree of device outage in the dataset, and 1 being the highest score indicating that there are no inter-arrival times greater than twice the mean.')
+    pdf.image("../plots/equations/modZscore_OutliersMetric.png", x = 65, y = 120, w = 45)
+    pdf.ln(20)
+    pdf.write(5, 'Here, Iglewiscz and Hoaglin suggest that observations with |Mi| > 3.5 be classified as outliers, with variations to this cut-off value depending on the distribution of x. For our purposes, we will use this value to label inter-arrival time values as outliers. The outliers for this dataset are shown in the plot below.')
     pdf.ln(10)
-    pdf.write(5, 'The chart below shows the device downtime - time when the device is not actively sending data packets at the expected intervals on a "per device" basis. This chart only shows the downtime if the device has experienced downtime that is greater than twice the mean of the inter-arrival time.')
-    pdf.image("../plots/sensorOutagePlot.png", x = 20, y = 160, w = WIDTH - 60)
+    pdf.image("../plots/outliersPlot.png", x = 15, y = 155, w = WIDTH-50)
 
     ''' Fifth Page '''   
     pdf.add_page()
@@ -583,63 +538,66 @@ def create_analytics_report_schema(filename=f"{fileNameNoExt}_DQReport.pdf"):
     
     ''' Sixth Page '''    
     pdf.add_page()
+    create_heading('Metrics for Schema Analysis', pdf)
+    pdf.ln(10)
+    pdf.write(5, 'The remaining three metrics are an analysis of the metadata that is provided along with the dataset. This metadata is provided in the form of a schema, a document that delineates the different types of attributes, the data types of each attribute (integer, float, string, etc.) as well as the range of the observations under each attribute. This document also provides the mandatory attributes that the dataset must contain, as well as a list of all the expected attributes in the dataset.')
+    pdf.ln(10)
+
     create_heading('Attribute Format Adherence', pdf)
-    pdf.image("../plots/donuts/formatMetricScorePiePlot.png", x = 150, y = -5, w = 60)
+    pdf.image("../plots/donuts/formatMetricScorePiePlot.png", x = 150, y = 50, w = 60)
     pdf.ln(10)
-    pdf.write(5, 'This metric assesses the level of adherence of the data to its expected format as defined in the data schema.')
+    pdf.write(5, 'The attribute format metric checks whether the format of the data packets being evaluated matches the format defined in the data schema. The various possible formats include number, string, float, and object.')
     pdf.ln(5)
-    pdf.write(5, 'It is quantified by taking the ratio of packets adhering to the expected schemas to the total number of data packets.')
+    pdf.write(5, 'The format adherence metric is computed using the json schema validation method. The count of errors is incremented when the data type of an evaluated data packet does not match the data type specified in the data schema.')
+    pdf.ln(5)
+    pdf.write(5, 'A higher score for the attribute format metric indicates a relatively lower proportion of data packets that contain attributes that do not adhere to the format defined in the schema, and a lower score for the attribute format metric indicates a relatively greater proportion of data packets with incorrect attribute formats.')
     pdf.ln(10)
-    pdf.write(5, 'Represents the completeness of the attributes of the dataset.')
-    pdf.ln(40)
-    
+
     create_heading('Absence of Unknown Attributes', pdf)
-    pdf.image("../plots/donuts/addnlAttrMetricScorePiePlot.png", x = 150, y = 80, w = 60)
+    pdf.image("../plots/donuts/addnlAttrMetricScorePiePlot.png", x = 150, y = 120, w = 60)
     pdf.ln(10)
-    pdf.write(5, 'This metric checks whether there are any additional attributes present in the dataset apart from the list of required attributes.')
-    pdf.ln(10)
-    pdf.write(5, 'This metric is computed as (1 - r) where r is the ratio of packets with unknown fields (fields that are not present in the list of mandatory attributes) to the total number of packets.')
-    pdf.ln(10)
-    # pdf.image("../plots/equations/unknownAttributesMetric.png")
-    # pdf.ln(10)
+    pdf.write(5, 'The unknown attributes A higher score for the attribute format metric indicates a relatively lower proportion of data packets that contain attributes that do not adhere to the format defined in the schema, and a lower score for the attribute format metric indicates a relatively greater proportion of data packets with incorrect attribute formats.metric computes the number of data packets with attributes that are present in the dataset but are not specified in the schema in any capacity.')
+    pdf.ln(5)
+    pdf.write(5, 'This metric is computed by validating the data against the schema. A higher score for this metric indicates a relatively lower proportion of data packets that contain attributes that are not present in the data schema and a lower score indicates a relatively greater proportion of data packets with unknown attributes.')
+    pdf.ln(5)
     pdf.write(5, 'This metric represents the total number of unknown attributes in the dataset.')
-    pdf.ln(20)
+    pdf.ln(10)
     
     create_heading('Adherence to Mandatory Attributes', pdf)
-    pdf.image("../plots/donuts/compMetricScorePiePlot.png", x = 150, y = 155, w = 60)
+    pdf.image("../plots/donuts/compMetricScorePiePlot.png", x = 150, y = 195, w = 60)
     pdf.ln(10)
-    pdf.write(5, 'This metric checks whether all the required attributes defined in the schema are present in the dataset.')
-    pdf.ln(10)
-    pdf.write(5, 'It is computed as follows: For each mandatory attribute, i, compute r(i) as the ratio of packets in which attribute i is missing. Then output 1 - average(r(i)) where the average is taken over all mandatory attributes.')
-    pdf.ln(10)
-    pdf.write(5, 'The metric is computed on a scale from 0 to 1, where a score of 0 indicates that all the data packets in the dataset are missing the required attributes, and 1 indicating that all the data packets are adherent to the list of required attributes. The metric represents the completeness of the attributes of the dataset.')
+    pdf.write(5, 'The mandatory attributes metric checks whether the list of mandatory attributes defined in the data schema are all present in the dataset. This validation is performed for each data packet in the dataset.')
+    pdf.ln(5)
+    pdf.write(5, 'A higher score for the mandatory attributes metric indicates that there is a relatively greater proportion of data packets with values present for all the mandatory attributes, and a lower score for the mandatory attributes metric indicates that there is a relatively lower proportion.')
+    pdf.ln(5)
+    pdf.write(5, 'This metric is an indicator of the completeness of the dataset. Null values received under mandatory attributes are also included in the count of the number of missing attributes.')
     
     
     
     '''Seventh Page'''
     
-    if 'AQM' in fileName:
-        pdf.add_page()    
+    # if 'AQM' in fileName:
+    #     pdf.add_page()    
         
-        create_heading('Additional Information about the Data', pdf)
-        pdf.ln(5)
-        pdf.write(5, 'In this section are some useful visualizations that describe certain data statistics that can be used by the end user to determine the usability of the data. These subheadings may not explicitly fall under the umbrella of data quality and so are not counted as part of the overall score.')
+    #     create_heading('Additional Information about the Data', pdf)
+    #     pdf.ln(5)
+    #     pdf.write(5, 'In this section are some useful visualizations that describe certain data statistics that can be used by the end user to determine the usability of the data. These subheadings may not explicitly fall under the umbrella of data quality and so are not counted as part of the overall score.')
         
 
-        create_heading('Correlation', pdf)
-        pdf.ln(5)
-        pdf.write(5, "Correlation here refers to a causal relationship between different attributes found in the dataset. This relationship might be either directly or inversely proportional.")
-        pdf.ln(5)
-        pdf.write(5, "This relationship is shown in the heat map below, with darker colors referring to a stronger direct relationship, and lighter colors referring to a stronger inverse relationship.")
-        pdf.image("../plots/corrPlot.jpg",x = 20, y = 80, w = 160)
-        pdf.ln(80)
+    #     create_heading('Correlation', pdf)
+    #     pdf.ln(5)
+    #     pdf.write(5, "Correlation here refers to a causal relationship between different attributes found in the dataset. This relationship might be either directly or inversely proportional.")
+    #     pdf.ln(5)
+    #     pdf.write(5, "This relationship is shown in the heat map below, with darker colors referring to a stronger direct relationship, and lighter colors referring to a stronger inverse relationship.")
+    #     pdf.image("../plots/corrPlot.jpg",x = 20, y = 80, w = 160)
+    #     pdf.ln(80)
 
 
-        create_heading('Cardinality', pdf)
-        pdf.ln(5)
-        pdf.write(5, 'Cardinality of a dataset is defined here as the number of unique values of in that dataset. A higher value of cardinality indicates a higher proportion of unique values.')
-        pdf.ln(5)
-        pdf.image("../plots/cardPlot.png",x = 35, y = 180, w = 140)
+    #     create_heading('Cardinality', pdf)
+    #     pdf.ln(5)
+    #     pdf.write(5, 'Cardinality of a dataset is defined here as the number of unique values of in that dataset. A higher value of cardinality indicates a higher proportion of unique values.')
+    #     pdf.ln(5)
+    #     pdf.image("../plots/cardPlot.png",x = 35, y = 180, w = 140)
     
     pdf.output('../outputReports/' + filename, 'F')
     # pdf.output(fileName, 'F')
@@ -647,6 +605,7 @@ def create_analytics_report_schema(filename=f"{fileNameNoExt}_DQReport.pdf"):
 #     yesterday = (datetime.today() - timedelta(days=1)).strftime("%m/%d/%y").replace("/0","/").lstrip("0")
 #     # yesterday = "10/10/20" # Uncomment line for testing
 
+# TODO//: separate function definition from function call 
 create_analytics_report_schema()
 
 
@@ -660,28 +619,26 @@ outputParamFV = {
     "No. of data packets": numPackets,
     "avgDataQualityScore": avgDataQualityScore,
     "IAT Regularity":{
-        "value": [regularityValues[0], regularityValues[1], regularityValues[2]],
-        "valueAlpha": [alpha[0], alpha[1], alpha[2]],
         "overallValue": regularityMetricScore,
         "type": "number",
         "metricLabel": "IAT Regularity Metric",
-        "metricMessage": f"For this dataset, the inter-arrival time regularity metric values are: {regularityValues[0]}, {regularityValues[1]},  and {regularityValues[2]} for the corresponding alpha values of {alpha[0]}, {alpha[1]}, and {alpha[2]}. The overall score for this metric is {regularityMetricScore}",
+        "metricMessage": f"For this dataset, the inter-arrival time regularity metric value is {regularityMetricScore}",
         "description": "This metric is rated on a scale between 0 & 1; computes the output of the equation (1 - ((No.of data packets outside the bounds)/(Total no. of data packets)). These bounds are defined by the value of alpha and the formula (mode +/- (alpha*mode)). The overall metric score is formed from an average of the three scores obtained from three values of alpha."
     },
-    # "IATOutliers":{
-    #     "value": outliersMetricScore,
-    #     "type": "number",
-    #     "metricLabel": "IAT Outlier Metric",
-    #     "metricMessage": f"For this dataset, the inter-arrival time outliers metric score is {outliersMetricScore}.",
-    #     "description": "This metric is rated on a scale between 0 & 1; it is computed using the inter-quartile range method and is calculated as (1-(No. of outliers/No. of data packets))"  
-    # },
-    "Data Source Uptime":{
-        "value": sensorUptimeMetricScore,
+    "IATOutliers":{
+        "value": outliersMetricScore,
         "type": "number",
-        "metricLabel": "Data Source Uptime Metric",
-        "metricMessage": f"For this dataset, the data source uptime metric score is {sensorUptimeMetricScore}.",
-        "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per sensor/total query time))."
+        "metricLabel": "IAT Outlier Metric",
+        "metricMessage": f"For this dataset, the inter-arrival time outliers metric score is {outliersMetricScore}.",
+        "description": "This metric is rated on a scale between 0 & 1; it is computed using the modified Z-score method and is calculated as (1-(No. of outliers/No. of data packets))"  
     },
+    # "Data Source Uptime":{
+    #     "value": sensorUptimeMetricScore,
+    #     "type": "number",
+    #     "metricLabel": "Data Source Uptime Metric",
+    #     "metricMessage": f"For this dataset, the data source uptime metric score is {sensorUptimeMetricScore}.",
+    #     "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per sensor/total query time))."
+    # },
     "Absence of Duplicate Values":{
         "value": dupeMetricScore,
         "deduplicationAttributes": [input1, input2],
