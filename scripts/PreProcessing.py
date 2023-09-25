@@ -10,10 +10,11 @@ from pandas import json_normalize
 # import math
 # import panel as pn
 # import hvplot.pandas
-from scipy.stats import norm
+from scipy.stats import norm 
 import seaborn as sns
 from numpy import percentile
 import pygal
+# import cairosvg
 from pygal.style import Style
 
 #plot styles

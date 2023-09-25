@@ -8,5 +8,7 @@ numpy==1.22.0
 pandas==1.3.5
 pygal==3.0.0
 requests==2.25.1
-scipy==1.8.0
+scipy
 seaborn==0.11.2
+cairosvg
+scikit-learn
