@@ -3,30 +3,20 @@
     "startTime": "2022-01-01 10:01:08",
     "endTime": "2022-01-01 23:46:24",
     "No. of data packets": 2463,
-    "avgDataQualityScore": 0.942,
+    "avgDataQualityScore": 0.954,
     "IAT Regularity": {
-        "value": [
-            0.99448,
-            0.99448,
-            0.99448
-        ],
-        "valueAlpha": [
-            0.25,
-            0.5,
-            0.75
-        ],
-        "overallValue": 0.994,
+        "overallValue": 0.951,
         "type": "number",
         "metricLabel": "IAT Regularity Metric",
-        "metricMessage": "For this dataset, the inter-arrival time regularity metric values are: 0.99448, 0.99448,  and 0.99448 for the corresponding alpha values of 0.25, 0.5, and 0.75. The overall score for this metric is 0.994",
+        "metricMessage": "For this dataset, the inter-arrival time regularity metric value is 0.951",
         "description": "This metric is rated on a scale between 0 & 1; computes the output of the equation (1 - ((No.of data packets outside the bounds)/(Total no. of data packets)). These bounds are defined by the value of alpha and the formula (mode +/- (alpha*mode)). The overall metric score is formed from an average of the three scores obtained from three values of alpha."
     },
-    "Data Source Uptime": {
-        "value": 0.871,
+    "IATOutliers": {
+        "value": 0.985,
         "type": "number",
-        "metricLabel": "Data Source Uptime Metric",
-        "metricMessage": "For this dataset, the data source uptime metric score is 0.871.",
-        "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per sensor/total query time))."
+        "metricLabel": "IAT Outlier Metric",
+        "metricMessage": "For this dataset, the inter-arrival time outliers metric score is 0.985.",
+        "description": "This metric is rated on a scale between 0 & 1; it is computed using the modified Z-score method and is calculated as (1-(No. of outliers/No. of data packets))"
     },
     "Absence of Duplicate Values": {
         "value": 0.883,
