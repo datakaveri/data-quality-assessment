@@ -15,8 +15,11 @@ print(fileName)
 print(datasetName)
 # print(os.path.splitext(os.path.basename(fileName))[0])
 
-
-startTime, endTime, startMonth, endMonth, startYear, endYear = pp.timeRange(dfRaw)
+dateTimeColumn = 'observationDateTime'
+if dateTimeColumn in dfRaw.columns:
+    startTime, endTime, startMonth, endMonth, startYear, endYear = pp.timeRange(dfRaw)
+else:
+    pp.timeRange(dfRaw)
 numPackets = dfRaw.shape[0]
 
 
@@ -124,18 +127,22 @@ while schemaInputValidity == 0:
 #dropping duplicates
 dfDropped, dupeCount = pp.dropDupes(dfRaw, input1, input2)
 #cleaning dataframe
-dfClean = pp.preProcess(dfDropped, input1, input2)
+dateTimeColumn = 'observationDateTime'
+if dateTimeColumn in dfRaw.columns:
+    dfClean = pp.preProcess(dfDropped, input1, input2)
 
 
 
-#removing outliers
-dfInliers, lowerOutliers, upperOutliers = pp.outRemove(dfClean, datasetName, input1)
-# print(dfInliers, lowrOutliers, upperOutliers)
+    #removing outliers
+    dfInliers, lowerOutliers, upperOutliers = pp.outRemove(dfClean, datasetName, input1)
+    # print(dfInliers, lowrOutliers, upperOutliers)
 
-#datastats before/after removing outliers
-meanStatOut, medianStatOut, modeStatOut, stdStatOut, varianceStatOut, skewStatOut, kurtosisStatOut = pp.dataStats(dfClean)
-meanStatIn, medianStatIn, modeStatIn, stdStatIn, varianceStatIn, skewStatIn, kurtosisStatIn = pp.dataStats(dfInliers)
-
+    #datastats before/after removing outliers
+    meanStatOut, medianStatOut, modeStatOut, stdStatOut, varianceStatOut, skewStatOut, kurtosisStatOut = pp.dataStats(dfClean)
+    meanStatIn, medianStatIn, modeStatIn, stdStatIn, varianceStatIn, skewStatIn, kurtosisStatIn = pp.dataStats(dfInliers)
+    dfInliers.name = 'inliers'
+else:
+    dfClean = dfRaw
 # print(dfClean['IAT'])
 # dfClean.to_csv('dfCleantest.csv')
 
@@ -154,7 +161,7 @@ dupeMetricScore = mm.duplicatesMetric(dfRaw, input1, input2)
 compMetricScore = round(completeness_metric, 3)
 formatMetricScore = round(format_adherence_metric, 3)
 addnlAttrMetricScore = round(unknown_fields_absent_metric, 3)
-avgDataQualityScore = round((dupeMetricScore + compMetricScore + formatMetricScore + addnlAttrMetricScore)/6, 3)
+avgDataQualityScore = round((dupeMetricScore + compMetricScore + formatMetricScore + addnlAttrMetricScore)/4, 3)
 avgDataQualityPercent = round(avgDataQualityScore*100,3)
 
 logging.info('################## Final Metrics #########################################')
@@ -181,7 +188,6 @@ logging.info('##################################################################
 dfRaw.name = 'raw'
 dfDropped.name = 'dropped'
 dfClean.name = 'clean'
-dfInliers.name = 'inliers'
 
 
 # ### Generating visualizations for the PDF in order of appearance in the report
@@ -272,7 +278,9 @@ def create_title_card(pdf):
     pdf.write(5, f'Data Type: {datasetType}')
     pdf.ln(7)
     # pdf.set_x(120)
-    pdf.cell(15, 5, f'Number of Data Packets: {numPackets}   |   Start Time: {startTime}   |   End Time: {endTime}')
+    dateTimeColumn = 'observationDateTime'
+    if dateTimeColumn in dfRaw.columns:
+        pdf.cell(15, 5, f'Number of Data Packets: {numPackets}   |   Start Time: {startTime}   |   End Time: {endTime}')
     # pdf.ln(5)
     # pdf.set_x(120)
     # pdf.write(5, f'End Time: {endTime}')
@@ -610,64 +618,121 @@ create_analytics_report_schema()
 
 
 #Output Report as JSON
-
-outputParamFV = {
-    "fileName": datasetName,
-    "startTime": str(startTime),
-    "endTime": str(endTime),
-    "No. of data packets": numPackets,
-    "avgDataQualityScore": avgDataQualityScore,
-    # "IAT Regularity":{
-    #     "overallValue": regularityMetricScore,
-    #     "type": "number",
-    #     "metricLabel": "IAT Regularity Metric",
-    #     "metricMessage": f"For this dataset, the inter-arrival time regularity metric value is {regularityMetricScore}",
-    #     "description": "This metric is rated on a scale between 0 & 1; computes the output of the equation (1 - ((No.of data packets outside the bounds)/(Total no. of data packets)). These bounds are defined by the value of alpha and the formula (mode +/- (alpha*mode)). The overall metric score is formed from an average of the three scores obtained from three values of alpha."
-    # },
-    # "IATOutliers":{
-    #     "value": outliersMetricScore,
-    #     "type": "number",
-    #     "metricLabel": "IAT Outlier Metric",
-    #     "metricMessage": f"For this dataset, the inter-arrival time outliers metric score is {outliersMetricScore}.",
-    #     "description": "This metric is rated on a scale between 0 & 1; it is computed using the modified Z-score method and is calculated as (1-(No. of outliers/No. of data packets))"  
-    # },
-    # "Data Source Uptime":{
-    #     "value": sensorUptimeMetricScore,
-    #     "type": "number",
-    #     "metricLabel": "Data Source Uptime Metric",
-    #     "metricMessage": f"For this dataset, the data source uptime metric score is {sensorUptimeMetricScore}.",
-    #     "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per sensor/total query time))."
-    # },
-    "Absence of Duplicate Values":{
-        "value": dupeMetricScore,
-        "deduplicationAttributes": [input1, input2],
-        "type": "number",
-        "metricLabel": "Duplicate Value Metric",
-        "metricMessage": f"For this dataset, the duplicate value metric score is: {dupeMetricScore}.",
-        "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (No. of duplicate data packets/total no. of data packets)."
-    },
-    "Adherence to Attribute Format":{
-        "value": format_adherence_metric,
-        "type": "number",
-        "metricLabel": "Format Adherence Metric",
-        "metricMessage": "For this dataset, " + str(format_adherence_metric) + " is the format adherence",
-        "description": "The metric is rated on a scale between 0 & 1; computed using the formula (1 - (no. of format validity errors/total no. of data packets))."
+dateTimeColumn = 'observationDateTime'
+if dateTimeColumn in dfRaw.columns:
+    outputParamFV = {
+        "fileName": datasetName,
+        "startTime": str(startTime),
+        "endTime": str(endTime),
+        "No. of data packets": numPackets,
+        "avgDataQualityScore": avgDataQualityScore,
+        # "IAT Regularity":{
+        #     "overallValue": regularityMetricScore,
+        #     "type": "number",
+        #     "metricLabel": "IAT Regularity Metric",
+        #     "metricMessage": f"For this dataset, the inter-arrival time regularity metric value is {regularityMetricScore}",
+        #     "description": "This metric is rated on a scale between 0 & 1; computes the output of the equation (1 - ((No.of data packets outside the bounds)/(Total no. of data packets)). These bounds are defined by the value of alpha and the formula (mode +/- (alpha*mode)). The overall metric score is formed from an average of the three scores obtained from three values of alpha."
+        # },
+        # "IATOutliers":{
+        #     "value": outliersMetricScore,
+        #     "type": "number",
+        #     "metricLabel": "IAT Outlier Metric",
+        #     "metricMessage": f"For this dataset, the inter-arrival time outliers metric score is {outliersMetricScore}.",
+        #     "description": "This metric is rated on a scale between 0 & 1; it is computed using the modified Z-score method and is calculated as (1-(No. of outliers/No. of data packets))"  
+        # },
+        # "Data Source Uptime":{
+        #     "value": sensorUptimeMetricScore,
+        #     "type": "number",
+        #     "metricLabel": "Data Source Uptime Metric",
+        #     "metricMessage": f"For this dataset, the data source uptime metric score is {sensorUptimeMetricScore}.",
+        #     "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per sensor/total query time))."
+        # },
+        "Absence of Duplicate Values":{
+            "value": dupeMetricScore,
+            "deduplicationAttributes": [input1, input2],
+            "type": "number",
+            "metricLabel": "Duplicate Value Metric",
+            "metricMessage": f"For this dataset, the duplicate value metric score is: {dupeMetricScore}.",
+            "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (No. of duplicate data packets/total no. of data packets)."
         },
-    "Absence of Unknown Attributes":{
-        "value": unknown_fields_absent_metric,
-        "type": "number",
-        "metricLabel": "Unknown Attributes Metric",
-        "metricMessage": "For this dataset, " + str(unknown_fields_absent_metric) + " is the value of the  additional fields absent metric.",
-        "description": "The metric is rated on a scale between 0 & 1; computed as (1 - r) where r is the ratio of packets with unknown attributes to the total number of packets."
+        "Adherence to Attribute Format":{
+            "value": format_adherence_metric,
+            "type": "number",
+            "metricLabel": "Format Adherence Metric",
+            "metricMessage": "For this dataset, " + str(format_adherence_metric) + " is the format adherence",
+            "description": "The metric is rated on a scale between 0 & 1; computed using the formula (1 - (no. of format validity errors/total no. of data packets))."
+            },
+        "Absence of Unknown Attributes":{
+            "value": unknown_fields_absent_metric,
+            "type": "number",
+            "metricLabel": "Unknown Attributes Metric",
+            "metricMessage": "For this dataset, " + str(unknown_fields_absent_metric) + " is the value of the  additional fields absent metric.",
+            "description": "The metric is rated on a scale between 0 & 1; computed as (1 - r) where r is the ratio of packets with unknown attributes to the total number of packets."
+            },
+        "Adherence to Mandatory Attributes":{
+            "value": completeness_metric,
+            "type": "number",
+            "metricLabel": "Completeness Metric",
+            "metricMessage": "For this dataset, " + str(completeness_metric) + " is the value of the adherence to mandatory attributes metric.",
+            "description": "The metric is rated on a scale between 0 & 1; It is computed as follows: For each mandatory attribute, i, compute r(i) as the ratio of packets in which attribute i is missing. Then output 1 - average(r(i)) where the average is taken over all mandatory attributes."
+            }
+    }
+else:
+    outputParamFV = {
+        "fileName": datasetName,
+        "No. of data packets": numPackets,
+        "avgDataQualityScore": avgDataQualityScore,
+        # "IAT Regularity":{
+        #     "overallValue": regularityMetricScore,
+        #     "type": "number",
+        #     "metricLabel": "IAT Regularity Metric",
+        #     "metricMessage": f"For this dataset, the inter-arrival time regularity metric value is {regularityMetricScore}",
+        #     "description": "This metric is rated on a scale between 0 & 1; computes the output of the equation (1 - ((No.of data packets outside the bounds)/(Total no. of data packets)). These bounds are defined by the value of alpha and the formula (mode +/- (alpha*mode)). The overall metric score is formed from an average of the three scores obtained from three values of alpha."
+        # },
+        # "IATOutliers":{
+        #     "value": outliersMetricScore,
+        #     "type": "number",
+        #     "metricLabel": "IAT Outlier Metric",
+        #     "metricMessage": f"For this dataset, the inter-arrival time outliers metric score is {outliersMetricScore}.",
+        #     "description": "This metric is rated on a scale between 0 & 1; it is computed using the modified Z-score method and is calculated as (1-(No. of outliers/No. of data packets))"  
+        # },
+        # "Data Source Uptime":{
+        #     "value": sensorUptimeMetricScore,
+        #     "type": "number",
+        #     "metricLabel": "Data Source Uptime Metric",
+        #     "metricMessage": f"For this dataset, the data source uptime metric score is {sensorUptimeMetricScore}.",
+        #     "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (avg. outage time per sensor/total query time))."
+        # },
+        "Absence of Duplicate Values":{
+            "value": dupeMetricScore,
+            "deduplicationAttributes": [input1, input2],
+            "type": "number",
+            "metricLabel": "Duplicate Value Metric",
+            "metricMessage": f"For this dataset, the duplicate value metric score is: {dupeMetricScore}.",
+            "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (No. of duplicate data packets/total no. of data packets)."
         },
-    "Adherence to Mandatory Attributes":{
-        "value": completeness_metric,
-        "type": "number",
-        "metricLabel": "Completeness Metric",
-        "metricMessage": "For this dataset, " + str(completeness_metric) + " is the value of the adherence to mandatory attributes metric.",
-        "description": "The metric is rated on a scale between 0 & 1; It is computed as follows: For each mandatory attribute, i, compute r(i) as the ratio of packets in which attribute i is missing. Then output 1 - average(r(i)) where the average is taken over all mandatory attributes."
-        }
-}
+        "Adherence to Attribute Format":{
+            "value": format_adherence_metric,
+            "type": "number",
+            "metricLabel": "Format Adherence Metric",
+            "metricMessage": "For this dataset, " + str(format_adherence_metric) + " is the format adherence",
+            "description": "The metric is rated on a scale between 0 & 1; computed using the formula (1 - (no. of format validity errors/total no. of data packets))."
+            },
+        "Absence of Unknown Attributes":{
+            "value": unknown_fields_absent_metric,
+            "type": "number",
+            "metricLabel": "Unknown Attributes Metric",
+            "metricMessage": "For this dataset, " + str(unknown_fields_absent_metric) + " is the value of the  additional fields absent metric.",
+            "description": "The metric is rated on a scale between 0 & 1; computed as (1 - r) where r is the ratio of packets with unknown attributes to the total number of packets."
+            },
+        "Adherence to Mandatory Attributes":{
+            "value": completeness_metric,
+            "type": "number",
+            "metricLabel": "Completeness Metric",
+            "metricMessage": "For this dataset, " + str(completeness_metric) + " is the value of the adherence to mandatory attributes metric.",
+            "description": "The metric is rated on a scale between 0 & 1; It is computed as follows: For each mandatory attribute, i, compute r(i) as the ratio of packets in which attribute i is missing. Then output 1 - average(r(i)) where the average is taken over all mandatory attributes."
+            }
+    }
 myJSON = json.dumps(outputParamFV, indent = 4)
 filename = fileNameNoExt + "_Report.json"
 jsonpath = os.path.join("../outputReports/", filename)

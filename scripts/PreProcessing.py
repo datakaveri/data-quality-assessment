@@ -71,29 +71,33 @@ def readFile(configFile):
 
 # finding the time range of the dataset
 def timeRange(dataframe):
-    startTime = min(dataframe['observationDateTime'])
-    startTime = pd.to_datetime(startTime)
-    startTime = startTime.tz_localize(None)
-    # print(type(startTime))
-    # ts = pd.Timestamp('2020-03-14T15:32:52.192548651')
-    # startTime.strftime('%Y-%m-%d %X')
-    endTime = max(dataframe['observationDateTime'])
-    endTime = pd.to_datetime(endTime)
-    endTime = endTime.tz_localize(None)
-    #returning Month Names and Year
-    startMonth = str(startTime.month_name())[0:3]
-    endMonth = str(endTime.month_name())[0:3]
-    startYear = startTime.year
-    endYear = endTime.year
-    # endTime = pd.to_datetime(endTime, unit='ns')
-    return startTime, endTime, startMonth, endMonth, startYear-2000, endYear-2000
-
+    dateTimeColumn = 'observationDateTime'
+    if dateTimeColumn in dataframe.columns:
+        startTime = min(dataframe['observationDateTime'])
+        startTime = pd.to_datetime(startTime)
+        startTime = startTime.tz_localize(None)
+        # print(type(startTime))
+        # ts = pd.Timestamp('2020-03-14T15:32:52.192548651')
+        # startTime.strftime('%Y-%m-%d %X')
+        endTime = max(dataframe['observationDateTime'])
+        endTime = pd.to_datetime(endTime)
+        endTime = endTime.tz_localize(None)
+        #returning Month Names and Year
+        startMonth = str(startTime.month_name())[0:3]
+        endMonth = str(endTime.month_name())[0:3]
+        startYear = startTime.year
+        endYear = endTime.year
+        # endTime = pd.to_datetime(endTime, unit='ns')
+        return startTime, endTime, startMonth, endMonth, startYear-2000, endYear-2000
+    else:
+        return
 #dropping duplicates
 def dropDupes(dataframe, input1, input2):
     # dataName = dataDict['fileName']
     dfLen1 = len(dataframe)
     # dfDrop = dataframe.drop_duplicates(subset = [input1, input2], inplace = False, ignore_index = True)
-    dfDrop = dataframe.drop_duplicates(inplace = False, ignore_index = True)
+    # dfDrop = dataframe.drop_duplicates(inplace = False, ignore_index = True)
+    dfDrop = dataframe.loc[dataframe.astype(str).drop_duplicates().index]
     dfLen2 = len(dfDrop)
     dupeCount = dfLen1 - dfLen2
     p1 = print(str(dupeCount) + ' duplicate rows have been removed.') 

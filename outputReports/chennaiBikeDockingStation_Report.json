@@ -1,9 +1,7 @@
 {
-    "fileName": "Weather Information in Khammam District",
-    "startTime": "2023-06-01 11:30:00",
-    "endTime": "2023-10-01 11:30:00",
-    "No. of data packets": 2478,
-    "avgDataQualityScore": 0.75,
+    "fileName": "Location of Smart Bike Docking Stations in Chennai City",
+    "No. of data packets": 86,
+    "avgDataQualityScore": 1.0,
     "Absence of Duplicate Values": {
         "value": 1.0,
         "deduplicationAttributes": [
@@ -23,10 +21,10 @@
         "description": "The metric is rated on a scale between 0 & 1; computed using the formula (1 - (no. of format validity errors/total no. of data packets))."
     },
     "Absence of Unknown Attributes": {
-        "value": 0.0,
+        "value": 1.0,
         "type": "number",
         "metricLabel": "Unknown Attributes Metric",
-        "metricMessage": "For this dataset, 0.0 is the value of the  additional fields absent metric.",
+        "metricMessage": "For this dataset, 1.0 is the value of the  additional fields absent metric.",
         "description": "The metric is rated on a scale between 0 & 1; computed as (1 - r) where r is the ratio of packets with unknown attributes to the total number of packets."
     },
     "Adherence to Mandatory Attributes": {

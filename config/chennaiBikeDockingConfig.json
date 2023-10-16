@@ -1,0 +1,16 @@
+{
+  "datasetName": "Location of Smart Bike Docking Stations in Chennai City",
+  "URL": "https://catalogue.iudx.org.in/dataset/smartbikemobility.com-bfc54d46ca3cf5dac6eaef7b42f8fc87f94a812b-rs.iudx.org.in-chennai-bike-docking-locations",
+  "folderName": "ChennaiBikeDock_Data_2023",
+  "dataFileNameJSON": "chennaiBikeDockingStation.json",
+  "schemaFileName": "schema_BikeDocking.json",
+    "duplicateDetection": {
+        "inputFields": []
+    },
+    "interArrivalTime": {
+        "inputFields": [
+            "id",
+            "observationDateTime"
+            ]
+        }
+}

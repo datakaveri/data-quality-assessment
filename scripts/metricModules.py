@@ -92,7 +92,8 @@ def iatOutliersMetric(dataframe):
 # duplicate detection metric
 # must be called before inter-arrival time creation
 def duplicatesMetric(df, input1, input2):
-    dupeCount = len(df) - len(df.drop_duplicates())
+    dfDupe = df.loc[df.astype(str).drop_duplicates().index]
+    dupeCount = len(df) - len(dfDupe)
     totalDataPackets = len(df)
     duplicatesMetricScore = 1 - dupeCount/totalDataPackets
     return round(duplicatesMetricScore,3)

@@ -1,0 +1,42 @@
+{
+"$id": "smartbikemobility.com/bfc54d46ca3cf5dac6eaef7b42f8fc87f94a812b/rs.iudx.org.in/chennai-bike-docking-locations/station-locations",
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"title": "Location of Smart Bike Docking Stations in Chennai City",
+"type": "object",
+"properties": {
+	"name": {
+        "type": "string"
+      },
+      "id": {
+        "type": "string"
+      },
+      "location": {
+        "type": "object",
+        "properties": {
+          "coordinates": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "coordinates",
+          "type"
+        ]
+      },
+      "stationName": {
+        "type": "string"
+      }
+},
+"additionalProperties":false,
+"required": [
+    "name",
+    "id",
+    "location",
+    "stationName"
+]
+}
