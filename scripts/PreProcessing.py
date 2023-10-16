@@ -35,10 +35,10 @@ def readFile(configFile):
 
     df = pd.json_normalize(jsonDataDict)
     pd.set_option('mode.chained_assignment', None)
-    alpha1 = configDict['interArrivalTime']['alpha'][0]
-    alpha2 = configDict['interArrivalTime']['alpha'][1]
-    alpha3 = configDict['interArrivalTime']['alpha'][2]
-    alpha = [alpha1, alpha2, alpha3]
+    # alpha1 = configDict['interArrivalTime']['alpha'][0]
+    # alpha2 = configDict['interArrivalTime']['alpha'][1]
+    # alpha3 = configDict['interArrivalTime']['alpha'][2]
+    # alpha = [alpha1, alpha2, alpha3]
     input1 = configDict['interArrivalTime']['inputFields'][0]
     input2 = configDict['interArrivalTime']['inputFields'][1]
     datasetName = configDict['datasetName']
@@ -55,9 +55,16 @@ def readFile(configFile):
         # df[['longitude', 'latitude']] = df['coordinates'].apply(','.join).str.split(expand = True)
     else:
         df = df
+
+    dateTimeColumn = 'observationDateTime'
+    if dateTimeColumn in df.columns:
+        datasetType = 'Temporal'
+    else:
+        datasetType = 'Non-Temporal'
+
     # print(df)
     print('The loaded dataset is: ' + datasetName)
-    return configDict, df, input1, input2, datasetName, fileName, URL, alpha, schema
+    return configDict, df, input1, input2, datasetName, fileName, URL, schema, datasetType
 
 
 ####data preprocessing
@@ -85,7 +92,8 @@ def timeRange(dataframe):
 def dropDupes(dataframe, input1, input2):
     # dataName = dataDict['fileName']
     dfLen1 = len(dataframe)
-    dfDrop = dataframe.drop_duplicates(subset = [input1, input2], inplace = False, ignore_index = True)
+    # dfDrop = dataframe.drop_duplicates(subset = [input1, input2], inplace = False, ignore_index = True)
+    dfDrop = dataframe.drop_duplicates(inplace = False, ignore_index = True)
     dfLen2 = len(dfDrop)
     dupeCount = dfLen1 - dfLen2
     p1 = print(str(dupeCount) + ' duplicate rows have been removed.') 
@@ -166,7 +174,7 @@ def dataStats(df):
 #####################################################################################
 #####################################################################################
 
-def radarChart(regularityScore, outliersScore, dupeScore, formatScore, completeScore, addnlScore):
+def radarChart(dupeScore, formatScore, completeScore, addnlScore):
 
     custom_style = Style(
       background='transparent',
@@ -181,9 +189,9 @@ def radarChart(regularityScore, outliersScore, dupeScore, formatScore, completeS
                               style = custom_style, 
                               show_legend = False,
                               show_title = False)
-    radar_chart.x_labels = ['Regularity of InterArrival Time', 'Outliers of Inter-Arrival Time','Absence of Duplicates', 'Attribute Format Adherence', 'Mandatory Attribute Adherence', 'Unknown Attribute Absence']
-    radar_chart.add('Metric Scores', [regularityScore, outliersScore, dupeScore, formatScore, completeScore, addnlScore])
-    radar_chart.add('Full Score', [1,1,1,1,1,1])
+    radar_chart.x_labels = ['Absence of Duplicates', 'Attribute Format Adherence', 'Mandatory Attribute Adherence', 'Unknown Attribute Absence']
+    radar_chart.add('Metric Scores', [dupeScore, formatScore, completeScore, addnlScore])
+    radar_chart.add('Full Score', [1,1,1,1])
     radar_chart.render_to_png('../plots/radarPlot.png')
     return 
 

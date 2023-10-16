@@ -1,0 +1,317 @@
+{
+"$id": "https://agrijson.adex.org.in/Weather",
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"title": "ADEX Weather Data Model",
+"type": "object",
+"properties": {
+	"type": {
+	  "type": "array",
+	  "items": [
+		{
+		  "type": "string",
+		  "description": "ADEX Data Model name. It has to be Weather"
+		},
+		{
+		  "type": "string",
+		  "description": "ADEX Entity type. It has to be Resource"
+		}
+	  ]
+	},
+	"observationDateTime": {
+	  "type": "string",
+	  "format": "date-time",
+	  "description": "Last reported time of observation."
+	},
+	"localeInfo": {
+	  "type": "object",
+	  "description": "Locale information corresponding to this observation.",
+	  "properties": {
+		"subdistrictName": {
+		  "type": "string",
+		  "description": "Name of the subdistrict corresponding to this observation. A subdistrict is also called as a tehsil, mandal, tahsil, tahasil, taluka, taluk, or taluq across the Indian states."
+		},
+		"wardName": {
+		  "type": "string",
+		  "description": "Ward name corresponding to this observation."
+		},
+		"clusterCode": {
+		  "type": "string",
+		  "description": "The cluster code corresponding to this observation."
+		},
+		"clusterName": {
+		  "type": "string",
+		  "description": "Name of the cluster corresponding to this observation. A cluster or a firkas represents a group of villages."
+		},
+		"zoneID": {
+		  "type": "string",
+		  "description": "Zone ID corresponding to this observation."
+		},
+		"districtCode": {
+		  "type": "string",
+		  "description": "The district code corresponding to this observation."
+		},
+		"districtName": {
+		  "type": "string",
+		  "description": "Name of the district corresponding to this observation."
+		},
+		"countryCode": {
+		  "type": "string",
+		  "description": "The country code corresponding to this observation."
+		},
+		"zoneName": {
+		  "type": "string",
+		  "description": "Zone name corresponding to this observation."
+		},
+		"subdistrictCode": {
+		  "type": "string",
+		  "description": "The subdistrict code corresponding to this observation."
+		},
+		"wardID": {
+		  "type": "string",
+		  "description": "Ward ID corresponding to this observation."
+		},
+		"villageName": {
+		  "type": "string",
+		  "description": "Name of the village corresponding to this observation."
+		},
+		"stateCode": {
+		  "type": "string",
+		  "description": "The state code corresponding to this observation."
+		},
+		"revenueDivisionCode": {
+		  "type": "string",
+		  "description": "The revenue division code corresponding to this observation"
+		},
+		"villageCode": {
+		  "type": "string",
+		  "description": "The village code corresponding to this observation."
+		},
+		"revenueDivision": {
+		  "type": "string",
+		  "description": "Name of the revenue division in a district corresponding to this observation."
+		},
+		"stateName": {
+		  "type": "string",
+		  "description": "Name of the state corresponding to this observation."
+		},
+		"countryName": {
+		  "type": "string",
+		  "description": "Name of the country corresponding to this observation."
+		}
+	  }
+	},
+	"relativeHumidity": {
+	  "type": "object",
+	  "description": "Observed instantaneous relative humidity (water vapour in air).",
+	  "properties": {
+		"avgOverTime": {
+		  "type": "number",
+		  "description": "Describes the average value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value",
+		  "unitCode": "P1",
+		  "unitText": "percent"
+		},
+		"maxOverTime": {
+		  "type": "number",
+		  "description": "Describes the maximum value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value",
+		  "unitCode": "P1",
+		  "unitText": "percent"
+		},
+		"instValue": {
+		  "type": "number",
+		  "description": "Describes the instantaneous value (associated with the current timestamp) of a time varying quantity.",
+		  "unitCode": "P1",
+		  "unitText": "percent"
+		},
+		"minOverTime": {
+		  "type": "number",
+		  "description": "Describes the minimum value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value",
+		  "unitCode": "P1",
+		  "unitText": "percent"
+		}
+	  }
+	},
+	"atmosphericPressure": {
+	  "type": "number",
+	  "description": "Observed air (atmospheric or barometric) pressure.",
+	  "unitCode": "MBR",
+	  "unitText": "millibar (mbar)"
+	},
+	"airTemperature": {
+	  "type": "object",
+	  "description": "Observed value of air temperature. Value is an object containing attributes representing statistical aggregates derived from past data.",
+	  "properties": {
+		"avgOverTime": {
+		  "type": "number",
+		  "description": "Describes the average value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value",
+		  "unitCode": "CEL",
+		  "unitText": "degree Celsius (C)"
+		},
+		"maxOverTime": {
+		  "type": "number",
+		  "description": "Describes the maximum value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value",
+		  "unitCode": "CEL",
+		  "unitText": "degree Celsius (C)"
+		},
+		"instValue": {
+		  "type": "number",
+		  "description": "Describes the instantaneous value (associated with the current timestamp) of a time varying quantity.",
+		  "unitCode": "CEL",
+		  "unitText": "degree Celsius (C)"
+		},
+		"minOverTime": {
+		  "type": "number",
+		  "description": "Describes the minimum value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value",
+		  "unitCode": "CEL",
+		  "unitText": "degree Celsius (C)"
+		}
+	  }
+	},
+	"gustSpeed": {
+	  "type": "number",
+	  "description": "A sudden burst of high-speed wind over the observed average wind speed lasting only for a few seconds.",
+	  "unitCode": "KMH",
+	  "unitText": "kilometre per hour"
+	},
+	"dewPoint": {
+	  "type": "number",
+	  "description": "Observed temperature to which air must be cooled to become saturated with water vapor.",
+	  "unitCode": "CEL",
+	  "unitText": "degree Celsius (C)"
+	},
+	"weatherType": {
+	  "type": "string",
+	  "description": "Observed weather type or status. Represented by a comma separated list of weather types, e.g., cloudy, sunny etc."
+	},
+	"windDirection": {
+	  "type": "number",
+	  "description": "Observed wind direction. Measured in degrees clockwise from due north.",
+	  "unitCode": "DD",
+	  "unitText": "degree"
+	},
+	"relativeHumidityForecast": {
+	  "type": "number",
+	  "description": "Forecasted relative humidity (water vapour in air) over a certain duration in future."
+	},
+	"windSpeed": {
+	  "type": "object",
+	  "description": "Observed wind speed.",
+	  "properties": {
+		"avgOverTime": {
+		  "type": "number",
+		  "description": "Describes the average value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value",
+		  "unitCode": "MTS",
+		  "unitText": "metre per second"
+		},
+		"maxOverTime": {
+		  "type": "number",
+		  "description": "Describes the maximum value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value",
+		  "unitCode": "MTS",
+		  "unitText": "metre per second"
+		},
+		"instValue": {
+		  "type": "number",
+		  "description": "Describes the instantaneous value (associated with the current timestamp) of a time varying quantity.",
+		  "unitCode": "MTS",
+		  "unitText": "metre per second"
+		},
+		"minOverTime": {
+		  "type": "number",
+		  "description": "Describes the minimum value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value",
+		  "unitCode": "MTS",
+		  "unitText": "metre per second"
+		}
+	  }
+	},
+	"precipitationForecast": {
+	  "type": "number",
+	  "description": "Forecasted rainfall over a certain duration in future.",
+	  "unitCode": "MMT",
+	  "unitText": "millimetre"
+	},
+	"aqiMajorPollutantForecast": {
+	  "type": "string",
+	  "description": "Forecasted major air pollutant in the Air Quality Index (AQI) over a certain duration in future.."
+	},
+	"season": {
+	  "type": "string",
+	  "description": "Represents specific time of the year that has distinct weather patterns and conditions, such as summer, autumn (fall), etc."
+	},
+	"illuminance": {
+	  "type": "object",
+	  "description": "Observed instantaneous ambient light intensity.",
+	  "properties": {
+		"avgOverTime": {
+		  "type": "number",
+		  "description": "Describes the average value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value",
+		  "unitCode": "LUX",
+		  "unitText": "lux"
+		},
+		"maxOverTime": {
+		  "type": "number",
+		  "description": "Describes the maximum value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value",
+		  "unitCode": "LUX",
+		  "unitText": "lux"
+		},
+		"instValue": {
+		  "type": "number",
+		  "description": "Describes the instantaneous value (associated with the current timestamp) of a time varying quantity.",
+		  "unitCode": "LUX",
+		  "unitText": "lux"
+		},
+		"minOverTime": {
+		  "type": "number",
+		  "description": "Describes the minimum value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value",
+		  "unitCode": "LUX",
+		  "unitText": "lux"
+		}
+	  }
+	},
+	"airQualityIndex": {
+	  "type": "number",
+	  "description": "Overall Air Quality Index (AQI) for the observed air quality.",
+	  "unitCode": "C62",
+	  "unitText": "dimensionless"
+	},
+	"aqiMajorPollutant": {
+	  "type": "string",
+	  "description": "Major pollutant in the Air Quality Index (AQI).."
+	},
+	"airTemperatureForecast": {
+	  "type": "number",
+	  "description": "Forecasted value of air temperature over a certain duration in future.",
+	  "unitCode": "CEL",
+	  "unitText": "degree Celsius"
+	},
+	"precipitation": {
+	  "type": "number",
+	  "description": "Observed precipitation/rainfall level over a given duration.",
+	  "aggregationDuration": 24,
+	  "unitCode": "MMT",
+	  "unitText": "millimetre" 
+	},
+	"solarRadiation": {
+	  "type": "number",
+	  "description": "The number of photons that are being emitted by the sun.",
+	  "unitCode": "HTZ",
+	  "unitText": "hertz"
+	},
+	"airQualityIndexForecast": {
+	  "type": "number",
+	  "description": "Forecasted overall Air Quality Index (AQI) over a certain duration in future.",
+	  "unitCode": "C62",
+	  "unitText": "dimensionless"
+	}
+},
+"additionalProperties": false,
+"required": [
+	"id",
+	"observationDateTime",
+	"relativeHumidity",
+	"airTemperature",
+	"precipitation",
+	"districtCode",
+	"subDistrictName",
+	"subDistrictCode"
+],
+"description": "Json Schema for Weather data details in Khammam district of Telangana."
+}

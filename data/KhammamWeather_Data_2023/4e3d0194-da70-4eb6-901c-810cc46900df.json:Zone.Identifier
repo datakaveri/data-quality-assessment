@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://dataexplorer.adex.org.in/
+HostUrl=https://s3-ap-south-1-prod-adex-rs-async.s3.ap-south-1.amazonaws.com/254e7faa-08d8-49f2-a3b9-c250001a0e31?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20231013T073334Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=AKIAROAMFPEMV4SNRBYV%2F20231013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=6a13a4fc00d6517a4ef94c4572d3943fe1b4865f026b85f3610a47752cc4925c

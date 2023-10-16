@@ -4,12 +4,9 @@ from sklearn.preprocessing import MinMaxScaler
 import ijson
 import jsonschema
 import fastjsonschema
-# import json
-# import sys
 import logging
 import pandas as pd
 import re
-# import os
 
 # data handling functions
 #interarrival time creation
@@ -53,6 +50,8 @@ def iatRegularityMetricOld(dataframe):
 
 def iatRegularityMetric(dataframe):
     modeValue = dataframe['IAT'].mode()[0]
+    print(dataframe)
+    print(modeValue)
     goodCount = 0
     badCount = 0
     count = 0
@@ -93,7 +92,7 @@ def iatOutliersMetric(dataframe):
 # duplicate detection metric
 # must be called before inter-arrival time creation
 def duplicatesMetric(df, input1, input2):
-    dupeCount = len(df) - len(df.drop_duplicates(subset = [input1, input2]))
+    dupeCount = len(df) - len(df.drop_duplicates())
     totalDataPackets = len(df)
     duplicatesMetricScore = 1 - dupeCount/totalDataPackets
     return round(duplicatesMetricScore,3)
@@ -114,7 +113,6 @@ def validate_data_with_schema(dataF, schema):
             data_packet = record
             try:
                 fastjsonschema.validate(schema, data_packet)
-
             except fastjsonschema.exceptions.JsonSchemaValueException as errV:
                 logging.debug ("Validation Error Occured")
                #v = jsonschema.Draft7Validator(schema, types=(), format_checker=None)
@@ -124,13 +122,14 @@ def validate_data_with_schema(dataF, schema):
                 if len(errors) > 0:
                     err_count = err_count + 1
                 
-               #err_data_arr.append(data_packet)
+                    err_data_arr.append(data_packet)
                #To track if 'Additional Properties' error occured
                 flag_0 = 0
                #To track if 'Required Properties' error occured
                 flag_1 = 0
                 for error in errors:
                     logging.debug (error.message)
+                    print(error.message)
                     z = re.match("(Additional properties)", error.message)
                     if z:
                       #logging.debug(z.groups())
@@ -145,7 +144,10 @@ def validate_data_with_schema(dataF, schema):
             except jsonschema.exceptions.SchemaError as errS:
                 logging.debug ("Schema Error Occured")
                 logging.debug (errS.message)
-        
+    print("Format Adherence", err_count)
+    # print("Data Packets", err_data_arr)
+    print("Additional Attributes Error Count", additional_prop_err_count)
+    print("MandatoryAttributes Attributes Error Count", req_prop_err_count)
     return num_samples, err_count, err_data_arr, additional_prop_err_count, req_prop_err_count
 
 def validate_requiredFields(dataF, setReqd):
@@ -166,4 +168,6 @@ def validate_requiredFields(dataF, setReqd):
             diffSet = set(setReqd) - set(setRecd)
             logging.debug("Difference from Required Fields for this packet: "+str(diffSet))
             num_missing_prop = num_missing_prop + len(diffSet)
+    print('Number Missing Properties', num_missing_prop)
+    print('Number of Samples', num_samples)
     return num_samples, num_missing_prop
