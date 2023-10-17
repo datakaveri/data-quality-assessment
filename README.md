@@ -8,7 +8,7 @@ For each of the metrics that are used to quantify the quality of a dataset, the 
 Currently, the tool is able to assess six parameters, namely:
 
 - Regularity of Inter-Arrival Time
-- Data Source Uptime
+- Outliers of Inter-Arrival Time
 - Absence of Duplicate Values
 - Adherence to Attribute Format
 - Absence of Unknown Attributes
