@@ -19,13 +19,13 @@ A note to remember is that each dataset has a linked JSON Schema that defines th
 
 ### Regularity of Inter-Arrival Time
 
-The regularity metric of the inter-arrival time conveys how uniform this time interval is for a dataset in
-relation to the expected behaviour. This metric measures the proximity of the spread of the normal distribution to the mode.
+The regularity metric of the inter-arrival time is an evaluation of the uniformity of time intervals between receipt of consecutive data packets transmitted by IoT sensors. 
 
 
-### Data Source Uptime
+### Outliers of Inter-Arrival Time
 
-Data Source uptime is defined as the duration in which the sensor is actively sending data packets at the expected time intervals. This includes an analysis of the downtime of the sensors.
+The outlier metric of the inter-arrival time is an evaluation of the number of IAT values that show a significant deviation from the expected behaviour.
+
 
 ### Duplicate Presence
 
@@ -61,7 +61,7 @@ pip install .
 Clone the repo from:
 
 ``` console
-git clone https://github.com/novoneel-iudx/data-quality-assessment.git
+git clone https://github.com/datakaveri/data-quality-assessment.git
 ```
 
 ### Required libraries and packages
