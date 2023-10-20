@@ -130,7 +130,7 @@ def validate_data_with_schema(dataF, schema):
                 flag_1 = 0
                 for error in errors:
                     logging.debug (error.message)
-                    print(error.message)
+                    # print(error.message)
                     z = re.match("(Additional properties)", error.message)
                     if z:
                       #logging.debug(z.groups())

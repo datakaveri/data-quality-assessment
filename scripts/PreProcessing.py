@@ -92,7 +92,7 @@ def timeRange(dataframe):
     else:
         return
 #dropping duplicates
-def dropDupes(dataframe, input1, input2):
+def dropDupes(dataframe):
     # dataName = dataDict['fileName']
     dfLen1 = len(dataframe)
     # dfDrop = dataframe.drop_duplicates(subset = [input1, input2], inplace = False, ignore_index = True)

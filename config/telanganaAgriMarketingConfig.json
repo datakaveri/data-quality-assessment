@@ -1,0 +1,16 @@
+{
+    "datasetName": "Marketing Information from AMC in Telangana",
+    "URL": "https://dataexplorer.adex.org.in/dataset/tsmarketing.in-fb9a687092654eef990c3471ab50a5910fd08d12-rs.adex.org.in-telangana-amc-info",
+    "folderName": "AgriMarketingData_2023",
+    "dataFileNameJSON": "telanganaAgriMarketing.json",
+    "schemaFileName": "schema_ADeXAgriMarketing.json",
+    "duplicateDetection": {
+        "inputFields": []
+    },
+    "interArrivalTime": {
+        "inputFields": [
+            "id",
+            "observationDateTime"
+            ]
+    }
+}

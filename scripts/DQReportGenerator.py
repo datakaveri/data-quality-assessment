@@ -125,7 +125,7 @@ while schemaInputValidity == 0:
 
 # ### Running data preprocessing functions
 #dropping duplicates
-dfDropped, dupeCount = pp.dropDupes(dfRaw, input1, input2)
+dfDropped, dupeCount = pp.dropDupes(dfRaw)
 #cleaning dataframe
 dateTimeColumn = 'observationDateTime'
 if dateTimeColumn in dfRaw.columns:
@@ -260,16 +260,19 @@ fileNameNoExt = os.path.splitext(os.path.basename(fileName))[0]
 
 def create_title_card(pdf):
     # pdf.SetX(180)
-    pdf.image("../plots/pretty/iudx.png", 10, 5, 35)
+    pdf.image("../plots/pretty/iisc-logo.png", 5, 5, 15)
+    pdf.image("../plots/pretty/govt-logo.png", 95, 5, 13)
+    pdf.image("../plots/pretty/adex-logo.png", 175, 5, 30)
     pdf.set_font('times', 'b', 22)  
-    pdf.set_x(60)
+    pdf.ln(10)
+    pdf.set_x(70)
     pdf.write(5, "Data Quality Report")
     pdf.ln(10)
     # pdf.cell(20, 10, 'Title', 1, 1, 'R')
     pdf.set_font('times', '', 12)
     # pdf.write(4, f'Dataset: {dataSetName}')
     # pdf.set_x(120)
-    pdf.ln(7)
+    # pdf.ln(7)
     pdf.write(5, 'Dataset: ')
     pdf.set_text_color(r = 0, g = 0, b = 105)
     pdf.cell(10,5, f'{datasetName}', link = URL, align ='L')
@@ -281,13 +284,15 @@ def create_title_card(pdf):
     dateTimeColumn = 'observationDateTime'
     if dateTimeColumn in dfRaw.columns:
         pdf.cell(15, 5, f'Number of Data Packets: {numPackets}   |   Start Time: {startTime}   |   End Time: {endTime}')
+    else:
+        pdf.write(5, f'Number of Data Packets: {numPackets}')
     # pdf.ln(5)
     # pdf.set_x(120)
     # pdf.write(5, f'End Time: {endTime}')
     # pdf.ln(5)
     # pdf.set_x(120)
     # pdf.write(5, f'Number of Data Packets: {numPackets}')
-    pdf.line(11, 46, 200, 46)
+    pdf.line(11, 51, 200, 51)
 
 
 def create_heading(title, pdf):
@@ -301,7 +306,7 @@ def create_heading(title, pdf):
 class pdf(FPDF):
     def add_page(this,  same= True, orientation=''):
         FPDF.add_page(self, same= same, orientation=orientation)
-
+ 
     def footer(self):
             # Page number with condition isCover
             self.set_y(-15) # Position at 1.5 cm from bottom
@@ -367,10 +372,10 @@ def create_analytics_report_schema(filename=f"{fileNameNoExt}_DQReport.pdf"):
     #adding bars to the table
     # pdf.image("../plots/bars/regularitybar.png", 107, 76, 95)
     # pdf.image("../plots/bars/outliersbar.png", 107, 94, 95)
-    pdf.image("../plots/bars/dupebar.png", 107, 76, 95)
-    pdf.image("../plots/bars/formatbar.png", 107, 94, 95)
-    pdf.image("../plots/bars/addnlbar.png", 107, 110, 95)
-    pdf.image("../plots/bars/compbar.png", 107, 127, 95)
+    pdf.image("../plots/bars/dupebar.png", 107, 80, 95)
+    pdf.image("../plots/bars/formatbar.png", 107, 98, 95)
+    pdf.image("../plots/bars/addnlbar.png", 107, 114, 95)
+    pdf.image("../plots/bars/compbar.png", 107, 131, 95)
     
     pdf.ln(10)
     pdf.write(5, 'The Overall Data Quality Score of the dataset, computed by calculating an average of the above scores is:') 
@@ -386,7 +391,7 @@ def create_analytics_report_schema(filename=f"{fileNameNoExt}_DQReport.pdf"):
     
     pdf.write(5, 'This data quality assessment report shows the score for')
     pdf.ln(5)
-    pdf.write(5, 'six metrics that contribute to data quality.')
+    pdf.write(5, 'four metrics that contribute to data quality.')
     pdf.ln(10)
     pdf.write(5, 'The chart on the right shows an overview of the data') 
     pdf.ln(5)              
@@ -523,9 +528,9 @@ def create_analytics_report_schema(filename=f"{fileNameNoExt}_DQReport.pdf"):
     pdf.ln(10)
     pdf.write(5, 'This metric conveys how many duplicate data points are present in the dataset.')
     pdf.ln(10)
-    pdf.write(5, 'The duplicates in a dataset are identified using the timestamp and any one unique identifier for each data packet. For example: AQM Sensor ID, Vehicle ID, etc. may be used as unique identifiers for a dataset.')
+    pdf.write(5, 'The duplicates in a dataset are identified as duplicates if any two data packets are received with exactly the same values for all the attributes within that data packet.')
     pdf.ln(5)
-    pdf.write(5, 'If any unique identifier sends two data packets with the same timestamp, then one of the two data packets is counted as a duplicate. This is because it is assumed that any one device or sensor may not send two data packets with a single timestamp.')
+    # pdf.write(5, 'If any unique identifier sends two data packets with the same timestamp, then one of the two data packets is counted as a duplicate. This is because it is assumed that any one device or sensor may not send two data packets with a single timestamp.')
     # pdf.ln(10)
     # pdf.write(5, 'For this dataset, the attributes chosen for deduplication are: ')
     # pdf.ln(10)
@@ -535,7 +540,7 @@ def create_analytics_report_schema(filename=f"{fileNameNoExt}_DQReport.pdf"):
     # pdf.write(5, f'{input2}')
     pdf.ln(10)
     pdf.set_font('times', '', 12)
-    pdf.write(5, f'Using these attributes, {dupeCount} duplicate data packets have been identified in the dataset.')
+    pdf.write(5, f'{dupeCount} duplicate data packets have been identified in the dataset.')
     pdf.ln(5)
     pdf.write(5, 'This metric is calculated on a score from 0 to 1, where a score of 0 indicates that all the data packets are duplicates and a score of 1 indicates that none of the data packets are duplicates.')
     pdf.ln(5)
