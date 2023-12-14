@@ -7,7 +7,6 @@ dfRaw, input1, input2, datasetName, fileName, URL, alpha, schema = pp.readFile(c
 
 # In[5]:
 
-
 print(fileName)
 print(datasetName)
 # print(os.path.splitext(os.path.basename(fileName))[0])
@@ -30,7 +29,7 @@ import jsonschema
 import fastjsonschema
 import json
 import sys
-import requests
+# import requests
 import re
 import logging
 import os
@@ -737,27 +736,27 @@ def create_analytics_report(filename=f"{fileNameNoExt}_DQReport.pdf"):
     '''Seventh Page'''
     
     if 'AQM' in fileName:
-	    pdf.add_page()    
+        pdf.add_page()    
 	    
-	    create_heading('Additional Information about the Data', pdf)
-	    pdf.ln(5)
-	    pdf.write(5, 'In this section are some useful visualizations that describe certain data statistics that can be used by the end user to determine the usability of the data. These subheadings may not explicitly fall under the umbrella of data quality and so are not counted as part of the overall score.')
+        create_heading('Additional Information about the Data', pdf)
+        pdf.ln(5)
+        pdf.write(5, 'In this section are some useful visualizations that describe certain data statistics that can be used by the end user to determine the usability of the data. These subheadings may not explicitly fall under the umbrella of data quality and so are not counted as part of the overall score.')
 	    
 
-	    create_heading('Correlation', pdf)
-	    pdf.ln(5)
-	    pdf.write(5, "Correlation here refers to a causal relationship between different attributes found in the dataset. This relationship might be either directly or inversely proportional.")
-	    pdf.ln(5)
-	    pdf.write(5, "This relationship is shown in the heat map below, with darker colors referring to a stronger direct relationship, and lighter colors referring to a stronger inverse relationship.")
-	    pdf.image("../plots/corrPlot.jpg",x = 20, y = 80, w = 160)
-	    pdf.ln(80)
+        create_heading('Correlation', pdf)
+        pdf.ln(5)
+        pdf.write(5, "Correlation here refers to a causal relationship between different attributes found in the dataset. This relationship might be either directly or inversely proportional.")
+        pdf.ln(5)
+        pdf.write(5, "This relationship is shown in the heat map below, with darker colors referring to a stronger direct relationship, and lighter colors referring to a stronger inverse relationship.")
+        pdf.image("../plots/corrPlot.jpg",x = 20, y = 80, w = 160)
+        pdf.ln(80)
 
 
-	    create_heading('Cardinality', pdf)
-	    pdf.ln(5)
-	    pdf.write(5, 'Cardinality of a dataset is defined here as the number of unique values of in that dataset. A higher value of cardinality indicates a higher proportion of unique values.')
-	    pdf.ln(5)
-	    pdf.image("../plots/cardPlot.png",x = 35, y = 180, w = 140)
+        create_heading('Cardinality', pdf)
+        pdf.ln(5)
+        pdf.write(5, 'Cardinality of a dataset is defined here as the number of unique values of in that dataset. A higher value of cardinality indicates a higher proportion of unique values.')
+        pdf.ln(5)
+        pdf.image("../plots/cardPlot.png",x = 35, y = 180, w = 140)
     
     pdf.output('../outputReport/' + filename, 'F')
     # pdf.output(fileName, 'F')

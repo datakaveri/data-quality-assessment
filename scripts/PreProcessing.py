@@ -2,14 +2,14 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
-import matplotlib
-import sys
+# import matplotlib
+# import sys
 import json
-from pandas.io.json import json_normalize
-import os
-import math
+from pandas import json_normalize
+# import os
+# import math
 # import panel as pn
-import hvplot.pandas
+# import hvplot.pandas
 from scipy.stats import norm
 import seaborn as sns
 from numpy import percentile
@@ -224,7 +224,7 @@ def plotDupesID(df, df1, input1):
     #removing duplicates
     while i < len(sensorClean['valueDupe']): 
         if sensorClean['valueDupe'][i] > sensorClean['valueClean'][i]:
-            sensorDupePlot = sensorDupePlot.append({input1 : sensorClean[input1][i], 'valueDupe' : sensorClean['valueDupe'][i], 'valueClean' : sensorClean['valueClean'][i]}, ignore_index = True)
+            sensorDupePlot = sensorDupePlot._append({input1 : sensorClean[input1][i], 'valueDupe' : sensorClean['valueDupe'][i], 'valueClean' : sensorClean['valueClean'][i]}, ignore_index = True)
         i+=1
     else:
         i+=1
@@ -246,7 +246,7 @@ def plotDupesID(df, df1, input1):
     bar_chart.render_to_png('../plots/dupePlotID.png')
     return 
 
-def plotDupes(dataframe):
+def plotDupes(dataframe, input1, input2):
     preDedupe = len(dataframe)
     dfDrop = dataframe.drop_duplicates(subset = [input1, input2], inplace = False, ignore_index = True)
     postDedupe = len(dfDrop)
