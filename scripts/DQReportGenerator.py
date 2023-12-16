@@ -137,8 +137,8 @@ dfInliers, lowerOutliers, upperOutliers = pp.outRemove(dfClean, datasetName, inp
 # print(dfInliers, lowerOutliers, upperOutliers)
 
 #datastats before/after removing outliers
-meanStatOut, medianStatOut, modeStatOut, stdStatOut, varianceStatOut, skewStatOut, kurtosisStatOut = pp.dataStats(dfClean)
-meanStatIn, medianStatIn, modeStatIn, stdStatIn, varianceStatIn, skewStatIn, kurtosisStatIn = pp.dataStats(dfInliers)
+# meanStatOut, medianStatOut, modeStatOut, stdStatOut, varianceStatOut, skewStatOut, kurtosisStatOut = pp.dataStats(dfClean)
+# meanStatIn, medianStatIn, modeStatIn, stdStatIn, varianceStatIn, skewStatIn, kurtosisStatIn = pp.dataStats(dfInliers)
 
 # print(dfClean['IAT'])
 # dfClean.to_csv('dfCleantest.csv')
@@ -240,10 +240,10 @@ pp.piePlot(dfRaw, dfClean, 'dupe')
 #     pp.corr_heatmap(dfDropped)
 
 #skewness and kurtosis calculated for inlier values only
-muFitIn, stdFitIn = pp.normalFitPlot(dfInliers)
+# muFitIn, stdFitIn = pp.normalFitPlot(dfInliers)
 
 #skewness and kurtosis calculated for outlier values included
-muFitOut, stdFitOut = pp.normalFitPlot(dfClean)
+# muFitOut, stdFitOut = pp.normalFitPlot(dfClean)
 
 from fpdf import FPDF
 from fpdf import *

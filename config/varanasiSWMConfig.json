@@ -1,0 +1,24 @@
+{
+  "datasetName": "Realtime Positions for SWM Vehicles in Varanasi City",
+  "URL": "https://catalogue.cos.iudx.org.in/dataset/a542e1a6-1ce9-4b14-a756-e192324b2f45",
+  "folderName": "VaranasiSWM_Data_2022",
+  "dataFileNameJSON": "varanasiJanSec1SWMData.json",
+  "schemaFileName": "schema_WasteManagement.json",
+  "duplicateDetection": {
+    "inputFields": [
+      "",
+      ""
+    ]
+  },
+  "interArrivalTime": {
+    "inputFields": [
+      "license_plate",
+      "observationDateTime"
+    ],
+    "alpha": [
+      0.25,
+      0.5,
+      0.75
+    ]
+  }
+}
