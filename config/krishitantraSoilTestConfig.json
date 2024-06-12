@@ -1,0 +1,13 @@
+{
+  "datasetName": "Information of soil tests of cropland in Telangana state.",
+  "URL": "https://dataexplorer.ts.adex.org.in/dataset/e59365a9-7808-450d-8a42-3269dfcd7e8b",
+  "folderName": "KrishitantraSoilTest_Data_2022",
+  "dataFileNameJSON": "Krishitantra_Jul22.json",
+  "schemaFileName": "schema_Krishitantra.jsonld",
+  "duplicateDetection": {
+    "inputFields": []
+  },
+  "interArrivalTime": {
+    "inputFields": ["id", "observationDateTime"]
+  }
+}

@@ -1,0 +1,193 @@
+Chilli Sampling for Quality in Telangana State
+{
+      "$id": "https://agrijson.org/AgriMarket",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+            "id": {
+                  "type": "string"
+            },
+            "sampleID": {
+                  "anyOf": [
+                        {
+                              "type": "string"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "warehouseName": {
+                  "anyOf": [
+                        {
+                              "type": "string"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "arrivalQuantity": {
+                  "anyOf": [
+                        {
+                              "type": "number"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "productGrade": {
+                  "anyOf": [
+                        {
+                              "type": "string"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "subdistrictName": {
+                  "anyOf": [
+                        {
+                              "type": "string"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "locality": {
+                  "anyOf": [
+                        {
+                              "type": "string"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "districtName": {
+                  "anyOf": [
+                        {
+                              "type": "string"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "villageName": {
+                  "anyOf": [
+                        {
+                              "type": "string"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "brokenProduce": {
+                  "anyOf": [
+                        {
+                              "type": "number"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "ddp": {
+                  "anyOf": [
+                        {
+                              "type": "number"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "foreignMatter": {
+                  "anyOf": [
+                        {
+                              "type": "number"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "fineProduce": {
+                  "anyOf": [
+                        {
+                              "type": "number"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "mip": {
+                  "anyOf": [
+                        {
+                              "type": "number"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "pows": {
+                  "anyOf": [
+                        {
+                              "type": "number"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "moistureLevel": {
+                  "anyOf": [
+                        {
+                              "type": "number"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "observationDateTime": {
+                  "anyOf": [
+                        {
+                              "type": "string",
+                              "format": "date-time"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            }
+      },
+      "required": [
+            "id",
+            "sampleID",
+            "warehouseName",
+            "stateName",
+            "arrivalQuantity",
+            "productGrade",
+            "subdistrictName",
+            "locality",
+            "districtName",
+            "villageName",
+            "brokenProduce",
+            "ddp",
+            "foreignMatter",
+            "fineProduce",
+            "mip",
+            "pows",
+            "moistureLevel",
+            "observationDateTime"
+      ],
+      "additionalProperties": false
+}

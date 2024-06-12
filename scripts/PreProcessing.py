@@ -98,6 +98,7 @@ def dropDupes(dataframe):
     # dfDrop = dataframe.drop_duplicates(subset = [input1, input2], inplace = False, ignore_index = True)
     # dfDrop = dataframe.drop_duplicates(inplace = False, ignore_index = True)
     dfDrop = dataframe.loc[dataframe.astype(str).drop_duplicates().index]
+    print(dfDrop)
     dfLen2 = len(dfDrop)
     dupeCount = dfLen1 - dfLen2
     p1 = print(str(dupeCount) + ' duplicate rows have been removed.') 

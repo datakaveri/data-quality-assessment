@@ -62,6 +62,7 @@ while schemaInputValidity == 0:
         num_samples, err_count, err_data_arr, add_err_count, req_err_cnt = mm.validate_data_with_schema(dataFile, schema)
 
         format_adherence_metric = (1 - (err_count-add_err_count-req_err_cnt)/num_samples)
+        # format_adherence_metric = (1 - (err_count)/num_samples)
         #logging.debug(err_data_arr)
         logging.debug('###########################################################################')
         logging.debug("Total Samples: " + str(num_samples))

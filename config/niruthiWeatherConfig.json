@@ -1,0 +1,13 @@
+{
+  "datasetName": "Weather Information in Niruthi District",
+  "URL": "https://dataexplorer.ts.adex.org.in/dataset/e4917519-c5fc-4bd9-9f89-0dd22aa54eec",
+  "folderName": "NiruthiWeather_Data_23_24",
+  "dataFileNameJSON": "Niruthi_April24.json",
+  "schemaFileName": "schema_NiruthiWeather.jsonld",
+  "duplicateDetection": {
+    "inputFields": []
+  },
+  "interArrivalTime": {
+    "inputFields": ["id", "observationDateTime"]
+  }
+}

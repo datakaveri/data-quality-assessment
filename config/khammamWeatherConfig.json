@@ -3,15 +3,11 @@
   "URL": "https://dataexplorer.adex.org.in/dataset/tsdps.telangana.gov.in-b1c9bd3e24bc3db7cbaef607e3907a02133208ba-rs.adex.org.in-khammam-env-weather",
   "folderName": "KhammamWeather_Data_2023",
   "dataFileNameJSON": "khammamWeather.json",
-  "schemaFileName": "schema_ADeXWeather.json",
-    "duplicateDetection": {
-        "inputFields": [
-        ]
-    },
-    "interArrivalTime": {
-        "inputFields": [
-            "id",
-            "observationDateTime"
-            ]
-        }
+  "schemaFileName": "schema_WeatherKhammam.jsonld",
+  "duplicateDetection": {
+    "inputFields": []
+  },
+  "interArrivalTime": {
+    "inputFields": ["id", "observationDateTime"]
+  }
 }

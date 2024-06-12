@@ -1,0 +1,39 @@
+{
+    "fileName": "Historical Rainfall Information in Khammam District",
+    "startTime": "2021-01-01 00:00:00",
+    "endTime": "2021-12-31 00:00:00",
+    "No. of data packets": 7665,
+    "avgDataQualityScore": 1.0,
+    "Absence of Duplicate Values": {
+        "value": 1.0,
+        "deduplicationAttributes": [
+            "id",
+            "observationDateTime"
+        ],
+        "type": "number",
+        "metricLabel": "Duplicate Value Metric",
+        "metricMessage": "For this dataset, the duplicate value metric score is: 1.0.",
+        "description": "This metric is rated on a scale between 0 & 1; it is computed using the formula (1 - (No. of duplicate data packets/total no. of data packets)."
+    },
+    "Adherence to Attribute Format": {
+        "value": 1.0,
+        "type": "number",
+        "metricLabel": "Format Adherence Metric",
+        "metricMessage": "For this dataset, 1.0 is the format adherence",
+        "description": "The metric is rated on a scale between 0 & 1; computed using the formula (1 - (no. of format validity errors/total no. of data packets))."
+    },
+    "Absence of Unknown Attributes": {
+        "value": 1.0,
+        "type": "number",
+        "metricLabel": "Unknown Attributes Metric",
+        "metricMessage": "For this dataset, 1.0 is the value of the  additional fields absent metric.",
+        "description": "The metric is rated on a scale between 0 & 1; computed as (1 - r) where r is the ratio of packets with unknown attributes to the total number of packets."
+    },
+    "Adherence to Mandatory Attributes": {
+        "value": 1.0,
+        "type": "number",
+        "metricLabel": "Completeness Metric",
+        "metricMessage": "For this dataset, 1.0 is the value of the adherence to mandatory attributes metric.",
+        "description": "The metric is rated on a scale between 0 & 1; It is computed as follows: For each mandatory attribute, i, compute r(i) as the ratio of packets in which attribute i is missing. Then output 1 - average(r(i)) where the average is taken over all mandatory attributes."
+    }
+}

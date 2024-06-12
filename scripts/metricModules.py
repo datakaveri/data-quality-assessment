@@ -119,6 +119,7 @@ def validate_data_with_schema(dataF, schema):
                #v = jsonschema.Draft7Validator(schema, types=(), format_checker=None)
                 v = jsonschema.Draft7Validator(schema)
                 errors = list(v.iter_errors(data_packet))
+                # print(errors)
                 # errors = sorted(v.iter_errors(data_packet), key=lambda e: e.path)
                 if len(errors) > 0:
                     err_count = err_count + 1
@@ -130,7 +131,7 @@ def validate_data_with_schema(dataF, schema):
                 flag_1 = 0
                 for error in errors:
                     logging.debug (error.message)
-                    # print(error.message)
+                    print(error.message)
                     z = re.match("(Additional properties)", error.message)
                     if z:
                       #logging.debug(z.groups())
@@ -147,8 +148,8 @@ def validate_data_with_schema(dataF, schema):
                 logging.debug (errS.message)
     print("Format Adherence", err_count)
     # print("Data Packets", err_data_arr)
-    print("Additional Attributes Error Count", additional_prop_err_count)
-    print("MandatoryAttributes Attributes Error Count", req_prop_err_count)
+    print("Additional Properties Error Count", additional_prop_err_count)
+    print("Required Properties Error Count", req_prop_err_count)
     return num_samples, err_count, err_data_arr, additional_prop_err_count, req_prop_err_count
 
 def validate_requiredFields(dataF, setReqd):

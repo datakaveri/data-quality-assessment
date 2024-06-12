@@ -1,0 +1,13 @@
+{
+  "datasetName": "Historical Rainfall Information in Khammam District",
+  "URL": "https://dataexplorer.ts.adex.org.in/dataset/f5d4d767-dfdd-48b0-8afc-aa49da4c9776",
+  "folderName": "HistoricalRainfallKhammam_Data",
+  "dataFileNameJSON": "historicalRainfallKhammam_data_2022.json",
+  "schemaFileName": "schema_histRainfallKhammam.jsonld",
+  "duplicateDetection": {
+    "inputFields": []
+  },
+  "interArrivalTime": {
+    "inputFields": ["id", "observationDateTime"]
+  }
+}

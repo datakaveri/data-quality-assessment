@@ -1,0 +1,13 @@
+{
+  "datasetName": "Agriculture Subdistrict (ASD) Level Agromet Advisory Data in Telangana State",
+  "URL": "https://dataexplorer.ts.adex.org.in/dataset/5d97f1bc-d548-4d02-9fd1-0e6d0f8227dd",
+  "folderName": "AgrometASD",
+  "dataFileNameJSON": "ASD Level Agromet Telangana.json",
+  "schemaFileName": "schema_AgrometASDTelangana.jsonld",
+  "duplicateDetection": {
+    "inputFields": []
+  },
+  "interArrivalTime": {
+    "inputFields": ["id", "observationDateTime"]
+  }
+}

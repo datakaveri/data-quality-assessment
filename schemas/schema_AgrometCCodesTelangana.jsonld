@@ -1,0 +1,37 @@
+Commodity Codes for Agromet Advisory Data in Telangana State
+{
+      "$id": "https://agrijson.org/AgriAdvisory",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+            "id": {
+                  "type": "string"
+            },
+            "commodityCode": {
+                  "anyOf": [
+                        {
+                              "type": "string"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            },
+            "commodityName": {
+                  "anyOf": [
+                        {
+                              "type": "string"
+                        },
+                        {
+                              "type": "null"
+                        }
+                  ]
+            }
+      },
+      "required": [
+            "id",
+            "commodityCode",
+            "commodityName"
+      ],
+      "additionalProperties": false
+}

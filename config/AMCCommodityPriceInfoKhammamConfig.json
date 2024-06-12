@@ -1,0 +1,13 @@
+{
+  "datasetName": "AMC Commodity Price Information in Khammam District",
+  "URL": "https://dataexplorer.ts.adex.org.in/dataset/3f01f800-92d7-4ffa-afe3-7cb4fb8aa3ee",
+  "folderName": "AMCCommodityPriceInfo_Khammam",
+  "dataFileNameJSON": "AMCCommodityPriceInfoKhammam.json",
+  "schemaFileName": "schema_AMCKhammam.jsonld",
+  "duplicateDetection": {
+    "inputFields": []
+  },
+  "interArrivalTime": {
+    "inputFields": ["id", "observationDateTime"]
+  }
+}

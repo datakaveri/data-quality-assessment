@@ -1,0 +1,13 @@
+{
+  "datasetName": "Chilli Sampling by Digital Green in Telangana State",
+  "URL": "https://dataexplorer.ts.adex.org.in/dataset/90e216bc-8129-44be-a4ad-f4e8c1981b71",
+  "folderName": "ChilliSampling_Data_2024",
+  "dataFileNameJSON": "ChilliSampling_Apr24.json",
+  "schemaFileName": "schema_ChilliSampling.json",
+  "duplicateDetection": {
+    "inputFields": []
+  },
+  "interArrivalTime": {
+    "inputFields": ["id", "observationDateTime"]
+  }
+}
