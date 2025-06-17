@@ -1,0 +1,16 @@
+pandas
+numpy
+matplotlib
+seaborn
+scipy
+scikit-learn
+pygal
+fpdf
+ijson
+jsonschema
+fastjsonschema
+cairosvg
+pygal
+sphinx
+sphinx-autoapi
+sphinx-rtd-theme
