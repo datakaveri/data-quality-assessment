@@ -1,0 +1,16 @@
+pyproject.toml
+dist/
+plots/
+config/
+outputReports/
+scripts/__pycache__/
+scripts/.pytest_cache/
+scripts/.vscode/
+scripts/iudx/
+scripts/tests/
+data_quality_assessment_akash100.egg-info
+.pytest_cache/
+.github
+scripts/metrics/__pycache__/
+scripts/old/
+

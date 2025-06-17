@@ -1,0 +1,17 @@
+@echo off
+REM Build Sphinx documentation on Windows
+
+echo Building Sphinx documentation...
+sphinx-build -b html source build/html
+
+if %errorlevel% == 0 (
+    echo.
+    echo Documentation built successfully!
+    echo Open build/html/index.html to view the documentation.
+    echo.
+    echo To serve locally, run:
+    echo python -m http.server 8000 -d build/html
+) else (
+    echo.
+    echo Build failed with error code %errorlevel%
+)

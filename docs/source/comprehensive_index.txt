@@ -1,0 +1,71 @@
+Data Quality Assessment Documentation
+=====================================
+
+Welcome to the Data Quality Assessment project documentation.
+
+This documentation is automatically generated from the docstrings in your Python code, 
+providing a comprehensive reference for all modules, classes, and functions.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   api/index
+
+Overview
+========
+
+This project provides comprehensive tools for assessing data quality in various datasets. 
+The modules are organized to handle different aspects of data quality assessment.
+
+Quick Start
+===========
+
+.. code-block:: python
+
+   # Example usage (adjust based on your actual modules)
+   from scripts.your_module import YourClass
+   
+   # Initialize and use your classes/functions
+   assessor = YourClass(your_data)
+   result = assessor.assess()
+
+Features
+========
+
+* **Automated Documentation**: All docstrings are automatically converted to beautiful HTML documentation
+* **Interactive API Reference**: Browse all your modules, classes, and functions
+* **Search Functionality**: Quickly find what you need
+* **Cross-references**: Links between related functions and classes
+
+Module Structure
+================
+
+Your project modules are automatically documented in the API Reference section. 
+Each module's docstrings, including:
+
+* Module-level documentation
+* Class descriptions and methods
+* Function signatures and return types
+* Parameter descriptions
+* Usage examples
+* Notes and warnings
+
+Are all automatically extracted and formatted.
+
+API Reference
+=============
+
+The complete API reference with all your docstrings is available here:
+
+.. toctree::
+   :maxdepth: 3
+   
+   api/index
+
+Indices and Tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
