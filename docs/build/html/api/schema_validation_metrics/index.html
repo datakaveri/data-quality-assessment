@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>schema_validation_metrics &mdash; Data Quality Assessment 3.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://akash-suresh-kumar.github.io/data-quality-assessment/api/schema_validation_metrics/index.html" />
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=acc74ff5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="required_fields_validation" href="../required_fields_validation/index.html" />
+    <link rel="prev" title="test_duplicates_metrics" href="../test_duplicates_metrics/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Data Quality Assessment
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../main/index.html">main</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../main/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../main/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../main/index.html#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../PreProcessing/index.html">PreProcessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../PreProcessing/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PreProcessing/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PreProcessing/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.custom_style"><code class="docutils literal notranslate"><span class="pre">custom_style</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.readFile"><code class="docutils literal notranslate"><span class="pre">readFile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.timeRange"><code class="docutils literal notranslate"><span class="pre">timeRange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.dropDupes"><code class="docutils literal notranslate"><span class="pre">dropDupes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.outRemove"><code class="docutils literal notranslate"><span class="pre">outRemove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.dataStats"><code class="docutils literal notranslate"><span class="pre">dataStats()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.radarChart"><code class="docutils literal notranslate"><span class="pre">radarChart()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.bars"><code class="docutils literal notranslate"><span class="pre">bars()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.plotDupesID"><code class="docutils literal notranslate"><span class="pre">plotDupesID()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.plotDupes"><code class="docutils literal notranslate"><span class="pre">plotDupes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.IAThist"><code class="docutils literal notranslate"><span class="pre">IAThist()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.outScatterPlot"><code class="docutils literal notranslate"><span class="pre">outScatterPlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.boxPlot"><code class="docutils literal notranslate"><span class="pre">boxPlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.normalFitPlot"><code class="docutils literal notranslate"><span class="pre">normalFitPlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.piePlot"><code class="docutils literal notranslate"><span class="pre">piePlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.gaugePlot"><code class="docutils literal notranslate"><span class="pre">gaugePlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.outagePlot"><code class="docutils literal notranslate"><span class="pre">outagePlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.outliersPlot"><code class="docutils literal notranslate"><span class="pre">outliersPlot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../metricModules/index.html">metricModules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../metricModules/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metricModules/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.preProcess"><code class="docutils literal notranslate"><span class="pre">preProcess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.computeModeDeviation"><code class="docutils literal notranslate"><span class="pre">computeModeDeviation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.iatRegularityMetricOld"><code class="docutils literal notranslate"><span class="pre">iatRegularityMetricOld()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.iatRegularityMetric"><code class="docutils literal notranslate"><span class="pre">iatRegularityMetric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.iatOutliersMetric"><code class="docutils literal notranslate"><span class="pre">iatOutliersMetric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.duplicatesMetric"><code class="docutils literal notranslate"><span class="pre">duplicatesMetric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.validate_data_with_schema"><code class="docutils literal notranslate"><span class="pre">validate_data_with_schema()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.validate_requiredFields"><code class="docutils literal notranslate"><span class="pre">validate_requiredFields()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pdf_generation/index.html">pdf_generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pdf_generation/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pdf_generation/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pdf_generation/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pdf_generation/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.WIDTH"><code class="docutils literal notranslate"><span class="pre">WIDTH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.HEIGHT"><code class="docutils literal notranslate"><span class="pre">HEIGHT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.create_title_card"><code class="docutils literal notranslate"><span class="pre">create_title_card()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.create_heading"><code class="docutils literal notranslate"><span class="pre">create_heading()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.PDFReport"><code class="docutils literal notranslate"><span class="pre">PDFReport</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.PDFReport.add_page"><code class="docutils literal notranslate"><span class="pre">PDFReport.add_page()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.PDFReport.footer"><code class="docutils literal notranslate"><span class="pre">PDFReport.footer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.create_analytics_report_schema"><code class="docutils literal notranslate"><span class="pre">create_analytics_report_schema()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../DQReportGenerator/index.html">DQReportGenerator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../DQReportGenerator/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DQReportGenerator/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DQReportGenerator/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DQReportGenerator/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.configFile"><code class="docutils literal notranslate"><span class="pre">configFile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.numPackets"><code class="docutils literal notranslate"><span class="pre">numPackets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.schemaProvision"><code class="docutils literal notranslate"><span class="pre">schemaProvision</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.schemaInputValidity"><code class="docutils literal notranslate"><span class="pre">schemaInputValidity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.schemaFile"><code class="docutils literal notranslate"><span class="pre">schemaFile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.dfClean"><code class="docutils literal notranslate"><span class="pre">dfClean</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.regularityMetricScore"><code class="docutils literal notranslate"><span class="pre">regularityMetricScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.outliersMetricScore"><code class="docutils literal notranslate"><span class="pre">outliersMetricScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.dupeMetricScore"><code class="docutils literal notranslate"><span class="pre">dupeMetricScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.compMetricScore"><code class="docutils literal notranslate"><span class="pre">compMetricScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.formatMetricScore"><code class="docutils literal notranslate"><span class="pre">formatMetricScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.addnlAttrMetricScore"><code class="docutils literal notranslate"><span class="pre">addnlAttrMetricScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.avgDataQualityScore"><code class="docutils literal notranslate"><span class="pre">avgDataQualityScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.avgDataQualityPercent"><code class="docutils literal notranslate"><span class="pre">avgDataQualityPercent</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.WIDTH"><code class="docutils literal notranslate"><span class="pre">WIDTH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.HEIGHT"><code class="docutils literal notranslate"><span class="pre">HEIGHT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.fileNameNoExt"><code class="docutils literal notranslate"><span class="pre">fileNameNoExt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.create_title_card"><code class="docutils literal notranslate"><span class="pre">create_title_card()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.create_heading"><code class="docutils literal notranslate"><span class="pre">create_heading()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.pdf"><code class="docutils literal notranslate"><span class="pre">pdf</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.pdf.add_page"><code class="docutils literal notranslate"><span class="pre">pdf.add_page()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.pdf.footer"><code class="docutils literal notranslate"><span class="pre">pdf.footer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.create_analytics_report_schema"><code class="docutils literal notranslate"><span class="pre">create_analytics_report_schema()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.outputParamFV"><code class="docutils literal notranslate"><span class="pre">outputParamFV</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.myJSON"><code class="docutils literal notranslate"><span class="pre">myJSON</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.filename"><code class="docutils literal notranslate"><span class="pre">filename</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.jsonpath"><code class="docutils literal notranslate"><span class="pre">jsonpath</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_iat_outliers/index.html">test_iat_outliers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_iat_outliers/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_iat_outliers/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_iat_outliers/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_no_outliers_perfect_score"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_no_outliers_perfect_score()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_all_outliers_zero_score"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_all_outliers_zero_score()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_mixed_data_with_outliers"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_mixed_data_with_outliers()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_single_value"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_single_value()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_two_identical_values"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_two_identical_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_two_different_values"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_two_different_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_with_nan_values"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_with_nan_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_empty_dataframe_after_dropna"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_empty_dataframe_after_dropna()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_normal_distribution"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_normal_distribution()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_return_type_and_precision"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_return_type_and_precision()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_zero_mad_edge_case"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_zero_mad_edge_case()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_large_dataset"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_large_dataset()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_negative_values"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_negative_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_very_small_values"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_very_small_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.sample_dataframe"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.sample_dataframe()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_with_additional_columns"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_with_additional_columns()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../data_preprocessing/index.html">data_preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data_preprocessing/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_preprocessing/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../data_preprocessing/index.html#data_preprocessing.preProcess"><code class="docutils literal notranslate"><span class="pre">preProcess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../data_preprocessing/index.html#id0"><code class="docutils literal notranslate"><span class="pre">preProcess()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../duplicates_metrics/index.html">duplicates_metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../duplicates_metrics/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../duplicates_metrics/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../duplicates_metrics/index.html#duplicates_metrics.duplicatesMetric"><code class="docutils literal notranslate"><span class="pre">duplicatesMetric()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_iat_regularity/index.html">test_iat_regularity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_iat_regularity/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_iat_regularity/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_iat_regularity/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestComputeModeDeviation"><code class="docutils literal notranslate"><span class="pre">TestComputeModeDeviation</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestComputeModeDeviation.test_identical_values"><code class="docutils literal notranslate"><span class="pre">TestComputeModeDeviation.test_identical_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestComputeModeDeviation.test_simple_deviation"><code class="docutils literal notranslate"><span class="pre">TestComputeModeDeviation.test_simple_deviation()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestComputeModeDeviation.test_single_value"><code class="docutils literal notranslate"><span class="pre">TestComputeModeDeviation.test_single_value()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestComputeModeDeviation.test_float_values"><code class="docutils literal notranslate"><span class="pre">TestComputeModeDeviation.test_float_values()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_perfect_regularity"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_perfect_regularity()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_high_regularity"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_high_regularity()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_low_regularity"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_low_regularity()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_single_value"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_single_value()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_two_identical_values"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_two_identical_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_mixed_regularity"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_mixed_regularity()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_return_type_and_precision"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_return_type_and_precision()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_with_additional_columns"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_with_additional_columns()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../iat_outliers_metrics/index.html">iat_outliers_metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../iat_outliers_metrics/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../iat_outliers_metrics/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../iat_outliers_metrics/index.html#iat_outliers_metrics.iatOutliersMetric"><code class="docutils literal notranslate"><span class="pre">iatOutliersMetric()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_required_fields/index.html">test_required_fields</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_required_fields/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_required_fields/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_required_fields/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.required_fields_set"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.required_fields_set()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.complete_data_file"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.complete_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.missing_fields_data_file"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.missing_fields_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.null_values_data_file"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.null_values_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.mixed_data_file"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.mixed_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.teardown_method"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.teardown_method()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_all_fields_present"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_all_fields_present()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_missing_fields"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_missing_fields()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_null_values_treated_as_missing"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_null_values_treated_as_missing()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_mixed_scenarios"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_mixed_scenarios()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_empty_required_fields_set"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_empty_required_fields_set()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_empty_data_file"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_empty_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_single_record_all_missing"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_single_record_all_missing()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_single_record_all_null"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_single_record_all_null()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_file_not_found"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_file_not_found()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_large_required_fields_set"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_large_required_fields_set()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_extra_fields_ignored"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_extra_fields_ignored()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_partial_overlap_required_fields"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_partial_overlap_required_fields()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../iat_regularity_metrics/index.html">iat_regularity_metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../iat_regularity_metrics/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../iat_regularity_metrics/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../iat_regularity_metrics/index.html#iat_regularity_metrics.computeModeDeviation"><code class="docutils literal notranslate"><span class="pre">computeModeDeviation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../iat_regularity_metrics/index.html#iat_regularity_metrics.iatRegularityMetric"><code class="docutils literal notranslate"><span class="pre">iatRegularityMetric()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_preprocessing_new/index.html">test_preprocessing_new</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_preprocessing_new/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_preprocessing_new/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_preprocessing_new/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.sample_config"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.sample_config()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.sample_json_data"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.sample_json_data()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.sample_dataframe"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.sample_dataframe()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_readFile_success"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_readFile_success()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_timeRange"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_timeRange()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_dropDupes"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_dropDupes()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_outRemove"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_outRemove()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_dataStats"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_dataStats()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_radarChart"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_radarChart()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_dropDupes_no_duplicates"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_dropDupes_no_duplicates()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_schema_validation/index.html">test_schema_validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_schema_validation/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_schema_validation/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_schema_validation/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.sample_schema"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.sample_schema()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.valid_data_file"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.valid_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.invalid_data_file"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.invalid_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.mixed_errors_file"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.mixed_errors_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.teardown_method"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.teardown_method()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_validate_all_valid_data"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_validate_all_valid_data()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_validate_with_errors"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_validate_with_errors()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_validate_mixed_errors"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_validate_mixed_errors()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_empty_file"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_empty_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_invalid_schema"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_invalid_schema()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_file_not_found"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_file_not_found()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_required_property_error_detection"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_required_property_error_detection()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_additional_property_error_detection"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_additional_property_error_detection()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_complex_schema_validation"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_complex_schema_validation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_data_preprocessing/index.html">test_data_preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_data_preprocessing/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_data_preprocessing/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_data_preprocessing/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess"><code class="docutils literal notranslate"><span class="pre">TestPreProcess</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_basic_preprocessing"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_basic_preprocessing()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_sorting_functionality"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_sorting_functionality()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_multiple_unique_ids"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_multiple_unique_ids()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_negative_iat_filtering"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_negative_iat_filtering()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_empty_dataframe"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_empty_dataframe()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_single_row_dataframe"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_single_row_dataframe()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_invalid_datetime_format"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_invalid_datetime_format()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_missing_columns"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_missing_columns()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_nan_datetime_values"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_nan_datetime_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_different_column_names"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_different_column_names()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_zero_iat_values"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_zero_iat_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_large_time_differences"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_large_time_differences()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_mixed_data_types_in_unique_id"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_mixed_data_types_in_unique_id()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_duplicates_metrics/index.html">test_duplicates_metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_duplicates_metrics/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_duplicates_metrics/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_duplicates_metrics/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_no_duplicates"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_no_duplicates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_all_duplicates"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_all_duplicates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_partial_duplicates"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_partial_duplicates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_single_row_dataframe"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_single_row_dataframe()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_empty_dataframe"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_empty_dataframe()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_two_rows_no_duplicates"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_two_rows_no_duplicates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_two_rows_all_duplicates"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_two_rows_all_duplicates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_nan_values_in_columns"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_nan_values_in_columns()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_different_column_names"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_different_column_names()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_numeric_columns"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_numeric_columns()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_mixed_data_types"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_mixed_data_types()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_large_dataset_performance"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_large_dataset_performance()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_rounding_precision"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_rounding_precision()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_missing_columns_error"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_missing_columns_error()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_duplicate_detection_ignores_other_columns"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_duplicate_detection_ignores_other_columns()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">schema_validation_metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#schema_validation_metrics.validate_data_with_schema"><code class="docutils literal notranslate"><span class="pre">validate_data_with_schema()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../required_fields_validation/index.html">required_fields_validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../required_fields_validation/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../required_fields_validation/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../required_fields_validation/index.html#required_fields_validation.validate_requiredFields"><code class="docutils literal notranslate"><span class="pre">validate_requiredFields()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../main/index.html">main</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../main/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../main/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../main/index.html#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../PreProcessing/index.html">PreProcessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../PreProcessing/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PreProcessing/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PreProcessing/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.custom_style"><code class="docutils literal notranslate"><span class="pre">custom_style</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.readFile"><code class="docutils literal notranslate"><span class="pre">readFile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.timeRange"><code class="docutils literal notranslate"><span class="pre">timeRange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.dropDupes"><code class="docutils literal notranslate"><span class="pre">dropDupes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.outRemove"><code class="docutils literal notranslate"><span class="pre">outRemove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.dataStats"><code class="docutils literal notranslate"><span class="pre">dataStats()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.radarChart"><code class="docutils literal notranslate"><span class="pre">radarChart()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.bars"><code class="docutils literal notranslate"><span class="pre">bars()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.plotDupesID"><code class="docutils literal notranslate"><span class="pre">plotDupesID()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.plotDupes"><code class="docutils literal notranslate"><span class="pre">plotDupes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.IAThist"><code class="docutils literal notranslate"><span class="pre">IAThist()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.outScatterPlot"><code class="docutils literal notranslate"><span class="pre">outScatterPlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.boxPlot"><code class="docutils literal notranslate"><span class="pre">boxPlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.normalFitPlot"><code class="docutils literal notranslate"><span class="pre">normalFitPlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.piePlot"><code class="docutils literal notranslate"><span class="pre">piePlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.gaugePlot"><code class="docutils literal notranslate"><span class="pre">gaugePlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.outagePlot"><code class="docutils literal notranslate"><span class="pre">outagePlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../PreProcessing/index.html#PreProcessing.outliersPlot"><code class="docutils literal notranslate"><span class="pre">outliersPlot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../metricModules/index.html">metricModules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../metricModules/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metricModules/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.preProcess"><code class="docutils literal notranslate"><span class="pre">preProcess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.computeModeDeviation"><code class="docutils literal notranslate"><span class="pre">computeModeDeviation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.iatRegularityMetricOld"><code class="docutils literal notranslate"><span class="pre">iatRegularityMetricOld()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.iatRegularityMetric"><code class="docutils literal notranslate"><span class="pre">iatRegularityMetric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.iatOutliersMetric"><code class="docutils literal notranslate"><span class="pre">iatOutliersMetric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.duplicatesMetric"><code class="docutils literal notranslate"><span class="pre">duplicatesMetric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.validate_data_with_schema"><code class="docutils literal notranslate"><span class="pre">validate_data_with_schema()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../metricModules/index.html#metricModules.validate_requiredFields"><code class="docutils literal notranslate"><span class="pre">validate_requiredFields()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pdf_generation/index.html">pdf_generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pdf_generation/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pdf_generation/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pdf_generation/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pdf_generation/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.WIDTH"><code class="docutils literal notranslate"><span class="pre">WIDTH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.HEIGHT"><code class="docutils literal notranslate"><span class="pre">HEIGHT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.create_title_card"><code class="docutils literal notranslate"><span class="pre">create_title_card()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.create_heading"><code class="docutils literal notranslate"><span class="pre">create_heading()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.PDFReport"><code class="docutils literal notranslate"><span class="pre">PDFReport</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.PDFReport.add_page"><code class="docutils literal notranslate"><span class="pre">PDFReport.add_page()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.PDFReport.footer"><code class="docutils literal notranslate"><span class="pre">PDFReport.footer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../pdf_generation/index.html#pdf_generation.create_analytics_report_schema"><code class="docutils literal notranslate"><span class="pre">create_analytics_report_schema()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../DQReportGenerator/index.html">DQReportGenerator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../DQReportGenerator/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DQReportGenerator/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DQReportGenerator/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DQReportGenerator/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.configFile"><code class="docutils literal notranslate"><span class="pre">configFile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.numPackets"><code class="docutils literal notranslate"><span class="pre">numPackets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.schemaProvision"><code class="docutils literal notranslate"><span class="pre">schemaProvision</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.schemaInputValidity"><code class="docutils literal notranslate"><span class="pre">schemaInputValidity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.schemaFile"><code class="docutils literal notranslate"><span class="pre">schemaFile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.dfClean"><code class="docutils literal notranslate"><span class="pre">dfClean</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.regularityMetricScore"><code class="docutils literal notranslate"><span class="pre">regularityMetricScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.outliersMetricScore"><code class="docutils literal notranslate"><span class="pre">outliersMetricScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.dupeMetricScore"><code class="docutils literal notranslate"><span class="pre">dupeMetricScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.compMetricScore"><code class="docutils literal notranslate"><span class="pre">compMetricScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.formatMetricScore"><code class="docutils literal notranslate"><span class="pre">formatMetricScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.addnlAttrMetricScore"><code class="docutils literal notranslate"><span class="pre">addnlAttrMetricScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.avgDataQualityScore"><code class="docutils literal notranslate"><span class="pre">avgDataQualityScore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.avgDataQualityPercent"><code class="docutils literal notranslate"><span class="pre">avgDataQualityPercent</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.WIDTH"><code class="docutils literal notranslate"><span class="pre">WIDTH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.HEIGHT"><code class="docutils literal notranslate"><span class="pre">HEIGHT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.fileNameNoExt"><code class="docutils literal notranslate"><span class="pre">fileNameNoExt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.create_title_card"><code class="docutils literal notranslate"><span class="pre">create_title_card()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.create_heading"><code class="docutils literal notranslate"><span class="pre">create_heading()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.pdf"><code class="docutils literal notranslate"><span class="pre">pdf</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.pdf.add_page"><code class="docutils literal notranslate"><span class="pre">pdf.add_page()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.pdf.footer"><code class="docutils literal notranslate"><span class="pre">pdf.footer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.create_analytics_report_schema"><code class="docutils literal notranslate"><span class="pre">create_analytics_report_schema()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.outputParamFV"><code class="docutils literal notranslate"><span class="pre">outputParamFV</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.myJSON"><code class="docutils literal notranslate"><span class="pre">myJSON</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.filename"><code class="docutils literal notranslate"><span class="pre">filename</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../DQReportGenerator/index.html#DQReportGenerator.jsonpath"><code class="docutils literal notranslate"><span class="pre">jsonpath</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_iat_outliers/index.html">test_iat_outliers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_iat_outliers/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_iat_outliers/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_iat_outliers/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_no_outliers_perfect_score"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_no_outliers_perfect_score()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_all_outliers_zero_score"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_all_outliers_zero_score()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_mixed_data_with_outliers"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_mixed_data_with_outliers()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_single_value"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_single_value()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_two_identical_values"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_two_identical_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_two_different_values"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_two_different_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_with_nan_values"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_with_nan_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_empty_dataframe_after_dropna"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_empty_dataframe_after_dropna()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_normal_distribution"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_normal_distribution()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_return_type_and_precision"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_return_type_and_precision()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_zero_mad_edge_case"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_zero_mad_edge_case()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_large_dataset"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_large_dataset()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_negative_values"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_negative_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_very_small_values"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_very_small_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.sample_dataframe"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.sample_dataframe()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_outliers/index.html#test_iat_outliers.TestIATOutliersMetric.test_with_additional_columns"><code class="docutils literal notranslate"><span class="pre">TestIATOutliersMetric.test_with_additional_columns()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../data_preprocessing/index.html">data_preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data_preprocessing/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_preprocessing/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../data_preprocessing/index.html#data_preprocessing.preProcess"><code class="docutils literal notranslate"><span class="pre">preProcess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../data_preprocessing/index.html#id0"><code class="docutils literal notranslate"><span class="pre">preProcess()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../duplicates_metrics/index.html">duplicates_metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../duplicates_metrics/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../duplicates_metrics/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../duplicates_metrics/index.html#duplicates_metrics.duplicatesMetric"><code class="docutils literal notranslate"><span class="pre">duplicatesMetric()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_iat_regularity/index.html">test_iat_regularity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_iat_regularity/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_iat_regularity/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_iat_regularity/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestComputeModeDeviation"><code class="docutils literal notranslate"><span class="pre">TestComputeModeDeviation</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestComputeModeDeviation.test_identical_values"><code class="docutils literal notranslate"><span class="pre">TestComputeModeDeviation.test_identical_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestComputeModeDeviation.test_simple_deviation"><code class="docutils literal notranslate"><span class="pre">TestComputeModeDeviation.test_simple_deviation()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestComputeModeDeviation.test_single_value"><code class="docutils literal notranslate"><span class="pre">TestComputeModeDeviation.test_single_value()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestComputeModeDeviation.test_float_values"><code class="docutils literal notranslate"><span class="pre">TestComputeModeDeviation.test_float_values()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_perfect_regularity"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_perfect_regularity()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_high_regularity"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_high_regularity()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_low_regularity"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_low_regularity()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_single_value"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_single_value()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_two_identical_values"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_two_identical_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_mixed_regularity"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_mixed_regularity()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_return_type_and_precision"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_return_type_and_precision()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_iat_regularity/index.html#test_iat_regularity.TestIATRegularityMetric.test_with_additional_columns"><code class="docutils literal notranslate"><span class="pre">TestIATRegularityMetric.test_with_additional_columns()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../iat_outliers_metrics/index.html">iat_outliers_metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../iat_outliers_metrics/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../iat_outliers_metrics/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../iat_outliers_metrics/index.html#iat_outliers_metrics.iatOutliersMetric"><code class="docutils literal notranslate"><span class="pre">iatOutliersMetric()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_required_fields/index.html">test_required_fields</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_required_fields/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_required_fields/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_required_fields/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.required_fields_set"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.required_fields_set()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.complete_data_file"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.complete_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.missing_fields_data_file"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.missing_fields_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.null_values_data_file"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.null_values_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.mixed_data_file"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.mixed_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.teardown_method"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.teardown_method()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_all_fields_present"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_all_fields_present()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_missing_fields"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_missing_fields()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_null_values_treated_as_missing"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_null_values_treated_as_missing()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_mixed_scenarios"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_mixed_scenarios()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_empty_required_fields_set"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_empty_required_fields_set()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_empty_data_file"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_empty_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_single_record_all_missing"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_single_record_all_missing()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_single_record_all_null"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_single_record_all_null()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_file_not_found"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_file_not_found()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_large_required_fields_set"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_large_required_fields_set()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_extra_fields_ignored"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_extra_fields_ignored()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_required_fields/index.html#test_required_fields.TestRequiredFieldsValidation.test_partial_overlap_required_fields"><code class="docutils literal notranslate"><span class="pre">TestRequiredFieldsValidation.test_partial_overlap_required_fields()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../iat_regularity_metrics/index.html">iat_regularity_metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../iat_regularity_metrics/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../iat_regularity_metrics/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../iat_regularity_metrics/index.html#iat_regularity_metrics.computeModeDeviation"><code class="docutils literal notranslate"><span class="pre">computeModeDeviation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../iat_regularity_metrics/index.html#iat_regularity_metrics.iatRegularityMetric"><code class="docutils literal notranslate"><span class="pre">iatRegularityMetric()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_preprocessing_new/index.html">test_preprocessing_new</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_preprocessing_new/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_preprocessing_new/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_preprocessing_new/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.sample_config"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.sample_config()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.sample_json_data"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.sample_json_data()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.sample_dataframe"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.sample_dataframe()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_readFile_success"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_readFile_success()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_timeRange"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_timeRange()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_dropDupes"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_dropDupes()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_outRemove"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_outRemove()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_dataStats"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_dataStats()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_radarChart"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_radarChart()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_preprocessing_new/index.html#test_preprocessing_new.TestPreProcessing.test_dropDupes_no_duplicates"><code class="docutils literal notranslate"><span class="pre">TestPreProcessing.test_dropDupes_no_duplicates()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_schema_validation/index.html">test_schema_validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_schema_validation/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_schema_validation/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_schema_validation/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.sample_schema"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.sample_schema()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.valid_data_file"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.valid_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.invalid_data_file"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.invalid_data_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.mixed_errors_file"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.mixed_errors_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.teardown_method"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.teardown_method()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_validate_all_valid_data"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_validate_all_valid_data()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_validate_with_errors"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_validate_with_errors()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_validate_mixed_errors"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_validate_mixed_errors()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_empty_file"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_empty_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_invalid_schema"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_invalid_schema()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_file_not_found"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_file_not_found()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_required_property_error_detection"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_required_property_error_detection()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_additional_property_error_detection"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_additional_property_error_detection()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_schema_validation/index.html#test_schema_validation.TestSchemaValidationMetrics.test_complex_schema_validation"><code class="docutils literal notranslate"><span class="pre">TestSchemaValidationMetrics.test_complex_schema_validation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_data_preprocessing/index.html">test_data_preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_data_preprocessing/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_data_preprocessing/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_data_preprocessing/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess"><code class="docutils literal notranslate"><span class="pre">TestPreProcess</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_basic_preprocessing"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_basic_preprocessing()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_sorting_functionality"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_sorting_functionality()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_multiple_unique_ids"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_multiple_unique_ids()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_negative_iat_filtering"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_negative_iat_filtering()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_empty_dataframe"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_empty_dataframe()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_single_row_dataframe"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_single_row_dataframe()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_invalid_datetime_format"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_invalid_datetime_format()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_missing_columns"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_missing_columns()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_nan_datetime_values"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_nan_datetime_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_different_column_names"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_different_column_names()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_zero_iat_values"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_zero_iat_values()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_large_time_differences"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_large_time_differences()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_data_preprocessing/index.html#test_data_preprocessing.TestPreProcess.test_mixed_data_types_in_unique_id"><code class="docutils literal notranslate"><span class="pre">TestPreProcess.test_mixed_data_types_in_unique_id()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_duplicates_metrics/index.html">test_duplicates_metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_duplicates_metrics/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_duplicates_metrics/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_duplicates_metrics/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.setup_imports"><code class="docutils literal notranslate"><span class="pre">setup_imports()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_no_duplicates"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_no_duplicates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_all_duplicates"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_all_duplicates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_partial_duplicates"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_partial_duplicates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_single_row_dataframe"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_single_row_dataframe()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_empty_dataframe"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_empty_dataframe()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_two_rows_no_duplicates"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_two_rows_no_duplicates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_two_rows_all_duplicates"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_two_rows_all_duplicates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_nan_values_in_columns"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_nan_values_in_columns()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_different_column_names"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_different_column_names()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_numeric_columns"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_numeric_columns()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_mixed_data_types"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_mixed_data_types()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_large_dataset_performance"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_large_dataset_performance()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_rounding_precision"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_rounding_precision()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_missing_columns_error"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_missing_columns_error()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../test_duplicates_metrics/index.html#test_duplicates_metrics.TestDuplicatesMetric.test_duplicate_detection_ignores_other_columns"><code class="docutils literal notranslate"><span class="pre">TestDuplicatesMetric.test_duplicate_detection_ignores_other_columns()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">schema_validation_metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#schema_validation_metrics.validate_data_with_schema"><code class="docutils literal notranslate"><span class="pre">validate_data_with_schema()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../required_fields_validation/index.html">required_fields_validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../required_fields_validation/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../required_fields_validation/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../required_fields_validation/index.html#required_fields_validation.validate_requiredFields"><code class="docutils literal notranslate"><span class="pre">validate_requiredFields()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Quality Assessment</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">API Reference</a></li>
+      <li class="breadcrumb-item active">schema_validation_metrics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api/schema_validation_metrics/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-schema_validation_metrics">
+<span id="schema-validation-metrics"></span><h1>schema_validation_metrics<a class="headerlink" href="#module-schema_validation_metrics" title="Link to this heading"></a></h1>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#schema_validation_metrics.validate_data_with_schema" title="schema_validation_metrics.validate_data_with_schema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_data_with_schema</span></code></a>(dataF, schema)</p></td>
+<td><p>Validates JSON data against a given schema and tracks various error types.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="schema_validation_metrics.validate_data_with_schema">
+<span class="sig-prename descclassname"><span class="pre">schema_validation_metrics.</span></span><span class="sig-name descname"><span class="pre">validate_data_with_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schema</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#schema_validation_metrics.validate_data_with_schema" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>Validates JSON data against a given schema and tracks various error types.</p>
+<p>Args:</p>
+</div></blockquote>
+<dl>
+<dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt><dd><blockquote>
+<div><p>dataF: Path to JSON file containing data.
+schema: JSON schema to validate against.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Tuple containing:
+- num_samples: Total number of samples processed.
+- err_count: Number of samples with validation errors.
+- err_data_arr: Array of data packets with errors.
+- additional_prop_err_count: Count of additional properties errors.
+- req_prop_err_count: Count of required properties errors.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<blockquote>
+<div><dl class="simple">
+<dt>Returns:</dt><dd><p>Tuple containing:
+- num_samples: Total number of samples processed
+- err_count: Number of samples with validation errors
+- err_data_arr: Array of data packets with errors
+- additional_prop_err_count: Count of additional properties errors
+- req_prop_err_count: Count of required properties errors</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 9c5f2989031ba54019bec835b7ecb3f5768f2dcf</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../test_duplicates_metrics/index.html" class="btn btn-neutral float-left" title="test_duplicates_metrics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../required_fields_validation/index.html" class="btn btn-neutral float-right" title="required_fields_validation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Akash Suresh Kumar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
