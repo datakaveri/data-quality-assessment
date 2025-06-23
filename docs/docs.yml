@@ -1,0 +1,29 @@
+# Site settings
+title: Data Quality Assessment Tool
+description: >-
+  A comprehensive tool for auditing the quality of IoT sensor datasets through 
+  six key metrics. Focuses on smart city data with automated PDF and JSON report generation.
+
+# Repository information
+repository: datakaveri/data-quality-assessment
+github_username: datakaveri
+branch: cleanup
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# Exclude files from processing
+exclude:
+  - pyproject.toml
+  - dist/
+  - plots/
+  - config/
+  - outputReports/
+  - scripts/
+  - data/
+  - "*.egg-info"
+  - .pytest_cache/
+  - __pycache__/
+  - .vscode/
+  - .pypirc.txt
