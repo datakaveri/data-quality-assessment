@@ -13,11 +13,8 @@ data_quality_assessment_akash100.egg-info
 .github
 scripts/metrics/__pycache__/
 scripts/old/
-<<<<<<< HEAD
 .pypirc.txt
 config/
 data/
 
-=======
->>>>>>> 2677efcde73d17b2e5e28d48d5b83f66532e6ef4
 

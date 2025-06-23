@@ -76,7 +76,7 @@ Present in the *config* folder is a config file in *JSON* format with the name o
 Present in the *data* folder in the repository is a sample dataset of ITMS data from Surat, as well as a sample dataset of AQM data from Pune. Inside the *schemas* folder are the corresponding schemas for these datasets. In order to generate the report, simply run the following command:
 
 ```console
-python3 DQReportGenerator.py
+python3 main.py
 ```
 and enter the name of the config file when prompted.
 
