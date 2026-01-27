@@ -8,6 +8,7 @@ import time
 import json
 from dotenv import load_dotenv
 
+
 logging.info("Importing modules completed in lambda_handler.py")
 
 # Configure logging
@@ -66,7 +67,21 @@ def lambda_handler(event, context):
                 body = {}
             folder_key = body.get('folder_key')
             logger.info(f"Extracted folder_key: {folder_key}")
-            
+
+            # For local testing, to be removed before deployment
+            # if folder_key and (folder_key.startswith("local:") or os.path.isdir(folder_key)):
+            #     # Local mode: folder_key is a local directory path
+            #     local_dir = folder_key.replace("local:", "") if folder_key.startswith("local:") else folder_key
+            #     # print(f"Running unstructured_main.main on local directory: {local_dir}")
+            #     # import unstructured_main
+            #     # unstructured_main.main(local_dir, folder_key)
+            #     # return {"status": "done (local unstructured run)"}
+            #     print(f"Running structured_main.main on local directory: {local_dir}")
+            #     import structured_main
+            #     structured_main.main(local_dir, folder_key)
+            #     return {"status": "done (local structured run)"}
+
+    
             if not folder_key:
                 logger.error("Missing required parameter: folder_key")
                 return {

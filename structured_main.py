@@ -101,7 +101,7 @@ def main(directory, folder_key):
                 
                 # Generate a PDF report
                 pdf_output = f"{output_dir}/data_readiness_report.pdf"
-                logo_path = "plots/pretty/TGDEX_Logo Unit_Green.png"
+                logo_path = "plots/pretty/MahaAgriLogo.png"
                 log_and_call(generate_pdf_from_json, f"{output_dir}/{dataset_name}_final_readiness_report.json", pdf_output, uuid, final_score["total_percentage"], output_dir, true_name, logo_path, sample_size, sample)
                 logging.info(f"PDF generated for {file_path}")
                 
@@ -125,7 +125,7 @@ def main(directory, folder_key):
                 json.dump(final_avg_report, f, indent=4)
 
             pdf_output = f"{output_dir}/data_readiness_report.pdf"
-            logo_path = "plots/pretty/TGDEX_Logo Unit_Green.png"  # Set this to None if not needed
+            logo_path = "plots/MahaAgriLogo.png"  # Set this to None if not needed
             log_and_call(generate_pdf_from_json, f"{output_dir}/average_score_final_readiness_report.json", pdf_output, uuid, raw_avg_report["total_percentage"], output_dir, true_name, logo_path, sample_size, average_report=True)
             logging.info("Average score report generated for all datasets")
             final_percentage = average_percentage if average_percentage is not None else "unknown"

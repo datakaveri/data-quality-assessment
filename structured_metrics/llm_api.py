@@ -7,7 +7,7 @@ def infer_column_roles_openai(df, api_key):
     client = openai.OpenAI(api_key=api_key)
 
     column_names = df.columns.tolist()
-    first_rows = df.head(20).to_dict(orient="records")
+    first_rows = df.head(5).to_dict(orient="records")
 
     system_prompt = (
 "You are a data analyst helping identify key columns in a tabular dataset. "

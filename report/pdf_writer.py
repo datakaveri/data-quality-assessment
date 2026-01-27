@@ -35,6 +35,7 @@ class PDFReport(FPDF):
         self.directory = directory
         self.sample_size = sample_size
         self.true_name = self.sanitize_text(true_name)
+        # self.true_name = "Cropsap ETL and Near ETL"
         if self.average_report:
             self.dataset_name = f"{self.true_name} - Average Report"
         elif self.sample:
@@ -49,7 +50,8 @@ class PDFReport(FPDF):
 
     def header(self):
         if self.logo_path:
-            self.image(self.logo_path, 10, 5, 25)  # Logo at top-left, width = 20
+            # self.image(self.logo_path, 10, 5, 25)  # TGDEX Logo at top-left, width = 25
+            self.image(self.logo_path, 8, 8, 50)  # MahaAgri Logo at top-left, width = 50
 
         self.set_font("Helvetica", 'B', 18)
         self.set_xy(10, 10)
