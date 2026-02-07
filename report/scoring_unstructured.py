@@ -26,7 +26,7 @@ def compute_aggregate_score(report_dict):
         "file_format_check": 15,
         "annotation_presence": 10 if report_dict.get("annotation_presence") == True else 0,
         "timestamps_presence": 10 if report_dict.get("timestamps_presence") == True else 0,
-        "documentation_presence": 10,
+        "documentation_presence": 0,
     }
 
     # 1. File Type Consistency (binary scoring)

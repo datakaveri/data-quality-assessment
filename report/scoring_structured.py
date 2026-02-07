@@ -28,7 +28,8 @@ def compute_aggregate_score(report_dict, df):
         "file_format_check": 10,
         "uniform_encoding": 10 if report_dict.get("datetime_issues_percentage") != 'None' else 0,
         "date_or_timestamp_fields_found": 10 if report_dict.get("date_or_timestamp_fields_found") != 'None' else 0,
-        "documentation_presence": 15,
+        # "documentation_presence": 15 if report_dict.get("documentation_found") != 'None' else 0,
+        "documentation_presence": 0
     }
 
     # 1. Column-wise Missing (score decreases as missing % increases)
