@@ -98,7 +98,7 @@ def main(directory, folder_key):
 
             # 7. Generate a PDF report
             pdf_output = f"{output_dir}/data_readiness_report.pdf"
-            logo_path = "plots/pretty/TGDEX_Logo Unit_Green.png"
+            logo_path = "plots/pretty/mahaagx-logo-dark.png"
             sample_size = len(metadata)
             sample = False
             log_and_call(

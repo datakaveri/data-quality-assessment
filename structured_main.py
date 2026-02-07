@@ -101,7 +101,7 @@ def main(directory, folder_key):
                 
                 # Generate a PDF report
                 pdf_output = f"{output_dir}/data_readiness_report.pdf"
-                logo_path = "plots/pretty/MahaAgriLogo.png"
+                logo_path = "plots/pretty/mahaagx-logo-dark.png"
                 log_and_call(generate_pdf_from_json, f"{output_dir}/{dataset_name}_final_readiness_report.json", pdf_output, uuid, final_score["total_percentage"], output_dir, true_name, logo_path, sample_size, sample)
                 logging.info(f"PDF generated for {file_path}")
                 
