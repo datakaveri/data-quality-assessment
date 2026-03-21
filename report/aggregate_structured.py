@@ -79,13 +79,8 @@ def generate_final_report(readiness_metrics_json_path):
             "column_missing": 15,
             "row_missing": 10,
             "exact_row_duplicates": 10,
-            "coverage_check": 10,
             "numeric_variance": 5,
-            "categorical_variation": 5,
             "file_format_check": 10,
-            "uniform_encoding": 10,
-            "date_or_timestamp_fields_found": 10,
-            "documentation_presence": 15,
         }
         
         return {
@@ -103,16 +98,7 @@ def generate_final_report(readiness_metrics_json_path):
             f"100% of rows are unique with no duplicates detected." if readiness_metrics_raw["detailed_scores"]["exact_row_duplicates"] == max_scores["exact_row_duplicates"] 
             else 
             f"{round(100 - readiness_metrics_raw['exact_row_duplicates_percentage'], 1)}% of rows are unique, with {readiness_metrics_raw['exact_row_duplicates_count']} duplicate rows identified.",
-            
-            "coverage_check": (
-                "No region columns found." if readiness_metrics_raw["region_coverage"] == 'None'
-                else (
-                    f"100% coverage achieved across all regional columns."
-                    if "region_coverage" in readiness_metrics_raw and readiness_metrics_raw["detailed_scores"]["coverage_check"] == max_scores["coverage_check"]
-                    else f"{round(100 - readiness_metrics_raw['region_coverage'], 1)}% coverage achieved across {len(readiness_metrics_raw['region_column'])} regional columns."
-                )
-            ),
-            
+
             "numeric_variance": 
             "No numeric columns found." if readiness_metrics_raw["number_of_numeric_columns"] == 0 
             else (
@@ -121,47 +107,11 @@ def generate_final_report(readiness_metrics_json_path):
                 else 
                 f"{readiness_metrics_raw['number_of_numeric_columns'] - len(readiness_metrics_raw['low_variance_numeric_columns'])} out of {readiness_metrics_raw['number_of_numeric_columns']} numeric columns show sufficient statistical variation."
             ),
-            
-            "categorical_variation": 
-            "No categorical columns found." if readiness_metrics_raw["number_of_categorical_columns"] == 0 
-            else (
-                f"All {readiness_metrics_raw['number_of_categorical_columns']} categorical column(s) have a balanced distribution of values." 
-                if readiness_metrics_raw["detailed_scores"]["categorical_variation"] == max_scores["categorical_variation"] 
-                else 
-                f"{readiness_metrics_raw['number_of_categorical_columns'] - len(readiness_metrics_raw['dominant_categorical_columns'])} out of {readiness_metrics_raw['number_of_categorical_columns']} categorical columns have a balanced distribution of values."
-            ),
+
             "file_format_check": 
             "File format meets all requirements." if readiness_metrics_raw["detailed_scores"]["file_format_check"] == max_scores["file_format_check"] 
             else 
             "File format provides opportunity for conversion to the required format.",
-
-            "uniform_encoding": (
-                "No date or time columns found." if readiness_metrics_raw["date_column"] == 'None' and readiness_metrics_raw["timestamp_column"] == 'None'
-                else (
-                    f"All dates in {len(readiness_metrics_raw['date_column'])} date columns and timestamps in {len(readiness_metrics_raw['timestamp_column'])} timestamp columns use consistent format."
-                    if len(readiness_metrics_raw['date_column']) > 0 and len(readiness_metrics_raw['timestamp_column']) > 0 and readiness_metrics_raw["detailed_scores"]["uniform_encoding"] == max_scores["uniform_encoding"]
-                    else f"All dates in '{readiness_metrics_raw['date_column'][0]}' column use consistent format."
-                    if len(readiness_metrics_raw['date_column']) == 1 and readiness_metrics_raw["detailed_scores"]["uniform_encoding"] == max_scores["uniform_encoding"]
-                    else f"All timestamps in '{readiness_metrics_raw['timestamp_column'][0]}' column use consistent format."
-                    if len(readiness_metrics_raw['timestamp_column']) == 1 and readiness_metrics_raw["detailed_scores"]["uniform_encoding"] == max_scores["uniform_encoding"]
-                    else f"Dates in {(readiness_metrics_raw['number_of_date_columns'])} date columns and timestamps in {(readiness_metrics_raw['number_of_timestamp_columns'])} timestamp columns offer potential for standardization to a single format."
-                )
-            ),
-
-            "date_or_timestamp_fields_found": (
-                "No datetime fields found." if readiness_metrics_raw["date_or_timestamp_fields_found"] == 'None' 
-                else ( 
-                    f"100% of values are populated across {len(readiness_metrics_raw['date_or_timestamp_fields_found'])} datetime fields." if readiness_metrics_raw["detailed_scores"]["date_or_timestamp_fields_found"] == max_scores["date_or_timestamp_fields_found"] 
-                    else 
-                    f"{round(100 - readiness_metrics_raw['date_or_timestamp_issues_percentage'], 1)}% of values are populated across {len(readiness_metrics_raw['date_or_timestamp_fields_found'])} datetime fields."
-                )
-            ),
-
-            "documentation_presence": (
-                "Documentation includes comprehensive data dictionary files." if readiness_metrics_raw["detailed_scores"]["documentation_presence"] == max_scores["documentation_presence"] 
-                else 
-                "None"
-            )
         }
 
     notes = get_notes()
@@ -198,79 +148,32 @@ def generate_final_report(readiness_metrics_json_path):
             ]
         },
         {
-            "bucket": "Data Relevance and Completeness",
-            "weight": 0 if notes["coverage_check"] == "No region columns found." or detailed_scores["coverage_check"] == 0 else 10,
+            "bucket": "Data Variance and Correctness",
+            "weight": 0 if notes["numeric_variance"] == "No numeric columns found." else 5,
             "tests": [
                 {
                     "id": "2.1",
-                    "key": "coverage_check",
-                    "title": "Coverage Check",
-                    "note": notes["coverage_check"],
-                    "score": detailed_scores["coverage_check"],
-                    "max_score": 0 if notes["coverage_check"] == "No region columns found." or detailed_scores["coverage_check"] == 0 else 10
-                },
-            ]
-        },
-        {
-            "bucket": "Data Variance and Correctness",
-            "weight": 0 if notes["numeric_variance"] == "No numeric columns found." and notes["categorical_variation"] == "No categorical columns found." else (
-                5 if notes["numeric_variance"] == "No numeric columns found." or notes["categorical_variation"] == "No categorical columns found." else 10
-            ),
-            "tests": [
-                {
-                    "id": "3.1",
                     "key": "numeric_variance",
                     "title": "Numeric Variance",
                     "note": notes["numeric_variance"],
                     "score": detailed_scores["numeric_variance"],
                     "max_score": 0 if notes["numeric_variance"] == "No numeric columns found." else 5
-                },
-                {
-                    "id": "3.2",
-                    "key": "categorical_variation",
-                    "title": "Categorical Variation",
-                    "note": notes["categorical_variation"],
-                    "score": detailed_scores["categorical_variation"],
-                    "max_score": 0 if notes["categorical_variation"] == "No categorical columns found." else 5
                 }
             ]
         },
         {
             "bucket": "Standardisation",
-            "weight": 10 if notes["uniform_encoding"] == "No date or time columns found." or detailed_scores["uniform_encoding"] == 0 else 20,
+            "weight": 10,
             "tests": [
                 {
-                    "id": "4.1",
+                    "id": "3.1",
                     "key": "file_format_check",
                     "title": "File Format Check",
                     "note": notes["file_format_check"],
                     "score": detailed_scores["file_format_check"],
                     "max_score": 10
-                },
-                {
-                    "id": "4.2",
-                    "key": "uniform_encoding",
-                    "title": "Uniform Encoding",
-                    "note": notes["uniform_encoding"],
-                    "score": detailed_scores["uniform_encoding"],
-                    "max_score": 0 if notes["uniform_encoding"] == "No date or time columns found." or detailed_scores["uniform_encoding"] == 0 else 10
                 }
             ]
-        },
-        {
-            "bucket": "Regular Refresh",
-            "weight": 0 if notes["date_or_timestamp_fields_found"] == "No date or timestamp fields found" or detailed_scores["date_or_timestamp_fields_found"] == 0 else 10,
-            "tests": [
-                {
-                    "id": "5.1",
-                    "key": "date_or_timestamp_fields_found",
-                    "title": "DateTime Fields Presence",
-                    "note": notes["date_or_timestamp_fields_found"],
-                    "score": detailed_scores["date_or_timestamp_fields_found"],
-                    "max_score": 0 if notes["date_or_timestamp_fields_found"] == "No datetime fields found." or detailed_scores["date_or_timestamp_fields_found"] == 0 else 10
-                }
-            ]
-        # }
         }
     ]
 
