@@ -107,9 +107,13 @@ def check_row_duplicates(df):
         rows with exact duplicates, and the second maps to the percentage of
         rows with exact duplicates.
     """
-    # count = int(df.duplicated(keep='first').sum())
-    count = int(df.duplicated().sum())
-    percentage = round(df.duplicated().mean() * 100, 1) if count > 0 else 0.0
+    try:
+        duplicated = df.duplicated()
+    except (TypeError, ValueError):
+        duplicated = df.astype(str).duplicated()
+
+    count = int(duplicated.sum())
+    percentage = round(duplicated.mean() * 100, 1) if count > 0 else 0.0
     return {"exact_row_duplicates_count": count,
             "exact_row_duplicates_percentage": percentage}  
 
